@@ -190,11 +190,7 @@ void dae::Minigin::LoadGame() const
 	SoundSystemServiceLocator::RegisterSoundSystem(new SDLSoundSystem());
 
 	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
-	soundSystem.AddAudio("../Data/sounds/door1.wav");
-	soundSystem.Play(0, 128);
-	soundSystem.Play(0, 128);
-	soundSystem.Play(0, 128);
-	soundSystem.Play(0, 128);
+	soundSystem.AddAudio("../Data/sounds/bell.wav");
 	soundSystem.Play(0, 128);
 }
 

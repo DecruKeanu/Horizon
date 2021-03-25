@@ -11,12 +11,6 @@ public:
 	virtual void AddAudio(const char* audioPath);
 protected:
 	std::vector<Mix_Chunk*> m_pAudioVector{};
-
-	static constexpr int m_MaxMessages = 16;
-	AudioData m_Progressing[m_MaxMessages]{};
-
-	int m_Head{};
-	int m_Tail{};
 };
 
 

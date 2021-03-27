@@ -2,16 +2,17 @@
 #include "SDLSoundSystem.h"
 #include <cassert>
 
-void SDLSoundSystem::Play(SoundId id, int volume)
+void SDLSoundSystem::Play(SoundId id, int volume) //queueSound
 {
-	for (int idx = m_Head; idx != m_Tail; idx = (idx + 1) % m_MaxMessages)
-	{
-		if (m_Progressing[idx].id == id)
-		{
-			m_Progressing[idx].volume = std::max(volume, m_Progressing[idx].volume);
-			return;
-		}
-	}
+	//for (int idx = m_Head; idx != m_Tail; idx = (idx + 1) % m_MaxMessages)
+	//{
+	//	if (m_Progressing[idx].id == id)
+	//	{
+	//		m_Progressing[idx].volume = std::max(volume, m_Progressing[idx].volume);
+	//		return;
+	//	}
+	//}
+
 	assert((m_Tail + 1) % m_MaxMessages != m_Head);
 
 	m_Progressing[m_Tail].id = id;

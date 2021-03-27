@@ -10,6 +10,7 @@ public:
 private:
 	static SoundSystem* pSoundSystemInstance;
 	static NullSoundSystem* pDefaultSoundSystemInstance;
+	static std::vector<SoundSystem*> systemsToDelete;
 };
 
 

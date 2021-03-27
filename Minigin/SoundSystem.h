@@ -2,15 +2,15 @@
 #include <vector>
 #include "Structs.h"
 
-class SoundSystem
+class SoundSystem //SoundEvent
 {
 public:
 	virtual ~SoundSystem() = default;
-	virtual void Play(SoundId id, int volume) = 0;
-	virtual void Update() = 0;
+	virtual void Play(SoundId id, int volume) = 0; //QueueEvent
+	virtual void Update() = 0; //ExecuteEvent
 	virtual void AddAudio(const char* audioPath);
 protected:
-	std::vector<Mix_Chunk*> m_pAudioVector{};
+	std::vector<Mix_Chunk*> m_pAudioVector{}; //to inherited classes
 };
 
 

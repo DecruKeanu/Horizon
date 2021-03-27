@@ -9,6 +9,7 @@
 #include <SDL.h>
 #include "SoundSystemServiceLocator.h"
 #include "SDLSoundSystem.h"
+#include "MutedSoundSystem.h"
 #include "GameObject.h"
 #include "Scene.h"
 #include "Timer.h"
@@ -192,6 +193,12 @@ void dae::Minigin::LoadGame() const
 	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
 	soundSystem.AddAudio("../Data/sounds/bell.wav");
 	soundSystem.Play(0, 128);
+
+	SoundSystemServiceLocator::RegisterSoundSystem(new MutedSoundSystem());
+
+	auto& soundSystem2 = SoundSystemServiceLocator::GetSoundSystem();
+	soundSystem2.AddAudio("../Data/sounds/bell.wav");
+	soundSystem2.Play(0, 128);
 }
 
 void dae::Minigin::Cleanup()

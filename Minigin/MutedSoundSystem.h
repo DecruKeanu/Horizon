@@ -3,7 +3,7 @@
 class MutedSoundSystem final : public SoundSystem
 {
 public:
-	void Play(SoundId id, int volume)  override;
+	void QueueEvent(SoundId id, int volume)  override;
 	void Update() override;
 protected:
 

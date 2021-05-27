@@ -192,13 +192,13 @@ void dae::Minigin::LoadGame() const
 
 	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
 	soundSystem.AddAudio("../Data/sounds/bell.wav");
-	soundSystem.Play(0, 128);
+	soundSystem.QueueEvent(0, 128);
 
-	SoundSystemServiceLocator::RegisterSoundSystem(new MutedSoundSystem());
+	//SoundSystemServiceLocator::RegisterSoundSystem(new MutedSoundSystem());
 
-	auto& soundSystem2 = SoundSystemServiceLocator::GetSoundSystem();
-	soundSystem2.AddAudio("../Data/sounds/bell.wav");
-	soundSystem2.Play(0, 128);
+	//auto& soundSystem2 = SoundSystemServiceLocator::GetSoundSystem();
+	//soundSystem2.AddAudio("../Data/sounds/bell.wav");
+	//soundSystem2.QueueEvent(0, 128);
 }
 
 void dae::Minigin::Cleanup()
@@ -236,6 +236,7 @@ void dae::Minigin::Run() //no fpsCap because vsync does it automatically
 			while (doContinue)
 				soundSystem.Update();
 			} };
+
 		while (doContinue)
 		{
 			Timer::GetInstance().UpdateGameLoop();

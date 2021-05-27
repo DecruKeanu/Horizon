@@ -6,7 +6,7 @@ class SoundSystem //SoundEvent
 {
 public:
 	virtual ~SoundSystem() = default;
-	virtual void Play(SoundId id, int volume) = 0; //QueueEvent
+	virtual void QueueEvent(SoundId id, int volume) = 0;
 	virtual void Update() = 0; //ExecuteEvent
 	virtual void AddAudio(const char* audioPath);
 protected:
@@ -17,7 +17,7 @@ protected:
 class NullSoundSystem final : public SoundSystem
 {
 public:
-	void Play(SoundId id, int volume) override { id, volume; }
+	void QueueEvent(SoundId, int) override { }
 	void Update() override {}
 };
 

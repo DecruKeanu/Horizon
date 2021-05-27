@@ -2,7 +2,7 @@
 #include "SDLSoundSystem.h"
 #include <cassert>
 
-void SDLSoundSystem::Play(SoundId id, int volume) //queueSound
+void SDLSoundSystem::QueueEvent(SoundId id, int volume) //queueSound
 {
 	//for (int idx = m_Head; idx != m_Tail; idx = (idx + 1) % m_MaxMessages)
 	//{

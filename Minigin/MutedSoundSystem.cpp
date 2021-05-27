@@ -2,7 +2,7 @@
 #include "MutedSoundSystem.h"
 #include <cassert>
 
-void MutedSoundSystem::Play(SoundId id, int volume)
+void MutedSoundSystem::QueueEvent(SoundId id, int volume)
 {
 	assert((m_Tail + 1) % m_MaxMessages != m_Head);
 

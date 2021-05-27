@@ -4,12 +4,12 @@
 #include "TransformComponent.h"
 #include "Renderer.h"
 
-dae::TextureComponent::TextureComponent(GameObject* parent,const std::string textureFile) : dae::ObjectComponent(parent)
+dae::TextureComponent::TextureComponent(GameObject* parent,const std::string textureFile) : dae::Component(parent)
 {
 	m_pTexture = dae::ResourceManager::GetInstance().LoadTexture(textureFile);
 }
 
-void dae::TextureComponent::BeginPlay()
+void dae::TextureComponent::Initialize()
 {
 	m_pTransformComponent = m_pGameObject->GetComponent<dae::TransformComponent>();
 }

@@ -3,12 +3,12 @@
 #include "TextComponent.h"
 #include "Timer.h"
 
-dae::FPS::FPS(GameObject* parent) : ObjectComponent(parent) 
+dae::FPS::FPS(GameObject* parent) : Component(parent) 
 {
 
 }
 
-void dae::FPS::BeginPlay()
+void dae::FPS::Initialize()
 {
 	m_pTextComponent = m_pGameObject->GetComponent<dae::TextComponent>();
 }

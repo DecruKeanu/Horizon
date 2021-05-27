@@ -1,14 +1,14 @@
 #pragma once
-#include "ObjectComponent.h"
+#include "Component.h"
 
 namespace dae
 {
 	class TextComponent;
-	class HealthDisplayComponent final : public ObjectComponent
+	class HealthDisplayComponent final : public Component
 	{
 	public:
 		HealthDisplayComponent(GameObject* parent);
-		void BeginPlay() override;
+		void Initialize() override;
 		void LifeLost(int CurrentLives) const;
 		void GameOver() const;
 	private:

@@ -2,13 +2,13 @@
 #include "HealthDisplayComponent.h"
 #include "TextComponent.h"
 
-dae::HealthDisplayComponent::HealthDisplayComponent(GameObject* parent) : ObjectComponent(parent),
+dae::HealthDisplayComponent::HealthDisplayComponent(GameObject* parent) : Component(parent),
 	m_StartText{}
 {
 
 }
 
-void dae::HealthDisplayComponent::BeginPlay()
+void dae::HealthDisplayComponent::Initialize()
 {
 	m_pParentTextComponent = m_pGameObject->GetComponent<TextComponent>();
 

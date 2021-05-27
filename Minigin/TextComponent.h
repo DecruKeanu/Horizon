@@ -1,5 +1,5 @@
 #pragma once
-#include "ObjectComponent.h"
+#include "Component.h"
 #include "Structs.h"
 
 namespace dae
@@ -7,12 +7,12 @@ namespace dae
 	class Font;
 	class Texture2D;
 	class TransformComponent;
-	class TextComponent final : public ObjectComponent
+	class TextComponent final : public Component
 	{
 	public:
 		TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font);
 		TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font,const Color& textColor);
-		void BeginPlay() override;
+		void Initialize() override;
 		void Update() override;
 		void Render() const override;
 		void SetText(const std::string& text);

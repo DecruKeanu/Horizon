@@ -3,18 +3,18 @@
 namespace dae
 {
 	class Texture2D;
-	class ObjectComponent;
+	class Component;
 
 	class GameObject final
 	{
 	public:
-		void BeginPlay();
+		void Initialize();
 		void FixedUpdate();
 		void Update();
 		void LateUpdate();
 		void Render() const;
 
-		void AddComponent(ObjectComponent* component);
+		void AddComponent(Component* component);
 
 		template <typename T>
 		T* GetComponent() const;
@@ -27,13 +27,13 @@ namespace dae
 		GameObject& operator=(GameObject&& other) = delete;
 
 	private:
-		std::vector<ObjectComponent*> m_pObjectComponents;
+		std::vector<Component*> m_pObjectComponents;
 	};
 
 	template<typename T>
 	inline T* GameObject::GetComponent() const
 	{
-		for (ObjectComponent* pObjectComponent : m_pObjectComponents)
+		for (Component* pObjectComponent : m_pObjectComponents)
 		{
 			T* pComponent = dynamic_cast<T*>(pObjectComponent);
 

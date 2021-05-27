@@ -3,13 +3,13 @@
 #pragma warning (disable:4201)
 #include <glm/vec3.hpp>
 //#pragma warning(pop)
-#include "ObjectComponent.h"
+#include "Component.h"
 
 namespace dae
 {
 	class GameObject;
 
-	class TransformComponent final : public ObjectComponent
+	class TransformComponent final : public Component
 	{
 	public:
 		TransformComponent(GameObject* parent, float x, float y, float z);

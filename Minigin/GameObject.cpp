@@ -10,13 +10,13 @@
 dae::GameObject::~GameObject()
 {
 	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
-		SafeDelete<ObjectComponent>(m_pObjectComponents[idx]);
+		SafeDelete<Component>(m_pObjectComponents[idx]);
 }
 
-void dae::GameObject::BeginPlay()
+void dae::GameObject::Initialize()
 {
 	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
-		m_pObjectComponents[idx]->BeginPlay();
+		m_pObjectComponents[idx]->Initialize();
 }
 
 void dae::GameObject::FixedUpdate()
@@ -43,7 +43,7 @@ void dae::GameObject::Render() const
 		m_pObjectComponents[idx]->Render();
 }
 
-void dae::GameObject::AddComponent(ObjectComponent* component)
+void dae::GameObject::AddComponent(Component* component)
 {
 	m_pObjectComponents.push_back(component);
 }

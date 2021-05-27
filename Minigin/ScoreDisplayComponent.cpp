@@ -2,13 +2,13 @@
 #include "ScoreDisplayComponent.h"
 #include "TextComponent.h"
 
-dae::ScoreDisplayComponent::ScoreDisplayComponent(GameObject* parent) : ObjectComponent(parent),
+dae::ScoreDisplayComponent::ScoreDisplayComponent(GameObject* parent) : Component(parent),
 	m_StartText{}
 {
 
 }
 
-void dae::ScoreDisplayComponent::BeginPlay()
+void dae::ScoreDisplayComponent::Initialize()
 {
 	m_pParentTextComponent = m_pGameObject->GetComponent<TextComponent>();
 

@@ -2,7 +2,7 @@
 #include "ScoreComponent.h"
 #include "SubjectComponent.h"
 
-dae::ScoreComponent::ScoreComponent(GameObject* parent) : ObjectComponent(parent),
+dae::ScoreComponent::ScoreComponent(GameObject* parent) : Component(parent),
 	m_CurrentScore{ 0 },
 	m_pSubject{ new SubjectComponent() } 
 {

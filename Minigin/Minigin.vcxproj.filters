@@ -23,6 +23,9 @@
     <Filter Include="SoundSystem">
       <UniqueIdentifier>{679afe6b-209f-45e4-a543-1bf502292f8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{022ddfbc-b27c-4f9a-8c7a-e50b3ae5309d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Timer.h">
@@ -73,7 +76,7 @@
     <ClInclude Include="TextComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectComponent.h">
+    <ClInclude Include="Component.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
@@ -145,6 +148,9 @@
     <ClInclude Include="MutedSoundSystem.h">
       <Filter>SoundSystem</Filter>
     </ClInclude>
+    <ClInclude Include="DemoScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\imgui.cpp">
@@ -180,7 +186,7 @@
     <ClCompile Include="TransformComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectComponent.cpp">
+    <ClCompile Include="Component.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
@@ -254,6 +260,9 @@
     </ClCompile>
     <ClCompile Include="MutedSoundSystem.cpp">
       <Filter>SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoScene.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

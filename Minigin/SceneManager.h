@@ -8,7 +8,8 @@ namespace dae
 	{
 	public:
 		Scene& CreateScene(const std::string& name);
-		void BeginPlay();
+		void AddScene(Scene* pScene);
+		void Initialize();
 		void FixedUpdate();
 		void Update();
 		void LateUpdate();
@@ -16,6 +17,7 @@ namespace dae
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
-		std::vector<std::shared_ptr<Scene>> m_pScenes;
+		~SceneManager();
+		std::vector<Scene*> m_pScenes;
 	};
 }

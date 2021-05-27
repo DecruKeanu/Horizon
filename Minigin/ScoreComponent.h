@@ -1,11 +1,11 @@
 #pragma once
-#include "ObjectComponent.h"
+#include "Component.h"
 
 namespace dae
 {
 	class Observer;
 	class SubjectComponent;
-	class ScoreComponent final : public ObjectComponent
+	class ScoreComponent final : public Component
 	{
 	public:
 		ScoreComponent(GameObject* parent);

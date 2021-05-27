@@ -6,28 +6,34 @@ namespace dae
 	class GameObject;
 	class Scene
 	{
-		friend Scene& SceneManager::CreateScene(const std::string& name);
 	public:
-		void Add(GameObject* object);
-
-		void BeginPlay();
-		void FixedUpdate();
-		void Update();
-		void LateUpdate();
-		void Render() const;
-
-		~Scene();
+		Scene(const std::string& name);
+		virtual ~Scene();
 		Scene(const Scene& other) = delete;
 		Scene(Scene&& other) = delete;
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
 
-	private: 
-		explicit Scene(const std::string& name);
+		void RootInitialize();
+		void RootFixedUpdate();
+		void RootUpdate();
+		void RootLateUpdate();
+		void RootRender() const;
 
+	protected:
+		virtual void Initialize() {};
+		virtual void FixedUpdate() {};
+		virtual void Update() {};
+		virtual void LateUpdate() {};
+		virtual void Render() const {};
+
+		void Add(GameObject* object);
+
+	private: 
 		std::string m_Name;
 		std::vector<GameObject*> m_pObjects{};
 
+		bool m_IsInitialized;
 		static unsigned int m_IdCounter; 
 	};
 

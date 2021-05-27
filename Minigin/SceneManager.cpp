@@ -2,39 +2,62 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-void dae::SceneManager::BeginPlay()
+dae::SceneManager::~SceneManager()
 {
 	for (auto& scene : m_pScenes)
-		scene->BeginPlay();
+		SafeDelete(scene);
+}
+
+
+void dae::SceneManager::Initialize()
+{
+	for (auto& scene : m_pScenes)
+		scene->RootInitialize();
 }
 
 void dae::SceneManager::FixedUpdate()
 {
-	for(auto& scene : m_pScenes)
-		scene->FixedUpdate();
+	for (auto& scene : m_pScenes)
+		scene->RootFixedUpdate();
 }
 
 void dae::SceneManager::Update()
 {
 	for (auto& scene : m_pScenes)
-		scene->Update();
+		scene->RootUpdate();
 }
 
 void dae::SceneManager::LateUpdate()
 {
 	for (auto& scene : m_pScenes)
-		scene->LateUpdate();
+		scene->RootLateUpdate();
 }
 
 void dae::SceneManager::Render()
 {
 	for (const auto& scene : m_pScenes)
-		scene->Render();
+		scene->RootRender();
 }
 
 dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
 {
-	const auto scene = std::shared_ptr<Scene>(new Scene(name));
+	const auto scene = new Scene(name);
 	m_pScenes.push_back(scene);
 	return *scene;
+}
+
+void dae::SceneManager::AddScene(Scene* pScene)
+{
+	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);
+
+	if (it == m_pScenes.end())
+	{
+		m_pScenes.push_back(pScene);
+
+		//if (m_IsInitialized)
+		//	pScene->RootInitialize(m_pDevice, m_pDeviceContext);
+
+		//if (m_ActiveScene == nullptr && m_NewActiveScene == nullptr)
+		//	m_NewActiveScene = pScene;
+	}
 }

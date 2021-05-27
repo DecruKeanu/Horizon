@@ -1,15 +1,15 @@
 #pragma once
-#include "ObjectComponent.h"
+#include "Component.h"
 
 namespace dae
 {
 	class Texture2D;
 	class TransformComponent;
-	class TextureComponent final : public ObjectComponent
+	class TextureComponent final : public Component
 	{
 	public:
 		TextureComponent(GameObject* parent, const std::string textureFile);
-		void BeginPlay();
+		void Initialize() override;
 		void Render() const;
 	private:
 		std::shared_ptr<Texture2D> m_pTexture;

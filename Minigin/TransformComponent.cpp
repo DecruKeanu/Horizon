@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "TransformComponent.h"
 
-dae::TransformComponent::TransformComponent(GameObject* parent, float x, float y, float z) : ObjectComponent(parent),
+dae::TransformComponent::TransformComponent(GameObject* parent, float x, float y, float z) : Component(parent),
 	m_Position{ x,y,z }
 {
 

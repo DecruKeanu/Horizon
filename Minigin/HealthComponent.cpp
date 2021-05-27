@@ -2,14 +2,14 @@
 #include "HealthComponent.h"
 #include "SubjectComponent.h"
 
-dae::HealthComponent::HealthComponent(GameObject* parent) : ObjectComponent(parent),
+dae::HealthComponent::HealthComponent(GameObject* parent) : Component(parent),
     m_CurrentLives{3},
     m_pSubject{new SubjectComponent}
 {
 
 }
 
-dae::HealthComponent::HealthComponent(GameObject* parent, int lives) : ObjectComponent(parent),
+dae::HealthComponent::HealthComponent(GameObject* parent, int lives) : Component(parent),
 m_CurrentLives{ lives },
 m_pSubject{ new SubjectComponent } 
 {

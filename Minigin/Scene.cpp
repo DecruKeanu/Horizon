@@ -6,7 +6,9 @@ using namespace dae;
 
 unsigned int Scene::m_IdCounter = 0;
 
-Scene::Scene(const std::string& name) : m_Name(name) 
+Scene::Scene(const std::string& name) :
+	m_Name(name),
+	m_IsInitialized{ false }
 {
 
 }
@@ -19,35 +21,48 @@ Scene::~Scene()
 
 void Scene::Add(GameObject* object)
 {
+	if (m_IsInitialized)
+		object->Initialize();
+
 	m_pObjects.push_back(object);
 }
 
-void Scene::BeginPlay()
+void Scene::RootInitialize()
 {
+	Initialize();
+
 	for (auto& object : m_pObjects)
-		object->BeginPlay();
+		object->Initialize();
 }
 
-void Scene::FixedUpdate()
+void Scene::RootFixedUpdate()
 {
-	for(auto& object : m_pObjects)
+	FixedUpdate();
+
+	for (auto& object : m_pObjects)
 		object->FixedUpdate();
 }
 
-void Scene::Update()
+void Scene::RootUpdate()
 {
+	Update();
+
 	for (auto& object : m_pObjects)
 		object->Update();
 }
 
-void Scene::LateUpdate()
+void Scene::RootLateUpdate()
 {
+	LateUpdate();
+
 	for (auto& object : m_pObjects)
 		object->LateUpdate();
 }
 
-void Scene::Render() const
+void Scene::RootRender() const
 {
+	Render();
+
 	for (const auto& object : m_pObjects)
 	{
 		object->Render();

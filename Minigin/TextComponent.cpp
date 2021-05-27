@@ -8,7 +8,7 @@
 #include "Texture2D.h"
 #include "Renderer.h"
 
-dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font) : ObjectComponent(parent),
+dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font) : Component(parent),
 	m_NeedsUpdate{true},
 	m_Text{text},
 	m_textColor{255,255,255},
@@ -17,7 +17,7 @@ dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, c
 
 }
 
-dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font, const Color& textColor) : ObjectComponent(parent),
+dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font, const Color& textColor) : Component(parent),
 	m_NeedsUpdate{true},
 	m_Text{ text },
 	m_textColor{ textColor.r,textColor.g,textColor.b },
@@ -26,7 +26,7 @@ dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, c
 
 }
 
-void dae::TextComponent::BeginPlay()
+void dae::TextComponent::Initialize()
 {
 	m_pTransformComponent = m_pGameObject->GetComponent<dae::TransformComponent>();
 }

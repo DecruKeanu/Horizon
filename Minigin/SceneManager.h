@@ -7,8 +7,11 @@ namespace dae
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
-		Scene& CreateScene(const std::string& name);
 		void AddScene(Scene* pScene);
+		void RemoveScene(Scene* pScene);
+		void SetActiveScene(Scene* pScene);
+		//void NextScene();
+		//void PreviousScene();
 		void Initialize();
 		void FixedUpdate();
 		void Update();
@@ -19,5 +22,7 @@ namespace dae
 		SceneManager() = default;
 		~SceneManager();
 		std::vector<Scene*> m_pScenes;
+
+		Scene* m_pActiveScene;
 	};
 }

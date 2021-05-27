@@ -31,7 +31,7 @@ void Scene::RootInitialize()
 {
 	Initialize();
 
-	for (auto& object : m_pObjects)
+	for (GameObject* const object : m_pObjects)
 		object->Initialize();
 }
 
@@ -39,7 +39,7 @@ void Scene::RootFixedUpdate()
 {
 	FixedUpdate();
 
-	for (auto& object : m_pObjects)
+	for (GameObject* const object : m_pObjects)
 		object->FixedUpdate();
 }
 
@@ -47,7 +47,7 @@ void Scene::RootUpdate()
 {
 	Update();
 
-	for (auto& object : m_pObjects)
+	for (GameObject* const object : m_pObjects)
 		object->Update();
 }
 
@@ -55,7 +55,7 @@ void Scene::RootLateUpdate()
 {
 	LateUpdate();
 
-	for (auto& object : m_pObjects)
+	for (GameObject* const object : m_pObjects)
 		object->LateUpdate();
 }
 
@@ -63,7 +63,7 @@ void Scene::RootRender() const
 {
 	Render();
 
-	for (const auto& object : m_pObjects)
+	for (GameObject* const object : m_pObjects)
 	{
 		object->Render();
 	}

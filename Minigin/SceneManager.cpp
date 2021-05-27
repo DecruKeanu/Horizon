@@ -8,7 +8,6 @@ dae::SceneManager::~SceneManager()
 		SafeDelete(scene);
 }
 
-
 void dae::SceneManager::Initialize()
 {
 	for (auto& scene : m_pScenes)
@@ -35,15 +34,8 @@ void dae::SceneManager::LateUpdate()
 
 void dae::SceneManager::Render()
 {
-	for (const auto& scene : m_pScenes)
-		scene->RootRender();
-}
-
-dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
-{
-	const auto scene = new Scene(name);
-	m_pScenes.push_back(scene);
-	return *scene;
+	if (m_pActiveScene)
+		m_pActiveScene->RootRender();
 }
 
 void dae::SceneManager::AddScene(Scene* pScene)
@@ -54,10 +46,42 @@ void dae::SceneManager::AddScene(Scene* pScene)
 	{
 		m_pScenes.push_back(pScene);
 
-		//if (m_IsInitialized)
-		//	pScene->RootInitialize(m_pDevice, m_pDeviceContext);
-
-		//if (m_ActiveScene == nullptr && m_NewActiveScene == nullptr)
-		//	m_NewActiveScene = pScene;
+		if (m_pActiveScene == nullptr)
+			m_pActiveScene = pScene;
 	}
 }
+
+void dae::SceneManager::RemoveScene(Scene* pScene)
+{
+	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);
+
+	if (it != m_pScenes.end())
+	{
+		delete* it;
+		m_pScenes.erase(it);
+	}
+}
+
+void dae::SceneManager::SetActiveScene(Scene* pScene)
+{
+	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);
+
+	if (it != m_pScenes.end())
+	{
+		m_pActiveScene = pScene;
+	}
+}
+
+//void dae::SceneManager::NextScene()
+//{
+//	for (unsigned int i = 0; i < m_pScenes.size(); ++i)
+//	{
+//		const auto nextScene = ++i % m_pScenes.size();
+//		m_pActiveScene = m_pScenes[nextScene];
+//		break;
+//	}
+//}
+//
+//void dae::SceneManager::PreviousScene()
+//{
+//}

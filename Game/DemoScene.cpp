@@ -161,10 +161,7 @@ void DemoScene::Initialize()
 	InputManager::GetInstance().AddInput(ControllerButton::DPadRight, ControllerButtonState::KeyDown, std::make_unique<DefeatCoilyCommand>(CoilyScore));
 	InputManager::GetInstance().AddInput(ControllerButton::LeftTrigger, ControllerButtonState::KeyDown, std::make_unique<LifeLostCommand>(CoilyHealth));
 
-
-	//auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
-	//soundSystem.AddAudio("../Data/sounds/bell.wav");
-	//soundSystem.QueueEvent(0, 128);
-
-
+	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
+	soundSystem.AddAudio("../Data/sounds/bell.wav");
+	soundSystem.QueueEvent(0, 128);
 }

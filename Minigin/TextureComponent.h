@@ -1,6 +1,8 @@
 #pragma once
 #include "Component.h"
-
+#include <string>
+#include <memory>
+#include <SDL.h>
 namespace dae
 {
 	class Texture2D;
@@ -11,8 +13,13 @@ namespace dae
 		TextureComponent(GameObject* parent, const std::string textureFile);
 		void Initialize() override;
 		void Render() const;
+
+		void SetSrcRect(int x, int y, int width, int height);
+		void SetScale(float scale);
 	private:
 		std::shared_ptr<Texture2D> m_pTexture;
 		TransformComponent* m_pTransformComponent = nullptr;
+		SDL_Rect m_SrcRect;
+		float m_Scale;
 	};
 }

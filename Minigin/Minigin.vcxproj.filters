@@ -23,9 +23,6 @@
     <Filter Include="SoundSystem">
       <UniqueIdentifier>{679afe6b-209f-45e4-a543-1bf502292f8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{022ddfbc-b27c-4f9a-8c7a-e50b3ae5309d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Timer.h">
@@ -148,12 +145,6 @@
     <ClInclude Include="MutedSoundSystem.h">
       <Filter>SoundSystem</Filter>
     </ClInclude>
-    <ClInclude Include="DemoScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenuScene.h">
-      <Filter>Helpers</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\imgui.cpp">
@@ -264,9 +255,5 @@
     <ClCompile Include="MutedSoundSystem.cpp">
       <Filter>SoundSystem</Filter>
     </ClCompile>
-    <ClCompile Include="DemoScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenuScene.cpp" />
   </ItemGroup>
 </Project>

@@ -97,3 +97,51 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const
 	dst.h = static_cast<int>(height);
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
 }
+
+void dae::Renderer::RenderTexture(const Texture2D& texture, float x, float y, float srcRectX, float srcRectY, float srcRectWidth, float srcRectHeight) const
+{
+	SDL_Rect dst;
+	dst.x = static_cast<int>(x);
+	dst.y = static_cast<int>(y);
+
+	SDL_Rect src;
+	src.x = static_cast<int>(srcRectX);
+	src.y = static_cast<int>(srcRectY);
+	src.w = static_cast<int>(srcRectWidth);
+	src.h = static_cast<int>(srcRectHeight);
+	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
+	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), &src, &dst);
+}
+
+void dae::Renderer::RenderTexture(const Texture2D& texture, float x, float y, float width, float height, float srcRectX, float srcRectY, float srcRectWidth, float srcRectHeight) const
+{
+	SDL_Rect dst;
+	dst.x = static_cast<int>(x);
+	dst.y = static_cast<int>(y);
+	dst.w = static_cast<int>(width);
+	dst.h = static_cast<int>(height);
+
+	SDL_Rect src;
+	src.x = static_cast<int>(srcRectX);
+	src.y = static_cast<int>(srcRectY);
+	src.w = static_cast<int>(srcRectWidth);
+	src.h = static_cast<int>(srcRectHeight);
+	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), &src, &dst);
+}
+
+void dae::Renderer::RenderTexture(const Texture2D& texture, int x, int y, float scale, SDL_Rect srcRect) const
+{
+	if (srcRect.w == -1 && srcRect.h == -1)
+		SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &srcRect.w, &srcRect.h);
+
+	SDL_Rect dst;
+	dst.x = x;
+	dst.y = y;
+	dst.w = static_cast<int>(srcRect.w * scale);
+	dst.h = static_cast<int>(srcRect.h * scale);
+
+
+	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), &srcRect, &dst);
+
+	
+}

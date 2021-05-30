@@ -32,6 +32,4 @@ void SoloLevel1Scene::Initialize()
 		}
 		Add(pPrefab->GetGameObject());
 	}
-	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_a, KeyboardButtonState::KeyUp, std::make_unique<TestCommand>());
-	
 }

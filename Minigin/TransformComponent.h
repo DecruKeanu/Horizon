@@ -1,6 +1,4 @@
 #pragma once
-#pragma warning (disable:4201)
-#include <glm/vec3.hpp>
 #include "Component.h"
 
 namespace dae
@@ -13,6 +11,7 @@ namespace dae
 		TransformComponent(GameObject* parent, int x, int y, int z);
 		const IPoint3& GetPosition() const;
 		void SetPosition(int x, int y, int z);
+		void Move(int x, int y, int z);
 	private:
 		IPoint3 m_Position;
 	};

@@ -1,6 +1,7 @@
 #pragma once
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
+#include "TransformComponent.h"
 
 class Command
 {
@@ -15,7 +16,6 @@ public:
 	TestCommand() = default;
 	void Execute() override { std::cout << "TEST\n"; }
 };
-
 
 class LifeLostCommand final : public Command
 {

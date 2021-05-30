@@ -175,6 +175,9 @@
     <ClInclude Include="SDLK.h">
       <Filter>Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="MathFunctions.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\imgui.cpp">

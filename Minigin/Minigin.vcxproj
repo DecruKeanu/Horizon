@@ -252,6 +252,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="HealthDisplayObserver.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="MathFunctions.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="MutedSoundSystem.h" />

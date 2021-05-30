@@ -22,6 +22,9 @@
     <Filter Include="Helpers">
       <UniqueIdentifier>{27d88d80-e81e-4a38-bd24-daba6e6588da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{5f302783-3267-4b92-9c7f-388ac260ca49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -48,6 +51,9 @@
     <ClCompile Include="QBert.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="QBertMovementComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoScene.h">
@@ -70,6 +76,12 @@
     </ClInclude>
     <ClInclude Include="QBert.h">
       <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="QBertMovementComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCommands.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

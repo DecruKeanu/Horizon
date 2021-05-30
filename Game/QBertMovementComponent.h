@@ -4,6 +4,7 @@ namespace dae
 {
 	class GameObject;
 	class TransformComponent;
+	class SpriteComponent;
 }
 
 enum class Movement
@@ -19,9 +20,7 @@ class QBertMovementComponent final : public dae::Component
 {
 public:
 	QBertMovementComponent(dae::GameObject* parent);
-
 	void SetCurrentMovement(Movement movement);
-
 
 private:
 	void Initialize() override;
@@ -32,5 +31,6 @@ private:
 	IPoint2 m_OriginalPoint;
 	Movement m_CurrentMovement;
 	dae::TransformComponent* m_pTransformComponent = nullptr;
+	dae::SpriteComponent* m_pSpriteComponent = nullptr;
 };
 

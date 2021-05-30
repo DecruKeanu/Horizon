@@ -1,5 +1,6 @@
 #include "GamePCH.h"
 #include "QBertMovementComponent.h"
+#include "SpriteComponent.h"
 #include "InputManager.h"
 #include "GameCommands.h"
 #include "Logger.h"
@@ -19,10 +20,15 @@ m_CanInputBeRegistered{ true }
 void QBertMovementComponent::Initialize()
 {
 	m_pTransformComponent = m_pGameObject->GetComponent<TransformComponent>();
-
+	m_pSpriteComponent = m_pGameObject->GetComponent<SpriteComponent>();
 	if (m_pTransformComponent == nullptr)
 	{
 		Logger::LogWarning("QBertMovementComponent::Initialize >> QBert does not have transformComponent");
+		return;
+	}
+	if (m_pSpriteComponent == nullptr)
+	{
+		Logger::LogWarning("QBertMovementComponent::Initialize >> QBert does not have spriteComponent");
 		return;
 	}
 
@@ -35,45 +41,51 @@ void QBertMovementComponent::Initialize()
 
 void QBertMovementComponent::Update()
 {
-	float movementTime = 1.f;
-	IPoint2 movementPos{};
+
+	IPoint2 desiredPos{};
 
 	switch (m_CurrentMovement)
 	{
 	case Movement::idle:
 		return;
 	case Movement::leftDown:
-		movementPos = { m_OriginalPoint.x - 32,m_OriginalPoint.y + 48 };
+		desiredPos = { m_OriginalPoint.x - 32,m_OriginalPoint.y + 48 };
 		m_CanInputBeRegistered = false;
+		m_pSpriteComponent->SetCurrentSprite(8);
 		break;
 	case Movement::leftUp:
-		movementPos = { m_OriginalPoint.x - 32,m_OriginalPoint.y - 48 };
+		desiredPos = { m_OriginalPoint.x - 32,m_OriginalPoint.y - 48 };
 		m_CanInputBeRegistered = false;
+		m_pSpriteComponent->SetCurrentSprite(4);
 		break;
 	case Movement::rightDown:
-		movementPos = { m_OriginalPoint.x + 32,m_OriginalPoint.y + 48 };
+		desiredPos = { m_OriginalPoint.x + 32,m_OriginalPoint.y + 48 };
 		m_CanInputBeRegistered = false;
+		m_pSpriteComponent->SetCurrentSprite(6);
 		break;
 	case Movement::rightUp:
-		movementPos = { m_OriginalPoint.x + 32,m_OriginalPoint.y - 48 };
+		desiredPos = { m_OriginalPoint.x + 32,m_OriginalPoint.y - 48 };
 		m_CanInputBeRegistered = false;
+		m_pSpriteComponent->SetCurrentSprite(2);
 		break;
 	}
 
 
 	m_ElapsedTime += Timer::GetInstance().GetDeltaTime();
 
-	const int xPos = int(m_OriginalPoint.x + (movementPos.x - m_OriginalPoint.x) * m_ElapsedTime);
-	const int yPos = int(m_OriginalPoint.y + (movementPos.y - m_OriginalPoint.y) * m_ElapsedTime);
+	const int xPos = int(m_OriginalPoint.x + (desiredPos.x - m_OriginalPoint.x) * m_ElapsedTime);
+	const int yPos = int(m_OriginalPoint.y + (desiredPos.y - m_OriginalPoint.y) * m_ElapsedTime);
 
 	m_pTransformComponent->SetPosition(xPos, yPos, 0);
 
-	if (m_ElapsedTime >= movementTime)
+	if (m_ElapsedTime >= 1.f)
 	{
+		m_pTransformComponent->SetPosition(desiredPos.x, desiredPos.y, 0);
 		m_ElapsedTime = 0.f;
 		m_CanInputBeRegistered = true;
 		m_OriginalPoint = { m_pTransformComponent->GetPosition().x, m_pTransformComponent->GetPosition().y };
 		m_CurrentMovement = Movement::idle;
+		m_pSpriteComponent->SetCurrentSprite(m_pSpriteComponent->GetCurrentSprite() - 1);
 	}
 }
 

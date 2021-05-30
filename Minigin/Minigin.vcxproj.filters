@@ -178,6 +178,9 @@
     <ClInclude Include="MathFunctions.h">
       <Filter>Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\imgui.cpp">
@@ -293,6 +296,9 @@
     </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

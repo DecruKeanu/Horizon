@@ -4,6 +4,7 @@
 #include <TextureComponent.h>
 #include <TransformComponent.h>
 #include "QBertMovementComponent.h"
+#include "SpriteComponent.h"
 #include <Scene.h>
 
 using namespace dae;
@@ -24,13 +25,15 @@ void QBert::Initialize()
 	GameObject* const pGameObject = new GameObject();
 
 	TextureComponent* const QBertTexture = new TextureComponent(pGameObject, "QBertTextures.png");
-	QBertTexture->SetSrcRect(0, 0, srcWidth, srcHeight);
+	SpriteComponent* const pSpriteComponent = new SpriteComponent(pGameObject, SDL_Rect{ 0, 0, srcWidth * 8, srcHeight}, 8);
 	QBertTexture->SetScale(2.f);
 	TransformComponent* const QBertTransform = new TransformComponent(pGameObject, positionX, positionY, 0);
 
 	QBertMovementComponent* const pMovementComponent = new QBertMovementComponent(pGameObject);
 
+
 	pGameObject->AddComponent(QBertTexture);
+	pGameObject->AddComponent(pSpriteComponent);
 	pGameObject->AddComponent(QBertTransform);
 	pGameObject->AddComponent(pMovementComponent);
 

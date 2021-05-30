@@ -266,6 +266,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ScoreDisplayObserver.h" />
     <ClInclude Include="ScoreDisplayComponent.h" />
+    <ClInclude Include="SDLK.h" />
     <ClInclude Include="SDLSoundSystem.h" />
     <ClInclude Include="SoundSystemServiceLocator.h" />
     <ClInclude Include="Singleton.h" />

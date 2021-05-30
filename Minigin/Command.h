@@ -9,6 +9,14 @@ public:
 	virtual void Execute() = 0;
 };
 
+class TestCommand final : public Command
+{
+public:
+	TestCommand() = default;
+	void Execute() override { std::cout << "TEST\n"; }
+};
+
+
 class LifeLostCommand final : public Command
 {
 public:

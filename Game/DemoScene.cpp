@@ -114,11 +114,11 @@ void DemoScene::Initialize()
 	QBertHealth->AddObserver(new HealthDisplayObserver(QBertHealthDisplayComponent));
 
 	//Qbert input
-	InputManager::GetInstance().AddInput(ControllerButton::ButtonA, ControllerButtonState::KeyDown, std::make_unique<ColorChangeCommand>(QBertScore));
-	InputManager::GetInstance().AddInput(ControllerButton::ButtonX, ControllerButtonState::KeyDown, std::make_unique<RemainingDiscCommand>(QBertScore));
-	InputManager::GetInstance().AddInput(ControllerButton::ButtonY, ControllerButtonState::KeyDown, std::make_unique<CatchingSamOrSlickCommand>(QBertScore));
-	InputManager::GetInstance().AddInput(ControllerButton::ButtonB, ControllerButtonState::KeyDown, std::make_unique<DefeatCoilyCommand>(QBertScore));
-	InputManager::GetInstance().AddInput(ControllerButton::RightTrigger, ControllerButtonState::KeyDown, std::make_unique<LifeLostCommand>(QBertHealth));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::ButtonA, ControllerButtonState::KeyDown, std::make_unique<ColorChangeCommand>(QBertScore));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::ButtonX, ControllerButtonState::KeyDown, std::make_unique<RemainingDiscCommand>(QBertScore));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::ButtonY, ControllerButtonState::KeyDown, std::make_unique<CatchingSamOrSlickCommand>(QBertScore));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::ButtonB, ControllerButtonState::KeyDown, std::make_unique<DefeatCoilyCommand>(QBertScore));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::RightTrigger, ControllerButtonState::KeyDown, std::make_unique<LifeLostCommand>(QBertHealth));
 
 	//Coily (player2)
 	GameObject* const Coily = new GameObject();
@@ -155,11 +155,11 @@ void DemoScene::Initialize()
 	CoilyHealth->AddObserver(new HealthDisplayObserver(CoilyHealthDisplayComponent));
 
 	//Coily input
-	InputManager::GetInstance().AddInput(ControllerButton::DPadDown, ControllerButtonState::KeyDown, std::make_unique<ColorChangeCommand>(CoilyScore));
-	InputManager::GetInstance().AddInput(ControllerButton::DPadLeft, ControllerButtonState::KeyDown, std::make_unique<RemainingDiscCommand>(CoilyScore));
-	InputManager::GetInstance().AddInput(ControllerButton::DPadUp, ControllerButtonState::KeyDown, std::make_unique<CatchingSamOrSlickCommand>(CoilyScore));
-	InputManager::GetInstance().AddInput(ControllerButton::DPadRight, ControllerButtonState::KeyDown, std::make_unique<DefeatCoilyCommand>(CoilyScore));
-	InputManager::GetInstance().AddInput(ControllerButton::LeftTrigger, ControllerButtonState::KeyDown, std::make_unique<LifeLostCommand>(CoilyHealth));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::DPadDown, ControllerButtonState::KeyDown, std::make_unique<ColorChangeCommand>(CoilyScore));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::DPadLeft, ControllerButtonState::KeyDown, std::make_unique<RemainingDiscCommand>(CoilyScore));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::DPadUp, ControllerButtonState::KeyDown, std::make_unique<CatchingSamOrSlickCommand>(CoilyScore));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::DPadRight, ControllerButtonState::KeyDown, std::make_unique<DefeatCoilyCommand>(CoilyScore));
+	//InputManager::GetInstance().AddControllerInput(ControllerButton::LeftTrigger, ControllerButtonState::KeyDown, std::make_unique<LifeLostCommand>(CoilyHealth));
 
 	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
 	soundSystem.AddAudio("../Data/sounds/bell.wav");

@@ -6,6 +6,9 @@
 #include "ResourceManager.h"
 #include "Cube.h"
 #include "LevelReader.h"
+#include "InputManager.h"
+#include "Command.h"
+#include <memory>
 #include <vld.h>
 
 using namespace dae;
@@ -29,4 +32,6 @@ void SoloLevel1Scene::Initialize()
 		}
 		Add(pPrefab->GetGameObject());
 	}
+	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_a, KeyboardButtonState::KeyUp, std::make_unique<TestCommand>());
+	
 }

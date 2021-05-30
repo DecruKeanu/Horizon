@@ -11,15 +11,17 @@ bool dae::InputManager::ProcessInput()
 
 	//SDL for mouse and keyboard
 	SDL_Event e;
-	while (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT) {
+	while (SDL_PollEvent(&e))
+	{
+		m_SDLKeyCode = e.key.keysym.sym;
+		if (e.type == SDL_QUIT)
+		{
 			return false;
 		}
-		if (e.type == SDL_KEYDOWN) {
-
-		}
-		if (e.type == SDL_MOUSEBUTTONDOWN) {
-
+		for (const auto& pair : m_KeyboardCommands)
+		{
+			if (e.type == Uint32(pair.first.first))
+				HandleKeyboardInput(pair);
 		}
 	}
 
@@ -32,70 +34,44 @@ bool dae::InputManager::ProcessInput()
 			continue;
 
 		XInputGetKeystroke(idx, 0, &m_InputKeyStroke);
-		
-			for (const auto& pair : m_ConsoleCommands)
-			{
-				if (m_InputKeyStroke.Flags == WORD(pair.first.first))
-					HandleInput(pair);
-			}
+
+		for (const auto& pair : m_ControllerCommands)
+		{
+			if (m_InputKeyStroke.Flags == WORD(pair.first.first))
+				HandleControllerInput(pair);
+		}
 	}
 	return true;
 }
 
-void dae::InputManager::ExecuteInput(const std::pair<const dae::Controllerkey,std::unique_ptr<Command>>& it) const
+void dae::InputManager::ExecuteControllerInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const
 {
-		it.second->Execute();
+	it.second->Execute();
 }
 
-void dae::InputManager::HandleInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const
+void dae::InputManager::ExecuteKeyboardInput(const std::pair<const dae::Keyboardkey, std::unique_ptr<Command>>& it) const
+{
+	it.second->Execute();
+}
+
+void dae::InputManager::HandleControllerInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const
 {
 	if (m_InputKeyStroke.VirtualKey == WORD(it.first.second))
-		ExecuteInput(it);
+		ExecuteControllerInput(it);
 }
 
-void dae::InputManager::AddInput(ControllerButton button, ControllerButtonState buttonState, std::unique_ptr<Command> action)
+void dae::InputManager::HandleKeyboardInput(const std::pair<const dae::Keyboardkey, std::unique_ptr<Command>>& it) const
 {
-	m_ConsoleCommands.insert({ Controllerkey(buttonState, button),std::move(action) });
+	if (m_SDLKeyCode == int(it.first.second))
+		ExecuteKeyboardInput(it);
 }
 
-//#include "MiniginPCH.h"
-//#include "InputManager.h"
-//#include <SDL.h>
-//
-//
-//bool dae::InputManager::ProcessInput()
-//{
-//	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
-//	XInputGetState(0, &m_CurrentState);
-//
-//	SDL_Event e;
-//	while (SDL_PollEvent(&e)) {
-//		if (e.type == SDL_QUIT) {
-//			return false;
-//		}
-//		if (e.type == SDL_KEYDOWN) {
-//
-//		}
-//		if (e.type == SDL_MOUSEBUTTONDOWN) {
-//
-//		}
-//	}
-//
-//	return true;
-//}
-//
-//bool dae::InputManager::IsPressed(ControllerButton button) const
-//{
-//	switch (button)
-//	{
-//	case ControllerButton::ButtonA:
-//		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_A;
-//	case ControllerButton::ButtonB:
-//		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_B;
-//	case ControllerButton::ButtonX:
-//		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_X;
-//	case ControllerButton::ButtonY:
-//		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_Y;
-//	default: return false;
-//	}
-//}
+void dae::InputManager::AddControllerInput(ControllerButton button, ControllerButtonState buttonState, std::unique_ptr<Command> action)
+{
+	m_ControllerCommands.insert({ Controllerkey(buttonState, button),std::move(action) });
+}
+
+void dae::InputManager::AddKeyboardInput(SDLK key, KeyboardButtonState keyState, std::unique_ptr<Command> action)
+{
+	m_KeyboardCommands.insert({ Keyboardkey(keyState,key),std::move(action) });
+}

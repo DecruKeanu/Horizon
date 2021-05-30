@@ -4,6 +4,7 @@
 #include <Xinput.h>
 #pragma comment(lib,"XInput.lib")
 #include "Singleton.h"
+#include "SDLK.h"
 
 class Command;
 namespace dae
@@ -27,53 +28,46 @@ namespace dae
 		LeftTrigger = VK_PAD_LTRIGGER,
 		RightTrigger = VK_PAD_RTRIGGER
 	};
+	//enum class KeyBoardButton : int
+	//{
+	//	A = 
+	//};
 
 	enum class ControllerButtonState : WORD
 	{
-		KeyDown = XINPUT_KEYSTROKE_KEYDOWN,
-		KeyUp = XINPUT_KEYSTROKE_KEYUP
+		ButtonDown = XINPUT_KEYSTROKE_KEYDOWN,
+		ButtonUp = XINPUT_KEYSTROKE_KEYUP
+	};
+	enum class KeyboardButtonState : Uint32
+	{
+		KeyDown = 768,
+		KeyUp = 769
 	};
 
 	using Controllerkey = std::pair<ControllerButtonState, ControllerButton>;
 	using ControllerCommandsMap = std::map<Controllerkey, std::unique_ptr<Command>>;
 	using ControllerButtonPair = std::pair <Controllerkey, std::unique_ptr<Command>>;
 
+	using Keyboardkey = std::pair<KeyboardButtonState, SDLK>;
+	using KeyboardCommandsMap = std::map<Keyboardkey, std::unique_ptr<Command>>;
+	using KeyboardButtonPair = std::pair <Keyboardkey, std::unique_ptr<Command>>;
+
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:
-		void AddInput(ControllerButton button, ControllerButtonState, std::unique_ptr<Command> action);
+		void AddControllerInput(ControllerButton button, ControllerButtonState buttonState, std::unique_ptr<Command> action);
+		void AddKeyboardInput(SDLK key, KeyboardButtonState keyState, std::unique_ptr<Command> action);
 		bool ProcessInput();
 	private:
-		void ExecuteInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const;
-		void HandleInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const;
+		void ExecuteControllerInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const;
+		void ExecuteKeyboardInput(const std::pair<const dae::Keyboardkey, std::unique_ptr<Command>>& it) const;
+		void HandleControllerInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const;
+		void HandleKeyboardInput(const std::pair<const dae::Keyboardkey, std::unique_ptr<Command>>& it) const;
+		SDL_Keycode m_SDLKeyCode{};
 		XINPUT_KEYSTROKE m_InputKeyStroke{};
 		int m_MaxAmountOfControllers{ XUSER_MAX_COUNT };
 		XINPUT_STATE m_InputState{};
-		ControllerCommandsMap m_ConsoleCommands{};
+		ControllerCommandsMap m_ControllerCommands{};
+		KeyboardCommandsMap m_KeyboardCommands{};
 	};
 }
-
-//#pragma once
-//#include <XInput.h>
-//#include "Singleton.h"
-//
-//namespace dae
-//{
-//	enum class ControllerButton
-//	{
-//		ButtonA,
-//		ButtonB,
-//		ButtonX,
-//		ButtonY
-//	};
-//
-//	class InputManager final : public Singleton<InputManager>
-//	{
-//	public:
-//		bool ProcessInput();
-//		bool IsPressed(ControllerButton button) const;
-//	private:
-//		XINPUT_STATE m_CurrentState{};
-//	};
-//
-//}

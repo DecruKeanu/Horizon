@@ -19,6 +19,9 @@
     <Filter Include="Prefabs">
       <UniqueIdentifier>{25096a12-569f-4f51-8648-9699176fdaf2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{27d88d80-e81e-4a38-bd24-daba6e6588da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -33,6 +36,18 @@
     <ClCompile Include="Cube.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="LevelReader.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SoloLevel1Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePCH.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="QBert.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoScene.h">
@@ -42,6 +57,18 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelReader.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SoloLevel1Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePCH.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="QBert.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>

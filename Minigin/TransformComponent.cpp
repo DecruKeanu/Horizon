@@ -1,18 +1,17 @@
 #include "MiniginPCH.h"
 #include "TransformComponent.h"
 
-dae::TransformComponent::TransformComponent(GameObject* parent, float x, float y, float z) : Component(parent),
-	m_Position{ x,y,z }
+dae::TransformComponent::TransformComponent(GameObject* parent, int x, int y, int z) : Component(parent),
+m_Position{ x,y,z }
 {
-
 }
 
-const glm::vec3& dae::TransformComponent::GetPosition() const
+const IPoint3& dae::TransformComponent::GetPosition() const
 {
 	return m_Position;
 }
 
-void dae::TransformComponent::SetPosition(float x, float y, float z)
+void dae::TransformComponent::SetPosition(int x, int y, int z)
 {
-	m_Position = glm::vec3{ x,y,z };
+	m_Position = { x,y,z };
 }

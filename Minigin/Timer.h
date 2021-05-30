@@ -19,7 +19,7 @@ namespace dae
 		std::chrono::steady_clock::time_point m_CurrentTime{};
 		std::chrono::steady_clock::time_point m_LastTime{};
 		float m_FPSTimer{};
-		const float m_FixedSPerFrame = 1/144.f; 
+		const float m_FixedSecPerFrame = 1/144.f; 
 		float m_DeltaTime{};
 		int m_FPS{};
 		int m_FPSCount{};

@@ -23,6 +23,6 @@ namespace dae
 		~SceneManager();
 		std::vector<Scene*> m_pScenes;
 
-		Scene* m_pActiveScene;
+		Scene* m_pActiveScene = nullptr;
 	};
 }

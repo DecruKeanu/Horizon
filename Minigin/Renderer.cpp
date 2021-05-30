@@ -46,22 +46,26 @@ void dae::Renderer::Render(float time) const
 	ImGui_ImplOpenGL2_NewFrame();
 	ImGui_ImplSDL2_NewFrame(m_pWindow);
 	ImGui::NewFrame();
+
 	if (showDemo)
+	{
 		ImGui::ShowDemoWindow(&showDemo);
-	ImGui::Text("Player 1 controller input (Qbert):");
-	ImGui::Text("A: Color changed (25 points)");
-	ImGui::Text("X: Remaining disc (50 points)");
-	ImGui::Text("Y: Catched Sam or Slick (300 points)");
-	ImGui::Text("B: Defeated Coily (500 points)");
-	ImGui::Text("RT (or R2): Player died (-1 life)");
-	ImGui::Text("");
-	ImGui::Text("Player 2 controller input (Coily):");
-	ImGui::Text("Dpad down: Color changed (25 points)");
-	ImGui::Text("Dpad left: Remaining disc (50 points)");
-	ImGui::Text("Dpad up: Catched Sam or Slick (300 points)");
-	ImGui::Text("Dpad right: Defeated Qbert (500 points)");
-	ImGui::Text("LT (or L2): Player died (-1 life)");
-	ImGui::Text("");
+		ImGui::Text("Player 1 controller input (Qbert):");
+		ImGui::Text("A: Color changed (25 points)");
+		ImGui::Text("X: Remaining disc (50 points)");
+		ImGui::Text("Y: Catched Sam or Slick (300 points)");
+		ImGui::Text("B: Defeated Coily (500 points)");
+		ImGui::Text("RT (or R2): Player died (-1 life)");
+		ImGui::Text("");
+		ImGui::Text("Player 2 controller input (Coily):");
+		ImGui::Text("Dpad down: Color changed (25 points)");
+		ImGui::Text("Dpad left: Remaining disc (50 points)");
+		ImGui::Text("Dpad up: Catched Sam or Slick (300 points)");
+		ImGui::Text("Dpad right: Defeated Qbert (500 points)");
+		ImGui::Text("LT (or L2): Player died (-1 life)");
+		ImGui::Text("");
+	}
+
 	ImGui::Render();
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 	SDL_RenderPresent(m_pRenderer);
@@ -79,57 +83,26 @@ void dae::Renderer::Destroy()
 	}
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y) const
+void dae::Renderer::RenderTexture(const Texture2D& texture, const int x, const int y) const
 {
 	SDL_Rect dst;
-	dst.x = static_cast<int>(x);
-	dst.y = static_cast<int>(y);
+	dst.x = x;
+	dst.y = y;
 	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float width, const float height) const
+void dae::Renderer::RenderTexture(const Texture2D& texture, const int x, const int y, const int width, const int height) const
 {
 	SDL_Rect dst;
-	dst.x = static_cast<int>(x);
-	dst.y = static_cast<int>(y);
-	dst.w = static_cast<int>(width);
-	dst.h = static_cast<int>(height);
+	dst.x = x;
+	dst.y = y;
+	dst.w = width;
+	dst.h = height;
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, float x, float y, float srcRectX, float srcRectY, float srcRectWidth, float srcRectHeight) const
-{
-	SDL_Rect dst;
-	dst.x = static_cast<int>(x);
-	dst.y = static_cast<int>(y);
-
-	SDL_Rect src;
-	src.x = static_cast<int>(srcRectX);
-	src.y = static_cast<int>(srcRectY);
-	src.w = static_cast<int>(srcRectWidth);
-	src.h = static_cast<int>(srcRectHeight);
-	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), &src, &dst);
-}
-
-void dae::Renderer::RenderTexture(const Texture2D& texture, float x, float y, float width, float height, float srcRectX, float srcRectY, float srcRectWidth, float srcRectHeight) const
-{
-	SDL_Rect dst;
-	dst.x = static_cast<int>(x);
-	dst.y = static_cast<int>(y);
-	dst.w = static_cast<int>(width);
-	dst.h = static_cast<int>(height);
-
-	SDL_Rect src;
-	src.x = static_cast<int>(srcRectX);
-	src.y = static_cast<int>(srcRectY);
-	src.w = static_cast<int>(srcRectWidth);
-	src.h = static_cast<int>(srcRectHeight);
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), &src, &dst);
-}
-
-void dae::Renderer::RenderTexture(const Texture2D& texture, int x, int y, float scale, SDL_Rect srcRect) const
+void dae::Renderer::RenderTexture(const Texture2D& texture, const int x, const int y, const float scale, SDL_Rect srcRect) const
 {
 	if (srcRect.w == -1 && srcRect.h == -1)
 		SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &srcRect.w, &srcRect.h);
@@ -137,11 +110,11 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, int x, int y, float 
 	SDL_Rect dst;
 	dst.x = x;
 	dst.y = y;
-	dst.w = static_cast<int>(srcRect.w * scale);
-	dst.h = static_cast<int>(srcRect.h * scale);
+	dst.w = int(srcRect.w * scale);
+	dst.h = int(srcRect.h * scale);
 
 
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), &srcRect, &dst);
 
-	
+
 }

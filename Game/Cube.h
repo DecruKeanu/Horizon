@@ -1,7 +1,7 @@
 #pragma once
-#pragma warning (disable:4201)
 #include <array>
-#include <glm/vec2.hpp>
+#include "document.h"
+#include "Prefab.h"
 
 namespace dae
 {
@@ -11,9 +11,11 @@ namespace dae
 }
 
 
-class Cube final
+class Cube final : public dae::Prefab
 {
 public:
+	Cube(const rapidjson::Value& jsonObject);
+
 	enum class CubeColor : int
 	{
 		level1Purple,
@@ -25,16 +27,15 @@ public:
 		level3Blue,
 		enumSize
 	};
-
-	Cube(CubeColor color);
-	dae::GameObject* GetGameObject();
 private:
-	CubeColor m_CurrentCubeColor;
+	void Initialize();
+	void SetInitCubeColor(const std::string& color);
+	const rapidjson::Value& m_Value;
+	CubeColor m_InitCubeColor;
 
-	dae::GameObject* m_pGameObject = nullptr;
 	dae::TextureComponent* m_pTextureComponent = nullptr;
 	dae::TransformComponent* m_pTransformComponent = nullptr;
 
-	const std::array<glm::vec2, int(CubeColor::enumSize)> m_SrcPositions{ glm::vec2{240,224},glm::vec2{240,192}, glm::vec2{0,160},glm::vec2{0,192},glm::vec2{0,224},glm::vec2{80,192},glm::vec2{80,160} };
+	const std::array<IPoint2, int(CubeColor::enumSize)> m_SrcPositions;
 };
 

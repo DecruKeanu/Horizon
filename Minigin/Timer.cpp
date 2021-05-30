@@ -40,7 +40,7 @@ float dae::Timer::GetDeltaTime() const
 
 float dae::Timer::GetFixedFrameTime() const
 {
-	return m_FixedSPerFrame;
+	return m_FixedSecPerFrame;
 }
 
 int dae::Timer::GetFPS() const

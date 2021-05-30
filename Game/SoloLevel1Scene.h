@@ -1,10 +1,9 @@
 #pragma once
 #include "Scene.h"
 
-class MainMenuScene final : public dae::Scene
+class SoloLevel1Scene final : public dae::Scene
 {
 public:
-	MainMenuScene();
+	SoloLevel1Scene();
 	void Initialize() override;
 };
-

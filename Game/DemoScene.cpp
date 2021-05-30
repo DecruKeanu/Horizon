@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "GamePCH.h"
 #include "DemoScene.h"
 #include <chrono>
 #include <thread>
@@ -41,15 +41,15 @@ void DemoScene::Initialize()
 	//BackGround
 	GameObject* const backGround = new GameObject();
 
-	TextureComponent* const backGroundTexture = new dae::TextureComponent(backGround, "background.jpg");
+	TextureComponent* const backGroundTexture = new TextureComponent(backGround, "background.jpg");
 
 	backGround->AddComponent(backGroundTexture);
 	Add(backGround);
 
 	//Logo
 	GameObject* const Logo = new GameObject();
-	TextureComponent* const logoTexture = new dae::TextureComponent(Logo, "logo.png");
-	TransformComponent* const logoTransform = new dae::TransformComponent(Logo, 216, 80, 0);
+	TextureComponent* const logoTexture = new TextureComponent(Logo, "logo.png");
+	TransformComponent* const logoTransform = new TransformComponent(Logo, 216, 80, 0);
 
 	Logo->AddComponent(logoTexture);
 	Logo->AddComponent(logoTransform);
@@ -59,8 +59,8 @@ void DemoScene::Initialize()
 	GameObject* const textObject = new GameObject();
 
 	const auto Lingua36Font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	dae::TextComponent* const text = new dae::TextComponent(textObject, "Programming 4 Assignment", Lingua36Font);
-	dae::TransformComponent* const textTransform = new dae::TransformComponent(Logo, 80, 20, 0);
+	TextComponent* const text = new TextComponent(textObject, "Programming 4 Assignment", Lingua36Font);
+	TransformComponent* const textTransform = new TransformComponent(Logo, 80, 20, 0);
 
 	textObject->AddComponent(text);
 	textObject->AddComponent(textTransform);
@@ -70,9 +70,9 @@ void DemoScene::Initialize()
 	GameObject* const fpsCounter = new GameObject();
 
 	const auto Lingua20Font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
-	dae::TextComponent* const fpsText = new dae::TextComponent(fpsCounter, "test", Lingua20Font, Color{ 255,255,0 });
-	dae::FPS* const fps = new dae::FPS(fpsCounter);
-	dae::TransformComponent* const fpsTransform = new dae::TransformComponent(fpsCounter, 10, 10, 0);
+	TextComponent* const fpsText = new TextComponent(fpsCounter, "test", Lingua20Font, Color{ 255,255,0 });
+	FPS* const fps = new dae::FPS(fpsCounter);
+	TransformComponent* const fpsTransform = new TransformComponent(fpsCounter, 10, 10, 0);
 
 	fpsCounter->AddComponent(fpsText);
 	fpsCounter->AddComponent(fps);

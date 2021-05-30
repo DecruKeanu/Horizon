@@ -23,6 +23,12 @@
     <Filter Include="SoundSystem">
       <UniqueIdentifier>{679afe6b-209f-45e4-a543-1bf502292f8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rapidjson">
+      <UniqueIdentifier>{a5b3e45c-5df0-473d-b847-42816e8ee2b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="prefabs">
+      <UniqueIdentifier>{3c33280a-0e73-4c4e-ab40-336b3e658eb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Timer.h">
@@ -145,6 +151,27 @@
     <ClInclude Include="MutedSoundSystem.h">
       <Filter>SoundSystem</Filter>
     </ClInclude>
+    <ClInclude Include="..\3rdParty\rapidjson\document.h">
+      <Filter>Rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\rapidjson\filereadstream.h">
+      <Filter>Rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\rapidjson\rapidjson.h">
+      <Filter>Rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\rapidjson\stream.h">
+      <Filter>Rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Prefab.h">
+      <Filter>prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefabFactory.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\imgui.cpp">
@@ -222,9 +249,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Minigin</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Minigin</Filter>
-    </ClCompile>
     <ClCompile Include="Minigin.cpp">
       <Filter>Minigin</Filter>
     </ClCompile>
@@ -254,6 +278,15 @@
     </ClCompile>
     <ClCompile Include="MutedSoundSystem.cpp">
       <Filter>SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Prefab.cpp">
+      <Filter>prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefabFactory.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

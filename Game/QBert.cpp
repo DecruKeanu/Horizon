@@ -12,6 +12,7 @@ using namespace Horizon;
 QBert::QBert(const rapidjson::Value& jsonObject) :
 	m_Value{ jsonObject }
 {
+	SetPrefabName("QBert");
 	Initialize();
 }
 

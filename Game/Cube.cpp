@@ -14,13 +14,12 @@ using namespace Horizon;
 Cube::Cube(const rapidjson::Value& jsonObject) :
 	m_Value{ jsonObject }
 {
+	SetPrefabName("Cube");
 	Initialize();
 }
 
 void Cube::Initialize()
 {
-	const int srcWidth = 32;
-	const int srcHeight = 32;
 	const int positionX = m_Value["positionX"].GetInt();
 	const int positionY = m_Value["positionY"].GetInt();
 	const SDL_Rect srcRect = LevelNumberToSrcRect(m_Value["level"].GetInt());

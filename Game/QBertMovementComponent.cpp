@@ -1,6 +1,7 @@
 #include "GamePCH.h"
 #include "QBertMovementComponent.h"
 #include "SpriteComponent.h"
+#include <SubjectComponent.h>
 #include "InputManager.h"
 #include "GameCommands.h"
 #include "Logger.h"
@@ -13,8 +14,14 @@ QBertMovementComponent::QBertMovementComponent(GameObject* parent) : Component(p
 m_CurrentMovement{ Movement::idle },
 m_OriginalPoint{},
 m_ElapsedTime{},
-m_CanInputBeRegistered{ true }
+m_CanInputBeRegistered{ true },
+m_pSubject{ new SubjectComponent }
 {
+}
+
+QBertMovementComponent::~QBertMovementComponent()
+{
+	SafeDelete<SubjectComponent>(m_pSubject);
 }
 
 void QBertMovementComponent::Initialize()
@@ -86,6 +93,8 @@ void QBertMovementComponent::Update()
 		m_OriginalPoint = { m_pTransformComponent->GetPosition().x, m_pTransformComponent->GetPosition().y };
 		m_CurrentMovement = Movement::idle;
 		m_pSpriteComponent->SetCurrentSprite(m_pSpriteComponent->GetCurrentSprite() - 1);
+
+		m_pSubject->Notify(Event(PossibleEvent::CubeActivated, desiredPos));
 	}
 }
 
@@ -93,4 +102,9 @@ void QBertMovementComponent::SetCurrentMovement(Movement movement)
 {
 	if (m_CanInputBeRegistered == true)
 		m_CurrentMovement = movement;
+}
+
+void QBertMovementComponent::AddObserver(Observer* observer)
+{
+	m_pSubject->AddObserver(observer);
 }

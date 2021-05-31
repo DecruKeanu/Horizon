@@ -25,6 +25,9 @@
     <Filter Include="Components">
       <UniqueIdentifier>{5f302783-3267-4b92-9c7f-388ac260ca49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Observers">
+      <UniqueIdentifier>{44ff1bd5-7034-459a-af74-51afdcdbdbbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -57,6 +60,9 @@
     <ClCompile Include="CubeHandleComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="CubeHandleObserver.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoScene.h">
@@ -88,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="CubeHandleComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeHandleObserver.h">
+      <Filter>Observers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

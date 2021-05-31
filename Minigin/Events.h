@@ -9,7 +9,8 @@ namespace Horizon
 		ColorChange,
 		RemainingDisc,
 		CatchingSamOrSlick,
-		DefeatCoily
+		DefeatCoily,
+		CubeActivated
 	};
 
 	struct IEventData abstract

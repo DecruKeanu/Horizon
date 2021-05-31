@@ -22,7 +22,7 @@ void Cube::Initialize()
 	const int srcHeight = 32;
 	const int positionX = m_Value["positionX"].GetInt();
 	const int positionY = m_Value["positionY"].GetInt();
-	const SDL_Rect srcRect = ColorToSrcRect(m_Value["color"].GetString());
+	const SDL_Rect srcRect = LevelNumberToSrcRect(m_Value["level"].GetInt());
 
 	GameObject* const pGameObject = new GameObject();
 
@@ -40,7 +40,7 @@ void Cube::Initialize()
 	SetGameObject(pGameObject);
 }
 
-SDL_Rect Cube::ColorToSrcRect(const std::string& color)
+SDL_Rect Cube::LevelNumberToSrcRect(const int levelNumber)
 {
 	int posX = 0;
 	const int posY = 164;
@@ -48,22 +48,14 @@ SDL_Rect Cube::ColorToSrcRect(const std::string& color)
 	const int height = 32;
 
 
-	if (color == "level1Purple")
+	if (levelNumber == 1)
 		posX = 0;
-	//else if (color == "level1Blue")
-	//	m_InitCubeColor = CubeColor::level1Blue;
-	else if (color == "level2Pink")
+	else if (levelNumber == 2)
 		posX = 64;
-	//else if (color == "level2Yellow")
-	//	m_InitCubeColor = CubeColor::level2Yellow;
-	//else if (color == "level2Blue")
-	//	m_InitCubeColor = CubeColor::level2Blue;
-	else if (color == "level3Mellow")
+	else if (levelNumber == 3)
 		posX = 160;
-	//else if (color == "level3Blue")
-	//	m_InitCubeColor = CubeColor::level3Blue;
 	else
-		Logger::LogWarning("ColorToSrcRect >> invalid string. Default value is used, level1Purple");
+		Logger::LogWarning("LevelNumberToSrcRect >> invalid levelNumber. Default value is used, 1");
 
 	return SDL_Rect{ posX,posY,width,height };
 }

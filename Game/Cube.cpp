@@ -6,6 +6,7 @@
 #include <TextureComponent.h>
 #include <TransformComponent.h>
 #include <SpriteComponent.h>
+#include "CubeHandleComponent.h"
 #include <Scene.h>
 
 using namespace Horizon;
@@ -26,13 +27,13 @@ void Cube::Initialize()
 
 	GameObject* const pGameObject = new GameObject();
 
+	CubeHandleComponent* const pHandleCubeComponent = new CubeHandleComponent(pGameObject);
 	TextureComponent* const blockTexture = new TextureComponent(pGameObject, "QBertTextures.png");
-	//blockTexture->SetSrcRect(leftBottomSrcPos.x, leftBottomSrcPos.y, srcWidth, srcHeight);
 	blockTexture->SetScale(2.f);
 	SpriteComponent* const pSpriteComponent = new SpriteComponent(pGameObject, srcRect, 7);
-
 	TransformComponent* const blockTransform = new TransformComponent(pGameObject, positionX, positionY, 0);
 
+	pGameObject->AddComponent(pHandleCubeComponent);
 	pGameObject->AddComponent(blockTexture);
 	pGameObject->AddComponent(pSpriteComponent);
 	pGameObject->AddComponent(blockTransform);
@@ -47,15 +48,21 @@ SDL_Rect Cube::LevelNumberToSrcRect(const int levelNumber)
 	const int width = 221;
 	const int height = 32;
 
-
-	if (levelNumber == 1)
+	switch (levelNumber)
+	{
+	case 1:
 		posX = 0;
-	else if (levelNumber == 2)
-		posX = 64;
-	else if (levelNumber == 3)
+		break;
+	case 2:
+		posX = 64; 
+		break;
+	case 3:
 		posX = 160;
-	else
-		Logger::LogWarning("LevelNumberToSrcRect >> invalid levelNumber. Default value is used, 1");
+		break;
+	default:
+		Logger::LogWarning("LevelNumberToSrcRect >> invalid levelNumber. Default value is used, 1"); 
+		break;
+	}
 
 	return SDL_Rect{ posX,posY,width,height };
 }

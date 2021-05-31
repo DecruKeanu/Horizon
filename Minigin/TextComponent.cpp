@@ -8,7 +8,7 @@
 #include "Texture2D.h"
 #include "Renderer.h"
 
-dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font) : Component(parent),
+Horizon::TextComponent::TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font) : Component(parent),
 	m_NeedsUpdate{true},
 	m_Text{text},
 	m_textColor{255,255,255},
@@ -17,7 +17,7 @@ dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, c
 
 }
 
-dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font, const Color& textColor) : Component(parent),
+Horizon::TextComponent::TextComponent(GameObject* parent, const std::string& text, const std::shared_ptr<Font>& font, const Color& textColor) : Component(parent),
 	m_NeedsUpdate{true},
 	m_Text{ text },
 	m_textColor{ textColor.r,textColor.g,textColor.b },
@@ -26,12 +26,12 @@ dae::TextComponent::TextComponent(GameObject* parent, const std::string& text, c
 
 }
 
-void dae::TextComponent::Initialize()
+void Horizon::TextComponent::Initialize()
 {
-	m_pTransformComponent = m_pGameObject->GetComponent<dae::TransformComponent>();
+	m_pTransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 }
 
-void dae::TextComponent::Update()
+void Horizon::TextComponent::Update()
 {
 	if (m_NeedsUpdate)
 	{
@@ -52,7 +52,7 @@ void dae::TextComponent::Update()
 	}
 }
 
-void dae::TextComponent::Render() const
+void Horizon::TextComponent::Render() const
 {
 	if (m_pTexture != nullptr)
 	{
@@ -66,13 +66,13 @@ void dae::TextComponent::Render() const
 	}
 }
 
-void dae::TextComponent::SetText(const std::string& text)
+void Horizon::TextComponent::SetText(const std::string& text)
 {
 	m_Text = text;
 	m_NeedsUpdate = true;
 }
 
-const std::string& dae::TextComponent::GetText() const
+const std::string& Horizon::TextComponent::GetText() const
 {
 	return m_Text;
 }

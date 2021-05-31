@@ -1,7 +1,7 @@
 #pragma once
 struct SDL_Window;
 
-namespace dae
+namespace Horizon
 {
 	class Minigin
 	{

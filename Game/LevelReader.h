@@ -4,7 +4,7 @@
 #include <memory>
 #include <PrefabFactory.h>
 
-namespace dae
+namespace Horizon
 {
 	class Prefab;
 }
@@ -15,9 +15,9 @@ public:
 	LevelReader();
 	~LevelReader();
 	void ParseLevel(const std::wstring& fileName);
-	const std::vector<dae::Prefab*>& GetPrefabs() const;
+	const std::vector<Horizon::Prefab*>& GetPrefabs() const;
 private:
-	std::vector<dae::Prefab*> m_pPrefabs;
-	dae::PrefabFactory m_Factory;
+	std::vector<Horizon::Prefab*> m_pPrefabs;
+	Horizon::PrefabFactory m_Factory;
 };
 

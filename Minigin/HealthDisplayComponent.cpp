@@ -2,13 +2,13 @@
 #include "HealthDisplayComponent.h"
 #include "TextComponent.h"
 
-dae::HealthDisplayComponent::HealthDisplayComponent(GameObject* parent) : Component(parent),
+Horizon::HealthDisplayComponent::HealthDisplayComponent(GameObject* parent) : Component(parent),
 	m_StartText{}
 {
 
 }
 
-void dae::HealthDisplayComponent::Initialize()
+void Horizon::HealthDisplayComponent::Initialize()
 {
 	m_pParentTextComponent = m_pGameObject->GetComponent<TextComponent>();
 
@@ -16,12 +16,12 @@ void dae::HealthDisplayComponent::Initialize()
 	m_pParentTextComponent->SetText(m_StartText + std::to_string(3));
 }
 
-void dae::HealthDisplayComponent::LifeLost(int currentLives) const
+void Horizon::HealthDisplayComponent::LifeLost(int currentLives) const
 {
 	m_pParentTextComponent->SetText(m_StartText + std::to_string(currentLives));
 }
 
-void dae::HealthDisplayComponent::GameOver() const
+void Horizon::HealthDisplayComponent::GameOver() const
 {
 	m_pParentTextComponent->SetText(m_StartText + "Game Over");
 }

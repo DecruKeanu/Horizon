@@ -7,7 +7,7 @@
 #include "SpriteComponent.h"
 #include <Scene.h>
 
-using namespace dae;
+using namespace Horizon;
 
 QBert::QBert(const rapidjson::Value& jsonObject) :
 	m_Value{ jsonObject }
@@ -17,8 +17,8 @@ QBert::QBert(const rapidjson::Value& jsonObject) :
 
 void QBert::Initialize()
 {
-	const int srcWidth = 16;
-	const int srcHeight = 16;
+	const int srcWidth = 15;
+	const int srcHeight = 15;
 	const int positionX = m_Value["positionX"].GetInt() + srcWidth;
 	const int positionY = m_Value["positionY"].GetInt() - srcHeight;
 

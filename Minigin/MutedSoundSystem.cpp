@@ -2,7 +2,7 @@
 #include "MutedSoundSystem.h"
 #include <cassert>
 
-void MutedSoundSystem::QueueEvent(SoundId id, int volume)
+void Horizon::MutedSoundSystem::QueueEvent(SoundId id, int volume)
 {
 	assert((m_Tail + 1) % m_MaxMessages != m_Head);
 
@@ -11,7 +11,7 @@ void MutedSoundSystem::QueueEvent(SoundId id, int volume)
 	m_Tail = (m_Tail + 1) % m_MaxMessages;
 }
 
-void MutedSoundSystem::Update()
+void Horizon::MutedSoundSystem::Update()
 {
 	if (m_Head == m_Tail)
 		return;

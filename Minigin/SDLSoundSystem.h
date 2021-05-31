@@ -1,16 +1,19 @@
 #pragma once
 #include "SoundSystem.h"
 
-class SDLSoundSystem final : public SoundSystem
+namespace Horizon
 {
-public:
-	void QueueEvent(SoundId id, int volume)  override;
-	void Update() override;
-protected:
+	class SDLSoundSystem final : public SoundSystem
+	{
+	public:
+		void QueueEvent(SoundId id, int volume)  override;
+		void Update() override;
+	protected:
 
-	static constexpr int m_MaxMessages = 16;
-	AudioData m_Progressing[m_MaxMessages]{};
+		static constexpr int m_MaxMessages = 16;
+		AudioData m_Progressing[m_MaxMessages]{};
 
-	int m_Head{};
-	int m_Tail{};
-};
+		int m_Head{};
+		int m_Tail{};
+	};
+}

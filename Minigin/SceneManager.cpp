@@ -2,43 +2,43 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-dae::SceneManager::~SceneManager()
+Horizon::SceneManager::~SceneManager()
 {
 	for (auto& scene : m_pScenes)
 		SafeDelete(scene);
 }
 
-void dae::SceneManager::Initialize()
+void Horizon::SceneManager::Initialize()
 {
 	for (auto& scene : m_pScenes)
 		scene->RootInitialize();
 }
 
-void dae::SceneManager::FixedUpdate()
+void Horizon::SceneManager::FixedUpdate()
 {
 	for (auto& scene : m_pScenes)
 		scene->RootFixedUpdate();
 }
 
-void dae::SceneManager::Update()
+void Horizon::SceneManager::Update()
 {
 	for (auto& scene : m_pScenes)
 		scene->RootUpdate();
 }
 
-void dae::SceneManager::LateUpdate()
+void Horizon::SceneManager::LateUpdate()
 {
 	for (auto& scene : m_pScenes)
 		scene->RootLateUpdate();
 }
 
-void dae::SceneManager::Render()
+void Horizon::SceneManager::Render()
 {
 	if (m_pActiveScene)
 		m_pActiveScene->RootRender();
 }
 
-void dae::SceneManager::AddScene(Scene* pScene)
+void Horizon::SceneManager::AddScene(Scene* pScene)
 {
 	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);
 
@@ -51,7 +51,7 @@ void dae::SceneManager::AddScene(Scene* pScene)
 	}
 }
 
-void dae::SceneManager::RemoveScene(Scene* pScene)
+void Horizon::SceneManager::RemoveScene(Scene* pScene)
 {
 	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);
 
@@ -62,7 +62,7 @@ void dae::SceneManager::RemoveScene(Scene* pScene)
 	}
 }
 
-void dae::SceneManager::SetActiveScene(Scene* pScene)
+void Horizon::SceneManager::SetActiveScene(Scene* pScene)
 {
 	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);
 

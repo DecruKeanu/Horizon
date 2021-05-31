@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-class SoloLevel1Scene final : public dae::Scene
+class SoloLevel1Scene final : public Horizon::Scene
 {
 public:
 	SoloLevel1Scene();

@@ -1,5 +1,5 @@
 #pragma once
-namespace dae
+namespace Horizon
 {
 	class GameObject;
 
@@ -7,10 +7,10 @@ namespace dae
 	{
 	public:
 		virtual ~Prefab() = default;
-		dae::GameObject* GetGameObject() const;
+		GameObject* GetGameObject() const;
 	protected:
-		void SetGameObject(dae::GameObject* pGameObject);
+		void SetGameObject(GameObject* pGameObject);
 	private:
-		dae::GameObject* m_pGameObject = nullptr;
+		GameObject* m_pGameObject = nullptr;
 	};
 }

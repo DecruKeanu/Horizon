@@ -7,7 +7,7 @@
 #include "backends/imgui_impl_opengl2.h"
 #include "backends/imgui_impl_sdl.h"
 
-void dae::Renderer::Init(SDL_Window* window)
+void Horizon::Renderer::Init(SDL_Window* window)
 {
 	m_pWindow = window;
 	m_pRenderer = SDL_CreateRenderer(window, GetOpenGLDriverIndex(), SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -22,7 +22,7 @@ void dae::Renderer::Init(SDL_Window* window)
 	ImGui_ImplOpenGL2_Init();
 }
 
-int dae::Renderer::GetOpenGLDriverIndex()
+int Horizon::Renderer::GetOpenGLDriverIndex()
 {
 	int openglIndex = -1;
 	const int driverCount = SDL_GetNumRenderDrivers();
@@ -35,7 +35,7 @@ int dae::Renderer::GetOpenGLDriverIndex()
 	}
 	return openglIndex;
 }
-void dae::Renderer::Render(float time) const
+void Horizon::Renderer::Render(float time) const
 {
 	time;
 	bool showDemo = false;
@@ -71,7 +71,7 @@ void dae::Renderer::Render(float time) const
 	SDL_RenderPresent(m_pRenderer);
 }
 
-void dae::Renderer::Destroy()
+void Horizon::Renderer::Destroy()
 {
 	ImGui_ImplOpenGL2_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
@@ -83,7 +83,7 @@ void dae::Renderer::Destroy()
 	}
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, const int x, const int y) const
+void Horizon::Renderer::RenderTexture(const Texture2D& texture, const int x, const int y) const
 {
 	SDL_Rect dst;
 	dst.x = x;
@@ -92,7 +92,7 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, const int x, const i
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, const int x, const int y, const int width, const int height) const
+void Horizon::Renderer::RenderTexture(const Texture2D& texture, const int x, const int y, const int width, const int height) const
 {
 	SDL_Rect dst;
 	dst.x = x;
@@ -102,7 +102,7 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, const int x, const i
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, const int x, const int y, const float scale, SDL_Rect srcRect) const
+void Horizon::Renderer::RenderTexture(const Texture2D& texture, const int x, const int y, const float scale, SDL_Rect srcRect) const
 {
 	if (srcRect.w == -1 && srcRect.h == -1)
 		SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &srcRect.w, &srcRect.h);

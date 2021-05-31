@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 
-namespace dae
+namespace Horizon
 {
 	class TextComponent;
 	class HealthDisplayComponent final : public Component

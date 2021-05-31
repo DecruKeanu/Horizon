@@ -2,19 +2,19 @@
 #include "ScoreComponent.h"
 #include "SubjectComponent.h"
 
-dae::ScoreComponent::ScoreComponent(GameObject* parent) : Component(parent),
+Horizon::ScoreComponent::ScoreComponent(GameObject* parent) : Component(parent),
 	m_CurrentScore{ 0 },
 	m_pSubject{ new SubjectComponent() } 
 {
 
 }
 
-dae::ScoreComponent::~ScoreComponent()
+Horizon::ScoreComponent::~ScoreComponent()
 {
-	SafeDelete<dae::SubjectComponent>(m_pSubject);
+	SafeDelete<SubjectComponent>(m_pSubject);
 }
 
-void dae::ScoreComponent::IncreaseScore(int scoreIncrease)
+void Horizon::ScoreComponent::IncreaseScore(int scoreIncrease)
 {
 	m_CurrentScore += scoreIncrease;
 
@@ -31,7 +31,7 @@ void dae::ScoreComponent::IncreaseScore(int scoreIncrease)
 		m_pSubject->Notify(Event(PossibleEvent::DefeatCoily,m_CurrentScore));
 }
 
-void dae::ScoreComponent::AddObserver(Observer* observer)
+void Horizon::ScoreComponent::AddObserver(Observer* observer)
 {
 	m_pSubject->AddObserver(observer);
 }

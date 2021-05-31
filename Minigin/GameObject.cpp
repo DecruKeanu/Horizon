@@ -7,43 +7,43 @@
 #include "TextComponent.h"
 #include "FPS.h"
 
-dae::GameObject::~GameObject()
+Horizon::GameObject::~GameObject()
 {
 	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
 		SafeDelete<Component>(m_pObjectComponents[idx]);
 }
 
-void dae::GameObject::Initialize()
+void Horizon::GameObject::Initialize()
 {
 	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
 		m_pObjectComponents[idx]->Initialize();
 }
 
-void dae::GameObject::FixedUpdate()
+void Horizon::GameObject::FixedUpdate()
 {
 	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
 		m_pObjectComponents[idx]->FixedUpdate();
 }
 
-void dae::GameObject::Update()
+void Horizon::GameObject::Update()
 {
 	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
 		m_pObjectComponents[idx]->Update();
 }
 
-void dae::GameObject::LateUpdate()
+void Horizon::GameObject::LateUpdate()
 {
 	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
 		m_pObjectComponents[idx]->LateUpdate();
 }
 
-void dae::GameObject::Render() const
+void Horizon::GameObject::Render() const
 {
 	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
 		m_pObjectComponents[idx]->Render();
 }
 
-void dae::GameObject::AddComponent(Component* component)
+void Horizon::GameObject::AddComponent(Component* component)
 {
 	m_pObjectComponents.push_back(component);
 }

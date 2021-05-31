@@ -2,7 +2,7 @@
 #include "SDLSoundSystem.h"
 #include <cassert>
 
-void SDLSoundSystem::QueueEvent(SoundId id, int volume) //queueSound
+void Horizon::SDLSoundSystem::QueueEvent(SoundId id, int volume) //queueSound
 {
 	//for (int idx = m_Head; idx != m_Tail; idx = (idx + 1) % m_MaxMessages)
 	//{
@@ -20,7 +20,7 @@ void SDLSoundSystem::QueueEvent(SoundId id, int volume) //queueSound
 	m_Tail = (m_Tail + 1) % m_MaxMessages;
 }
 
-void SDLSoundSystem::Update()
+void Horizon::SDLSoundSystem::Update()
 {
 	if (m_Head == m_Tail)
 		return;

@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "GameObject.h"
 
-dae::Component::Component(GameObject* parent) :
+Horizon::Component::Component(GameObject* parent) :
 	m_pGameObject{ parent }
 {
 

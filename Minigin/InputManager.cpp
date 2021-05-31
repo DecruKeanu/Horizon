@@ -4,7 +4,7 @@
 #include <SDL.h>
 #include "Command.h"
 
-bool dae::InputManager::ProcessInput()
+bool Horizon::InputManager::ProcessInput()
 {
 	RtlZeroMemory(&m_InputKeyStroke, sizeof(XINPUT_KEYSTROKE));
 	RtlZeroMemory(&m_InputState, sizeof(XINPUT_STATE));
@@ -44,34 +44,34 @@ bool dae::InputManager::ProcessInput()
 	return true;
 }
 
-void dae::InputManager::ExecuteControllerInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const
+void Horizon::InputManager::ExecuteControllerInput(const std::pair<const Controllerkey, std::unique_ptr<Command>>& it) const
 {
 	it.second->Execute();
 }
 
-void dae::InputManager::ExecuteKeyboardInput(const std::pair<const dae::Keyboardkey, std::unique_ptr<Command>>& it) const
+void Horizon::InputManager::ExecuteKeyboardInput(const std::pair<const Keyboardkey, std::unique_ptr<Command>>& it) const
 {
 	it.second->Execute();
 }
 
-void dae::InputManager::HandleControllerInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const
+void Horizon::InputManager::HandleControllerInput(const std::pair<const Controllerkey, std::unique_ptr<Command>>& it) const
 {
 	if (m_InputKeyStroke.VirtualKey == WORD(it.first.second))
 		ExecuteControllerInput(it);
 }
 
-void dae::InputManager::HandleKeyboardInput(const std::pair<const dae::Keyboardkey, std::unique_ptr<Command>>& it) const
+void Horizon::InputManager::HandleKeyboardInput(const std::pair<const Keyboardkey, std::unique_ptr<Command>>& it) const
 {
 	if (m_SDLKeyCode == int(it.first.second))
 		ExecuteKeyboardInput(it);
 }
 
-void dae::InputManager::AddControllerInput(ControllerButton button, ControllerButtonState buttonState, std::unique_ptr<Command> action)
+void Horizon::InputManager::AddControllerInput(ControllerButton button, ControllerButtonState buttonState, std::unique_ptr<Command> action)
 {
 	m_ControllerCommands.insert({ Controllerkey(buttonState, button),std::move(action) });
 }
 
-void dae::InputManager::AddKeyboardInput(SDLK key, KeyboardButtonState keyState, std::unique_ptr<Command> action)
+void Horizon::InputManager::AddKeyboardInput(SDLK key, KeyboardButtonState keyState, std::unique_ptr<Command> action)
 {
 	m_KeyboardCommands.insert({ Keyboardkey(keyState,key),std::move(action) });
 }

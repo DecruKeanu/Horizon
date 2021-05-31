@@ -1,11 +1,11 @@
 #include "MiniginPCH.h"
 #include "SoundSystemServiceLocator.h"
 
-SoundSystem* SoundSystemServiceLocator::pSoundSystemInstance = nullptr;
-NullSoundSystem* SoundSystemServiceLocator::pDefaultSoundSystemInstance = nullptr;
-std::vector<SoundSystem*> SoundSystemServiceLocator::systemsToDelete = {};
+Horizon::SoundSystem* Horizon::SoundSystemServiceLocator::pSoundSystemInstance = nullptr;
+Horizon::NullSoundSystem* Horizon::SoundSystemServiceLocator::pDefaultSoundSystemInstance = nullptr;
+std::vector<Horizon::SoundSystem*> Horizon::SoundSystemServiceLocator::systemsToDelete = {};
 
-void SoundSystemServiceLocator::ReleaseServiceLocator()
+void Horizon::SoundSystemServiceLocator::ReleaseServiceLocator()
 {
 	SafeDelete(pSoundSystemInstance);
 	SafeDelete(pDefaultSoundSystemInstance);
@@ -14,12 +14,12 @@ void SoundSystemServiceLocator::ReleaseServiceLocator()
 		SafeDelete(pSoundSystem);
 }
 
-SoundSystem& SoundSystemServiceLocator::GetSoundSystem()
+Horizon::SoundSystem& Horizon::SoundSystemServiceLocator::GetSoundSystem()
 {
 	return *pSoundSystemInstance;
 }
 
-void SoundSystemServiceLocator::RegisterSoundSystem(SoundSystem* pSoundSystem)
+void Horizon::SoundSystemServiceLocator::RegisterSoundSystem(SoundSystem* pSoundSystem)
 {
 	if (pSoundSystem == nullptr)
 	{

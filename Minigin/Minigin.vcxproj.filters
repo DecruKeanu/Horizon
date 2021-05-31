@@ -175,9 +175,6 @@
     <ClInclude Include="SDLK.h">
       <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="MathFunctions.h">
-      <Filter>Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="SpriteComponent.h">
       <Filter>Components</Filter>
     </ClInclude>

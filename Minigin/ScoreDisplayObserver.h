@@ -1,7 +1,7 @@
 #pragma once
 #include "Observer.h"
 
-namespace dae
+namespace Horizon
 {
     class ScoreDisplayComponent;
     class ScoreDisplayObserver final: public Observer

@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 #include <SDL.h>
-namespace dae
+namespace Horizon
 {
 	class Texture2D;
 	class TransformComponent;

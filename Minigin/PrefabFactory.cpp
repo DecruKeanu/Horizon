@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "PrefabFactory.h"
 
-using namespace dae;
+using namespace Horizon;
 
 Prefab* PrefabFactory::GetPrefab(const rapidjson::Value& jsonValue)
 {

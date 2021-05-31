@@ -2,11 +2,11 @@
 #include <SDL_ttf.h>
 #include "Font.h"
 
-TTF_Font* dae::Font::GetFont() const {
+TTF_Font* Horizon::Font::GetFont() const {
 	return m_pFont;
 }
 
-dae::Font::Font(const std::string& fullPath, unsigned int size) : m_pFont(nullptr), m_Size(size)
+Horizon::Font::Font(const std::string& fullPath, unsigned int size) : m_pFont(nullptr), m_Size(size)
 {
 	m_pFont = TTF_OpenFont(fullPath.c_str(), size);
 	if (m_pFont == nullptr) 
@@ -15,7 +15,7 @@ dae::Font::Font(const std::string& fullPath, unsigned int size) : m_pFont(nullpt
 	}
 }
 
-dae::Font::~Font()
+Horizon::Font::~Font()
 {
 	TTF_CloseFont(m_pFont);
 }

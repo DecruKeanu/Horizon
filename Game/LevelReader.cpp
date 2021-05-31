@@ -9,7 +9,7 @@
 #include "stream.h"
 #include "filereadstream.h"
 
-using namespace dae;
+using namespace Horizon;
 
 LevelReader::LevelReader() :
 	m_pPrefabs{}

@@ -4,19 +4,19 @@
 #include "TransformComponent.h"
 #include "Renderer.h"
 
-dae::TextureComponent::TextureComponent(GameObject* parent,const std::string textureFile) : dae::Component(parent),
+Horizon::TextureComponent::TextureComponent(GameObject* parent,const std::string textureFile) : Component(parent),
 	m_SrcRect{0,0,-1,-1},
 	m_Scale{1.f}
 {
-	m_pTexture = dae::ResourceManager::GetInstance().LoadTexture(textureFile);
+	m_pTexture = ResourceManager::GetInstance().LoadTexture(textureFile);
 }
 
-void dae::TextureComponent::Initialize()
+void Horizon::TextureComponent::Initialize()
 {
-	m_pTransformComponent = m_pGameObject->GetComponent<dae::TransformComponent>();
+	m_pTransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 }
 
-void dae::TextureComponent::Render() const
+void Horizon::TextureComponent::Render() const
 {
 	if (m_pTransformComponent)
 	{
@@ -27,12 +27,12 @@ void dae::TextureComponent::Render() const
 		Renderer::GetInstance().RenderTexture(*m_pTexture, 0, 0, m_Scale, m_SrcRect);
 }
 
-void dae::TextureComponent::SetSrcRect(int x, int y, int width, int height)
+void Horizon::TextureComponent::SetSrcRect(int x, int y, int width, int height)
 {
 	m_SrcRect = { x,y,width,height };
 }
 
-void dae::TextureComponent::SetScale(float scale)
+void Horizon::TextureComponent::SetScale(float scale)
 {
 	m_Scale = scale;
 }

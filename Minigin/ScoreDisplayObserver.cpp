@@ -2,13 +2,13 @@
 #include "ScoreDisplayObserver.h"
 #include "ScoreDisplayComponent.h"
 #include "Events.h"
-dae::ScoreDisplayObserver::ScoreDisplayObserver(ScoreDisplayComponent* scoreDisplayComponent) :
+Horizon::ScoreDisplayObserver::ScoreDisplayObserver(ScoreDisplayComponent* scoreDisplayComponent) :
 	m_pScoreDisplayComponent{scoreDisplayComponent}
 {
 
 }
 
-void dae::ScoreDisplayObserver::OnNotify(const Event& event)
+void Horizon::ScoreDisplayObserver::OnNotify(const Event& event)
 {
 	switch (event.event)
 	{

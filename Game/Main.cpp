@@ -11,16 +11,16 @@
 void InitializeGame()
 {
 	// tell the resource manager where he can find the game data
-	dae::ResourceManager::GetInstance().Init("../Game/Resources/");
+	Horizon::ResourceManager::GetInstance().Init("../Game/Resources/");
 
-	dae::SceneManager::GetInstance().AddScene(new SoloLevel1Scene());
+	Horizon::SceneManager::GetInstance().AddScene(new SoloLevel1Scene());
 }
 
 int main(int,char*[])
 {
 	InitializeGame();
 
-	dae::Minigin engine;
+	Horizon::Minigin engine;
 	engine.Run();
 	return 0;
 }

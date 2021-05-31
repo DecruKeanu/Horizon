@@ -2,13 +2,13 @@
 #include "ScoreDisplayComponent.h"
 #include "TextComponent.h"
 
-dae::ScoreDisplayComponent::ScoreDisplayComponent(GameObject* parent) : Component(parent),
+Horizon::ScoreDisplayComponent::ScoreDisplayComponent(GameObject* parent) : Component(parent),
 	m_StartText{}
 {
 
 }
 
-void dae::ScoreDisplayComponent::Initialize()
+void Horizon::ScoreDisplayComponent::Initialize()
 {
 	m_pParentTextComponent = m_pGameObject->GetComponent<TextComponent>();
 
@@ -16,7 +16,7 @@ void dae::ScoreDisplayComponent::Initialize()
 	m_pParentTextComponent->SetText(m_StartText + std::to_string(0));
 }
 
-void dae::ScoreDisplayComponent::ScoreIncreased(int score) const
+void Horizon::ScoreDisplayComponent::ScoreIncreased(int score) const
 {
 	m_pParentTextComponent->SetText(m_StartText + std::to_string(score));
 }

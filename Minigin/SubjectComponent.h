@@ -1,7 +1,7 @@
 #pragma once
 #include "Observer.h"
 
-namespace dae
+namespace Horizon
 {
 	class SubjectComponent final
 	{

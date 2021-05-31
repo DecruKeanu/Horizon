@@ -11,7 +11,7 @@
 #include <memory>
 #include <vld.h>
 
-using namespace dae;
+using namespace Horizon;
 
 SoloLevel1Scene::SoloLevel1Scene() : Scene("SoloLevel1Scene")
 {

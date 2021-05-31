@@ -6,9 +6,12 @@
 #include "Singleton.h"
 #include "SDLK.h"
 
-class Command;
-namespace dae
+
+
+namespace Horizon
 {
+	class Command;
+
 	enum class ControllerButton : WORD
 	{
 		ButtonA = VK_PAD_A,
@@ -28,10 +31,6 @@ namespace dae
 		LeftTrigger = VK_PAD_LTRIGGER,
 		RightTrigger = VK_PAD_RTRIGGER
 	};
-	//enum class KeyBoardButton : int
-	//{
-	//	A = 
-	//};
 
 	enum class ControllerButtonState : WORD
 	{
@@ -50,7 +49,7 @@ namespace dae
 
 	using Keyboardkey = std::pair<KeyboardButtonState, SDLK>;
 	using KeyboardCommandsMap = std::map<Keyboardkey, std::unique_ptr<Command>>;
-	using KeyboardButtonPair = std::pair <Keyboardkey, std::unique_ptr<Command>>;
+	using KeyboardButtonPair = std::pair<Keyboardkey, std::unique_ptr<Command>>;
 
 	class InputManager final : public Singleton<InputManager>
 	{
@@ -59,10 +58,10 @@ namespace dae
 		void AddKeyboardInput(SDLK key, KeyboardButtonState keyState, std::unique_ptr<Command> action);
 		bool ProcessInput();
 	private:
-		void ExecuteControllerInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const;
-		void ExecuteKeyboardInput(const std::pair<const dae::Keyboardkey, std::unique_ptr<Command>>& it) const;
-		void HandleControllerInput(const std::pair<const dae::Controllerkey, std::unique_ptr<Command>>& it) const;
-		void HandleKeyboardInput(const std::pair<const dae::Keyboardkey, std::unique_ptr<Command>>& it) const;
+		void ExecuteControllerInput(const std::pair<const Controllerkey, std::unique_ptr<Command>>& it) const;
+		void ExecuteKeyboardInput(const std::pair<const Keyboardkey, std::unique_ptr<Command>>& it) const;
+		void HandleControllerInput(const std::pair<const Controllerkey, std::unique_ptr<Command>>& it) const;
+		void HandleKeyboardInput(const std::pair<const Keyboardkey, std::unique_ptr<Command>>& it) const;
 		SDL_Keycode m_SDLKeyCode{};
 		XINPUT_KEYSTROKE m_InputKeyStroke{};
 		int m_MaxAmountOfControllers{ XUSER_MAX_COUNT };

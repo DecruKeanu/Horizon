@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 
-namespace dae
+namespace Horizon
 {
 	class GameObject;
 	class TextureComponent;
@@ -16,7 +16,7 @@ namespace dae
 	private:
 		void Initialize() override;
 
-		dae::TextureComponent* m_pTextureComponent = nullptr;
+		TextureComponent* m_pTextureComponent = nullptr;
 		SDL_Rect m_SrcRect;
 		int m_CurrentSprite;
 		int m_SpriteAmount;

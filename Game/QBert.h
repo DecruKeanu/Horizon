@@ -4,7 +4,7 @@
 
 class QBertMovementComponent;
 
-class QBert final : public dae::Prefab
+class QBert final : public Horizon::Prefab
 {
 public:
 	QBert(const rapidjson::Value& jsonObject);

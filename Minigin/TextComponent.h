@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "Structs.h"
 
-namespace dae
+namespace Horizon
 {
 	class Font;
 	class Texture2D;

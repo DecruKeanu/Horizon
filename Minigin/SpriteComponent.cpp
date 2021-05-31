@@ -2,9 +2,9 @@
 #include "SpriteComponent.h"
 #include "TextureComponent.h"
 
-using namespace dae;
+using namespace Horizon;
 
-SpriteComponent::SpriteComponent(dae::GameObject* parent, SDL_Rect srcRect, int spriteAmount) : dae::Component(parent),
+SpriteComponent::SpriteComponent(GameObject* parent, SDL_Rect srcRect, int spriteAmount) : Component(parent),
 	m_CurrentSprite{1},
 	m_SrcRect{srcRect},
 	m_SpriteAmount{spriteAmount}
@@ -19,7 +19,7 @@ int SpriteComponent::GetCurrentSprite()
 
 void SpriteComponent::Initialize()
 {
-	m_pTextureComponent = m_pGameObject->GetComponent<dae::TextureComponent>();
+	m_pTextureComponent = m_pGameObject->GetComponent<TextureComponent>();
 
 	if (m_pTextureComponent == nullptr)
 	{

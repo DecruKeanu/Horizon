@@ -15,7 +15,7 @@
 using namespace std;
 using namespace std::chrono;
 
-void dae::Minigin::Initialize()
+void Horizon::Minigin::Initialize()
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
@@ -45,7 +45,7 @@ void dae::Minigin::Initialize()
 	SoundSystemServiceLocator::RegisterSoundSystem(new SDLSoundSystem());
 }
 
-void dae::Minigin::Cleanup()
+void Horizon::Minigin::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_pWindow);
@@ -57,7 +57,7 @@ void dae::Minigin::Cleanup()
 	SDL_Quit();
 }
 
-void dae::Minigin::Run() //no fpsCap because vsync does it automatically
+void Horizon::Minigin::Run() //no fpsCap because vsync does it automatically
 {
 	Initialize();
 	{

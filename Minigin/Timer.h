@@ -3,7 +3,7 @@
 #include "SDL.h"
 #include <chrono>
 
-namespace dae
+namespace Horizon
 {
 	class Timer final : public Singleton<Timer>
 	{

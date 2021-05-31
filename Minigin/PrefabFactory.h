@@ -7,7 +7,7 @@
 #include "document.h"
 
 //Credit to Elise Briers
-namespace dae
+namespace Horizon
 {
 	class PrefabFactory final
 	{

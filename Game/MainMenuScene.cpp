@@ -7,7 +7,7 @@
 #include "Cube.h"
 #include "LevelReader.h"
 
-using namespace dae;
+using namespace Horizon;
 
 MainMenuScene::MainMenuScene() : Scene("MainMenuScene")
 {
@@ -19,10 +19,10 @@ void MainMenuScene::Initialize()
 	//Logo
 	{
 		GameObject* const Logo = new GameObject();
-		TextureComponent* const logoTexture = new dae::TextureComponent(Logo, "QBertTextures.png");
+		TextureComponent* const logoTexture = new TextureComponent(Logo, "QBertTextures.png");
 		logoTexture->SetSrcRect(128, 33, 92, 14);
 		logoTexture->SetScale(4.f);
-		TransformComponent* const logoTransform = new dae::TransformComponent(Logo, 230 - 128 / 2, 80, 0);
+		TransformComponent* const logoTransform = new TransformComponent(Logo, 230 - 128 / 2, 80, 0);
 
 		Logo->AddComponent(logoTexture);
 		Logo->AddComponent(logoTransform);
@@ -33,8 +33,8 @@ void MainMenuScene::Initialize()
 	const auto QBertFont = ResourceManager::GetInstance().LoadFont("QBert.ttf", 30);
 	{
 		GameObject* const singlePlayerObject = new GameObject();
-		dae::TextComponent* const singlePlayerText = new dae::TextComponent(singlePlayerObject, "Single player", QBertFont, { 255, 140, 0 });
-		dae::TransformComponent* const singlePlayerTransform = new dae::TransformComponent(singlePlayerObject, 140, 200, 0);
+		TextComponent* const singlePlayerText = new TextComponent(singlePlayerObject, "Single player", QBertFont, { 255, 140, 0 });
+		TransformComponent* const singlePlayerTransform = new TransformComponent(singlePlayerObject, 140, 200, 0);
 		singlePlayerObject->AddComponent(singlePlayerText);
 		singlePlayerObject->AddComponent(singlePlayerTransform);
 		Add(singlePlayerObject);
@@ -42,8 +42,8 @@ void MainMenuScene::Initialize()
 
 	{
 		GameObject* const CoOpObject = new GameObject();
-		dae::TextComponent* const CoOpText = new dae::TextComponent(CoOpObject, "cooperative", QBertFont, { 255, 140, 0 });
-		dae::TransformComponent* const CoOpTransform = new dae::TransformComponent(CoOpObject, 140, 280, 0);
+		TextComponent* const CoOpText = new TextComponent(CoOpObject, "cooperative", QBertFont, { 255, 140, 0 });
+		TransformComponent* const CoOpTransform = new TransformComponent(CoOpObject, 140, 280, 0);
 		CoOpObject->AddComponent(CoOpText);
 		CoOpObject->AddComponent(CoOpTransform);
 		Add(CoOpObject);
@@ -51,8 +51,8 @@ void MainMenuScene::Initialize()
 
 	{
 		GameObject* const versusObject = new GameObject();
-		dae::TextComponent* const versusText = new dae::TextComponent(versusObject, "versus", QBertFont, { 255, 140, 0 });
-		dae::TransformComponent* const versusTransform = new dae::TransformComponent(versusObject, 140, 360, 0);
+		TextComponent* const versusText = new TextComponent(versusObject, "versus", QBertFont, { 255, 140, 0 });
+		TransformComponent* const versusTransform = new TransformComponent(versusObject, 140, 360, 0);
 		versusObject->AddComponent(versusText);
 		versusObject->AddComponent(versusTransform);
 		Add(versusObject);

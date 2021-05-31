@@ -2,7 +2,7 @@
 #ifndef PCH_H
 #define PCH_H
 
-// SDL libs
+//// SDL libs
 #pragma comment(lib, "sdl2.lib")
 #pragma comment(lib, "SDL2main.lib")
 

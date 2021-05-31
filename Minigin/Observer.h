@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "Events.h"
 
-namespace dae
+namespace Horizon
 {
 	class Observer
 	{

@@ -2,26 +2,26 @@
 #include "HealthComponent.h"
 #include "SubjectComponent.h"
 
-dae::HealthComponent::HealthComponent(GameObject* parent) : Component(parent),
+Horizon::HealthComponent::HealthComponent(GameObject* parent) : Component(parent),
     m_CurrentLives{3},
     m_pSubject{new SubjectComponent}
 {
 
 }
 
-dae::HealthComponent::HealthComponent(GameObject* parent, int lives) : Component(parent),
+Horizon::HealthComponent::HealthComponent(GameObject* parent, int lives) : Component(parent),
 m_CurrentLives{ lives },
 m_pSubject{ new SubjectComponent } 
 {
 
 }
 
-dae::HealthComponent::~HealthComponent()
+Horizon::HealthComponent::~HealthComponent()
 {
-    SafeDelete<dae::SubjectComponent>(m_pSubject);
+    SafeDelete<SubjectComponent>(m_pSubject);
 }
 
-void dae::HealthComponent::DecreaseLive()
+void Horizon::HealthComponent::DecreaseLive()
 {
     if (m_CurrentLives > 0)
     {
@@ -30,12 +30,12 @@ void dae::HealthComponent::DecreaseLive()
     }
 }
 
-void dae::HealthComponent::AddObserver(Observer* observer)
+void Horizon::HealthComponent::AddObserver(Observer* observer)
 {
     m_pSubject->AddObserver(observer);
 }
 
-int dae::HealthComponent::GetCurrentLives() const
+int Horizon::HealthComponent::GetCurrentLives() const
 {
     return m_CurrentLives;
 }

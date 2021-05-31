@@ -7,9 +7,9 @@
 #include <cmath>
 #include "Timer.h"
 
-using namespace dae;
+using namespace Horizon;
 
-QBertMovementComponent::QBertMovementComponent(dae::GameObject* parent) : Component(parent),
+QBertMovementComponent::QBertMovementComponent(GameObject* parent) : Component(parent),
 m_CurrentMovement{ Movement::idle },
 m_OriginalPoint{},
 m_ElapsedTime{},

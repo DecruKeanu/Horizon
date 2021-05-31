@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-namespace dae
+namespace Horizon
 {
 	class GameObject;
 	class TransformComponent;
@@ -16,10 +16,10 @@ enum class Movement
 	rightUp
 };
 
-class QBertMovementComponent final : public dae::Component
+class QBertMovementComponent final : public Horizon::Component
 {
 public:
-	QBertMovementComponent(dae::GameObject* parent);
+	QBertMovementComponent(Horizon::GameObject* parent);
 	void SetCurrentMovement(Movement movement);
 
 private:
@@ -28,9 +28,9 @@ private:
 
 	bool m_CanInputBeRegistered;
 	float m_ElapsedTime;
-	IPoint2 m_OriginalPoint;
+	Horizon::IPoint2 m_OriginalPoint;
 	Movement m_CurrentMovement;
-	dae::TransformComponent* m_pTransformComponent = nullptr;
-	dae::SpriteComponent* m_pSpriteComponent = nullptr;
+	Horizon::TransformComponent* m_pTransformComponent = nullptr;
+	Horizon::SpriteComponent* m_pSpriteComponent = nullptr;
 };
 

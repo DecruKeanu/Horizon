@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-namespace dae
+namespace Horizon
 {
 	class Texture2D;
 	class Component;

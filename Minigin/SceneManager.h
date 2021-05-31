@@ -1,7 +1,8 @@
 #pragma once
 #include "Singleton.h"
 #include <vector>
-namespace dae
+
+namespace Horizon
 {
 	class Scene;
 	class SceneManager final : public Singleton<SceneManager>

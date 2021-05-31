@@ -3,13 +3,13 @@
 #include "HealthDisplayComponent.h"
 #include "Events.h"
 
-dae::HealthDisplayObserver::HealthDisplayObserver(HealthDisplayComponent* healthDisplayComponent) :
+Horizon::HealthDisplayObserver::HealthDisplayObserver(HealthDisplayComponent* healthDisplayComponent) :
 	m_pHealthDisplayComponent{healthDisplayComponent}
 {
 
 }
 
-void dae::HealthDisplayObserver::OnNotify(const Event& event)
+void Horizon::HealthDisplayObserver::OnNotify(const Event& event)
 {
 	switch (event.event)
 	{

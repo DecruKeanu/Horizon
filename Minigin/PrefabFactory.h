@@ -3,15 +3,18 @@
 #include <unordered_map>
 #include <memory>
 #include "Prefab.h"
+#include "GameObject.h"
 #include "rapidjson.h"
 #include "document.h"
+
+
 
 //Credit to Elise Briers
 namespace Horizon
 {
 	class PrefabFactory final
 	{
-		using generator = std::function<Prefab*(const rapidjson::Value&)>;
+		using generator = std::function<GameObject*(const rapidjson::Value&)>;
 		using generatorMap = std::unordered_map<std::string, generator>;
 
 	public:
@@ -19,10 +22,10 @@ namespace Horizon
 
 		template <typename T>
 		void RegisterPrefab();
-		Prefab* GetPrefab(const rapidjson::Value& jsonValue);
+		GameObject* GetPrefab(const rapidjson::Value& jsonValue);
 	private:
 		template <typename T>
-		static Prefab* DefaultAllocator(const rapidjson::Value& jsonObject);
+		static GameObject* DefaultAllocator(const rapidjson::Value& jsonObject);
 		generatorMap m_Generators;
 	};
 
@@ -34,9 +37,10 @@ namespace Horizon
 	}
 
 	template<typename T>
-	inline Prefab* PrefabFactory::DefaultAllocator(const rapidjson::Value& jsonObject)
+	inline GameObject* PrefabFactory::DefaultAllocator(const rapidjson::Value& jsonObject)
 	{
-		return new T(jsonObject);
+		T object = T(jsonObject);
+		return object.GetGameObject();
 	}
 }
 

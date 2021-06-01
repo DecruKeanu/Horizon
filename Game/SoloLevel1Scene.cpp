@@ -28,25 +28,27 @@ void SoloLevel1Scene::Initialize()
 	LevelReader levelReader{};
 	levelReader.ParseLevel(L"SoloLevel1.json");
 
-	for (Prefab* const pPrefab : levelReader.GetPrefabs())
+	for (GameObject* const pPrefab : levelReader.GetPrefabs())
 	{
-		if (pPrefab == nullptr)
-		{
-			Logger::LogWarning("SoloLevel1Scene::Initialize: Prefab was nullptr, skipping element");
-			continue;
-		}
+		//if (pPrefab == nullptr)
+		//{
+		//	Logger::LogWarning("SoloLevel1Scene::Initialize: Prefab was nullptr, skipping element");
+		//	continue;
+		//}
 
-		if (pPrefab->GetPrefabName() == "Cube")
-			pCubePrefabs.push_back(static_cast<Cube*>(pPrefab));
-		else if (pPrefab->GetPrefabName() == "QBert")
-		{
-			QBert* const pQbert = static_cast<QBert*>(pPrefab);
-			for (Cube* const pCubeElement : pCubePrefabs)
-			{
-				pQbert->GetGameObject()->GetComponent<QBertMovementComponent>()->AddObserver(new CubeHandleObserver(pCubeElement->GetGameObject()->GetComponent<CubeHandleComponent>()));
-			}
-		}
+		//if (pPrefab->GetName() == "Cube")
+		////	pCubePrefabs.push_back(static_cast<Cube*>(pPrefab));
+		////else if (pPrefab->GetPrefabName() == "QBert")
+		////{
+		////	QBert* const pQbert = static_cast<QBert*>(pPrefab);
+		////	for (Cube* const pCubeElement : pCubePrefabs)
+		////	{
+		////		pQbert->GetGameObject()->GetComponent<QBertMovementComponent>()->AddObserver(new CubeHandleObserver(pCubeElement->GetGameObject()->GetComponent<CubeHandleComponent>()));
+		////	}
+		////}
 
-		Add(pPrefab->GetGameObject());
+		Add(pPrefab);
 	}
+
+	std::cout << "initialized";
 }

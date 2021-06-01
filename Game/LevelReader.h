@@ -6,7 +6,7 @@
 
 namespace Horizon
 {
-	class Prefab;
+	class GameObject;
 }
 
 class LevelReader final
@@ -15,9 +15,9 @@ public:
 	LevelReader();
 	~LevelReader();
 	void ParseLevel(const std::wstring& fileName);
-	const std::vector<Horizon::Prefab*>& GetPrefabs() const;
+	const std::vector<Horizon::GameObject*>& GetPrefabs() const;
 private:
-	std::vector<Horizon::Prefab*> m_pPrefabs;
+	std::vector<Horizon::GameObject*> m_pPrefabs;
 	Horizon::PrefabFactory m_Factory;
 };
 

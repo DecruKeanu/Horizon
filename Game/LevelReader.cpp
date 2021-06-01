@@ -20,8 +20,8 @@ LevelReader::LevelReader() :
 
 LevelReader::~LevelReader()
 {
-	for (Prefab* const m_pPrefab : m_pPrefabs)
-		SafeDelete(m_pPrefab);
+	//for (GameObject* const m_pPrefab : m_pPrefabs)
+	//	SafeDelete(m_pPrefab);
 }
 
 //class needs to include namespace and needs to be the same name as cpp 
@@ -60,7 +60,7 @@ void LevelReader::ParseLevel(const std::wstring& fileName)
 	fclose(pIFile);
 }
 
-const std::vector<Prefab*>& LevelReader::GetPrefabs() const
+const std::vector<GameObject*>& LevelReader::GetPrefabs() const
 {
 	return m_pPrefabs;
 }

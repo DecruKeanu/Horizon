@@ -12,8 +12,13 @@ using namespace Horizon;
 QBert::QBert(const rapidjson::Value& jsonObject) :
 	m_Value{ jsonObject }
 {
-	SetPrefabName("QBert");
+	//SetPrefabName("QBert");
 	Initialize();
+}
+
+GameObject* QBert::GetGameObject() const
+{
+	return m_pGameObject;
 }
 
 void QBert::Initialize()
@@ -38,5 +43,7 @@ void QBert::Initialize()
 	pGameObject->AddComponent(QBertTransform);
 	pGameObject->AddComponent(pMovementComponent);
 
-	SetGameObject(pGameObject);
+	m_pGameObject = pGameObject;
+
+	//SetGameObject(pGameObject);
 }

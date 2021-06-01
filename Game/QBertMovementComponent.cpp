@@ -48,7 +48,6 @@ void QBertMovementComponent::Initialize()
 
 void QBertMovementComponent::Update()
 {
-
 	IPoint2 desiredPos{};
 
 	switch (m_CurrentMovement)

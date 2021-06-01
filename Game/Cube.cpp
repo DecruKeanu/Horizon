@@ -14,8 +14,13 @@ using namespace Horizon;
 Cube::Cube(const rapidjson::Value& jsonObject) :
 	m_Value{ jsonObject }
 {
-	SetPrefabName("Cube");
+	//SetPrefabName("Cube");
 	Initialize();
+}
+
+GameObject* Cube::GetGameObject() const
+{
+	return m_pGameObject;
 }
 
 void Cube::Initialize()
@@ -37,14 +42,15 @@ void Cube::Initialize()
 	pGameObject->AddComponent(pSpriteComponent);
 	pGameObject->AddComponent(blockTransform);
 
-	SetGameObject(pGameObject);
+	//SetGameObject(pGameObject);
+	m_pGameObject = pGameObject;
 }
 
 SDL_Rect Cube::LevelNumberToSrcRect(const int levelNumber)
 {
 	int posX = 0;
 	const int posY = 164;
-	const int width = 221;
+	const int width = 222;
 	const int height = 32;
 
 	switch (levelNumber)

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 namespace Horizon
 {
 	class Texture2D;
@@ -8,6 +9,14 @@ namespace Horizon
 	class GameObject final
 	{
 	public:
+		GameObject();
+		GameObject(const std::string& identifier);
+		~GameObject();
+		GameObject(const GameObject & other) = delete;
+		GameObject(GameObject && other) = delete;
+		GameObject& operator=(const GameObject & other) = delete;
+		GameObject& operator=(GameObject && other) = delete;
+
 		void Initialize();
 		void FixedUpdate();
 		void Update();
@@ -19,15 +28,13 @@ namespace Horizon
 		template <typename T>
 		T* GetComponent() const;
 
-		GameObject() = default;
-		~GameObject();
-		GameObject(const GameObject& other) = delete;
-		GameObject(GameObject&& other) = delete;
-		GameObject& operator=(const GameObject& other) = delete;
-		GameObject& operator=(GameObject&& other) = delete;
-
+		const std::string& GetName();
+		bool Equals(GameObject* pOther) const;
 	private:
 		std::vector<Component*> m_pObjectComponents;
+		std::string m_Name;
+		const size_t m_Id;
+		static size_t m_LastId;
 	};
 
 	template<typename T>

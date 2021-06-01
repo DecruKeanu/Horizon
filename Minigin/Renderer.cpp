@@ -22,6 +22,15 @@ void Horizon::Renderer::Init(SDL_Window* window)
 	ImGui_ImplOpenGL2_Init();
 }
 
+void Horizon::Renderer::DrawSDLRect(const SDL_Color& color, const SDL_Rect* rect)
+{
+	SDL_Color originalColor{};
+	SDL_GetRenderDrawColor(m_pRenderer, &originalColor.r, &originalColor.g, &originalColor.b, &originalColor.a);
+	SDL_SetRenderDrawColor(m_pRenderer, color.r, color.g, color.b, color.a);
+	SDL_RenderDrawRect(m_pRenderer, rect);
+	SDL_SetRenderDrawColor(m_pRenderer, originalColor.r, originalColor.g, originalColor.b, originalColor.a);
+}
+
 int Horizon::Renderer::GetOpenGLDriverIndex()
 {
 	int openglIndex = -1;

@@ -7,6 +7,7 @@
 #include <TransformComponent.h>
 #include <SpriteComponent.h>
 #include "CubeHandleComponent.h"
+#include "TriggerComponent.h"
 #include <Scene.h>
 
 using namespace Horizon;
@@ -14,7 +15,6 @@ using namespace Horizon;
 Cube::Cube(const rapidjson::Value& jsonObject) :
 	m_Value{ jsonObject }
 {
-	//SetPrefabName("Cube");
 	Initialize();
 }
 
@@ -27,22 +27,39 @@ void Cube::Initialize()
 {
 	const int positionX = m_Value["positionX"].GetInt();
 	const int positionY = m_Value["positionY"].GetInt();
+	const float scale = 2.f;
 	const SDL_Rect srcRect = LevelNumberToSrcRect(m_Value["level"].GetInt());
+	const int srcWidth = srcRect.w/14;
+	const int srcHeight = srcRect.h/2;
+	CubeType cubeType = {};
+	switch (m_Value["level"].GetInt())
+	{
+	case 1:
+		cubeType = CubeType::oneJump;
+		break;
+	case 2:
+		cubeType = CubeType::twoJumps;
+		break;
+	case 3:
+		cubeType = CubeType::loopjumps;
+		break;
+	}
 
-	GameObject* const pGameObject = new GameObject();
 
-	CubeHandleComponent* const pHandleCubeComponent = new CubeHandleComponent(pGameObject);
+	GameObject* const pGameObject = new GameObject("Cube");
+	CubeHandleComponent* const pHandleCubeComponent = new CubeHandleComponent(pGameObject, cubeType);
 	TextureComponent* const blockTexture = new TextureComponent(pGameObject, "QBertTextures.png");
-	blockTexture->SetScale(2.f);
+	blockTexture->SetScale(scale);
 	SpriteComponent* const pSpriteComponent = new SpriteComponent(pGameObject, srcRect, 7);
 	TransformComponent* const blockTransform = new TransformComponent(pGameObject, positionX, positionY, 0);
+	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { positionX , positionY, int(scale * srcWidth), int(scale * srcHeight) });
 
 	pGameObject->AddComponent(pHandleCubeComponent);
 	pGameObject->AddComponent(blockTexture);
 	pGameObject->AddComponent(pSpriteComponent);
 	pGameObject->AddComponent(blockTransform);
+	pGameObject->AddComponent(pTriggerComponent);
 
-	//SetGameObject(pGameObject);
 	m_pGameObject = pGameObject;
 }
 

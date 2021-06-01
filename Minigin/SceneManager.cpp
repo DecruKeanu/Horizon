@@ -22,8 +22,11 @@ void Horizon::SceneManager::FixedUpdate()
 
 void Horizon::SceneManager::Update()
 {
-	for (auto& scene : m_pScenes)
-		scene->RootUpdate();
+	//for (auto& scene : m_pScenes)
+		//scene->RootUpdate();
+
+	if (m_pActiveScene)
+		m_pActiveScene->RootUpdate();
 }
 
 void Horizon::SceneManager::LateUpdate()
@@ -72,15 +75,23 @@ void Horizon::SceneManager::SetActiveScene(Scene* pScene)
 	}
 }
 
-//void dae::SceneManager::NextScene()
-//{
-//	for (unsigned int i = 0; i < m_pScenes.size(); ++i)
-//	{
-//		const auto nextScene = ++i % m_pScenes.size();
-//		m_pActiveScene = m_pScenes[nextScene];
-//		break;
-//	}
-//}
+Horizon::Scene* Horizon::SceneManager::GetActiveScene()
+{
+	return m_pActiveScene;
+}
+
+void Horizon::SceneManager::NextScene()
+{
+	for (unsigned int i = 0; i < m_pScenes.size(); ++i)
+	{
+		if (m_pScenes[i] == m_pActiveScene)
+		{
+			const auto nextScene = ++i % m_pScenes.size();
+			m_pActiveScene = m_pScenes[nextScene];
+			break;
+		}
+	}
+}
 //
 //void dae::SceneManager::PreviousScene()
 //{

@@ -1,0 +1,178 @@
+{
+  "level": "level2Solo",
+  "gameObjects": [
+    {
+      "class": "Cube",
+      "positionX": 292,
+      "positionY": 72,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 260,
+      "positionY": 120,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 324,
+      "positionY": 120,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 228,
+      "positionY": 168,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 292,
+      "positionY": 168,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 356,
+      "positionY": 168,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 196,
+      "positionY": 216,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 260,
+      "positionY": 216,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 324,
+      "positionY": 216,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 388,
+      "positionY": 216,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 164,
+      "positionY": 264,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 228,
+      "positionY": 264,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 292,
+      "positionY": 264,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 356,
+      "positionY": 264,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 420,
+      "positionY": 264,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 132,
+      "positionY": 312,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 196,
+      "positionY": 312,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 260,
+      "positionY": 312,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 324,
+      "positionY": 312,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 388,
+      "positionY": 312,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 452,
+      "positionY": 312,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 100,
+      "positionY": 360,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 164,
+      "positionY": 360,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 228,
+      "positionY": 360,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 292,
+      "positionY": 360,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 356,
+      "positionY": 360,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 420,
+      "positionY": 360,
+      "level": 3
+    },
+    {
+      "class": "Cube",
+      "positionX": 484,
+      "positionY": 360,
+      "level": 3
+    },
+    {
+      "class": "QBert",
+      "positionX": 292,
+      "positionY": 72
+    }
+  ]
+}

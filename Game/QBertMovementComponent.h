@@ -5,8 +5,6 @@ namespace Horizon
 	class GameObject;
 	class TransformComponent;
 	class SpriteComponent;
-	class SubjectComponent;
-	class Observer;
 }
 
 enum class Movement
@@ -24,7 +22,6 @@ public:
 	QBertMovementComponent(Horizon::GameObject* parent);
 	~QBertMovementComponent();
 	void SetCurrentMovement(Movement movement);
-	void AddObserver(Horizon::Observer* observer);
 private:
 	void Initialize() override;
 	void Update() override;
@@ -35,6 +32,7 @@ private:
 	Movement m_CurrentMovement;
 	Horizon::TransformComponent* m_pTransformComponent = nullptr;
 	Horizon::SpriteComponent* m_pSpriteComponent = nullptr;
-	Horizon::SubjectComponent* m_pSubject = nullptr;
+
+	std::vector<Horizon::GameObject*> m_pCubes;
 };
 

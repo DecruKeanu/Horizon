@@ -20,6 +20,9 @@ namespace Horizon
 		void RootLateUpdate();
 		void RootRender() const;
 
+		GameObject* GetGameObject(const std::string& identifier);
+		std::vector<GameObject*> GetGameObjects(const std::string& identifier);
+
 	protected:
 		virtual void Initialize() {};
 		virtual void FixedUpdate() {};

@@ -7,7 +7,10 @@
 #include "Logger.h"
 #include <cmath>
 #include "Timer.h"
-
+#include "Scene.h"
+#include <SceneManager.h>
+#include "CubeHandleComponent.h"
+#include <GameObject.h>
 using namespace Horizon;
 
 QBertMovementComponent::QBertMovementComponent(GameObject* parent) : Component(parent),
@@ -15,13 +18,13 @@ m_CurrentMovement{ Movement::idle },
 m_OriginalPoint{},
 m_ElapsedTime{},
 m_CanInputBeRegistered{ true },
-m_pSubject{ new SubjectComponent }
+m_pCubes{}
 {
 }
 
 QBertMovementComponent::~QBertMovementComponent()
 {
-	SafeDelete<SubjectComponent>(m_pSubject);
+
 }
 
 void QBertMovementComponent::Initialize()
@@ -38,6 +41,8 @@ void QBertMovementComponent::Initialize()
 		Logger::LogWarning("QBertMovementComponent::Initialize >> QBert does not have spriteComponent");
 		return;
 	}
+
+	m_pCubes = SceneManager::GetInstance().GetActiveScene()->GetGameObjects("Cube");
 
 	m_OriginalPoint = { m_pTransformComponent->GetPosition().x, m_pTransformComponent->GetPosition().y };
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_z, KeyboardButtonState::KeyDown, std::make_unique<MoveUpCommand>(this));
@@ -57,22 +62,22 @@ void QBertMovementComponent::Update()
 	case Movement::leftDown:
 		desiredPos = { m_OriginalPoint.x - 32,m_OriginalPoint.y + 48 };
 		m_CanInputBeRegistered = false;
-		m_pSpriteComponent->SetCurrentSprite(8);
+		m_pSpriteComponent->SetCurrentSprite(7);
 		break;
 	case Movement::leftUp:
 		desiredPos = { m_OriginalPoint.x - 32,m_OriginalPoint.y - 48 };
 		m_CanInputBeRegistered = false;
-		m_pSpriteComponent->SetCurrentSprite(4);
+		m_pSpriteComponent->SetCurrentSprite(3);
 		break;
 	case Movement::rightDown:
 		desiredPos = { m_OriginalPoint.x + 32,m_OriginalPoint.y + 48 };
 		m_CanInputBeRegistered = false;
-		m_pSpriteComponent->SetCurrentSprite(6);
+		m_pSpriteComponent->SetCurrentSprite(5);
 		break;
 	case Movement::rightUp:
 		desiredPos = { m_OriginalPoint.x + 32,m_OriginalPoint.y - 48 };
 		m_CanInputBeRegistered = false;
-		m_pSpriteComponent->SetCurrentSprite(2);
+		m_pSpriteComponent->SetCurrentSprite(1);
 		break;
 	}
 
@@ -91,9 +96,23 @@ void QBertMovementComponent::Update()
 		m_CanInputBeRegistered = true;
 		m_OriginalPoint = { m_pTransformComponent->GetPosition().x, m_pTransformComponent->GetPosition().y };
 		m_CurrentMovement = Movement::idle;
-		m_pSpriteComponent->SetCurrentSprite(m_pSpriteComponent->GetCurrentSprite() - 1);
+		m_pSpriteComponent->PreviousSprite();
 
-		m_pSubject->Notify(Event(PossibleEvent::CubeActivated, desiredPos));
+		const Horizon::IPoint2 playerPos2D = { m_pTransformComponent->GetPosition().x,m_pTransformComponent->GetPosition().y };
+
+		bool isCubeActivated = false;
+		for (GameObject* const pCube : m_pCubes)
+		{
+			CubeHandleComponent* const pCubeHandle = pCube->GetComponent<CubeHandleComponent>();
+			if (pCubeHandle->playerOnCube(playerPos2D))
+			{
+				pCubeHandle->ActivateCube();
+				isCubeActivated = true;
+				break;
+			}
+		}
+		if (isCubeActivated == false)
+			std::cout << "player falls";
 	}
 }
 
@@ -103,7 +122,3 @@ void QBertMovementComponent::SetCurrentMovement(Movement movement)
 		m_CurrentMovement = movement;
 }
 
-void QBertMovementComponent::AddObserver(Observer* observer)
-{
-	m_pSubject->AddObserver(observer);
-}

@@ -12,6 +12,8 @@ namespace Horizon
 		virtual void LateUpdate() {};
 		virtual void Render() const {};
 
+		GameObject* GetParent() const;
+
 		Component(GameObject* parent);
 		virtual ~Component() = default;
 		Component(const Component& other) = delete;

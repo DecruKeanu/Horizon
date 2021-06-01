@@ -1,54 +1,44 @@
 #include "GamePCH.h"
 #include "SoloLevel1Scene.h"
-#include "TextComponent.h"
-#include "TextureComponent.h"
-#include "TransformComponent.h"
-#include "ResourceManager.h"
-#include "Cube.h"
-#include "QBert.h"
-#include "QBertMovementComponent.h"
-#include "CubeHandleObserver.h"
-#include "CubeHandleComponent.h"
 #include "LevelReader.h"
-#include "InputManager.h"
-#include "Command.h"
-#include <memory>
-#include <vld.h>
-
+#include "CubeHandleComponent.h"
 using namespace Horizon;
 
-SoloLevel1Scene::SoloLevel1Scene() : Scene("SoloLevel1Scene")
+SoloLevel1Scene::SoloLevel1Scene() : Scene("SoloLevel1Scene"),
+	m_pCubeHandles{}
 {
 
 }
 
 void SoloLevel1Scene::Initialize()
 {
-	std::vector<Cube*> pCubePrefabs{};
 	LevelReader levelReader{};
 	levelReader.ParseLevel(L"SoloLevel1.json");
 
 	for (GameObject* const pPrefab : levelReader.GetPrefabs())
 	{
-		//if (pPrefab == nullptr)
-		//{
-		//	Logger::LogWarning("SoloLevel1Scene::Initialize: Prefab was nullptr, skipping element");
-		//	continue;
-		//}
-
-		//if (pPrefab->GetName() == "Cube")
-		////	pCubePrefabs.push_back(static_cast<Cube*>(pPrefab));
-		////else if (pPrefab->GetPrefabName() == "QBert")
-		////{
-		////	QBert* const pQbert = static_cast<QBert*>(pPrefab);
-		////	for (Cube* const pCubeElement : pCubePrefabs)
-		////	{
-		////		pQbert->GetGameObject()->GetComponent<QBertMovementComponent>()->AddObserver(new CubeHandleObserver(pCubeElement->GetGameObject()->GetComponent<CubeHandleComponent>()));
-		////	}
-		////}
-
 		Add(pPrefab);
 	}
 
-	std::cout << "initialized";
+	std::vector<GameObject*> pCubes = GetGameObjects("Cube");
+
+	for (GameObject* const pCube : pCubes)
+		m_pCubeHandles.push_back(pCube->GetComponent<CubeHandleComponent>());
+}
+
+void SoloLevel1Scene::Update()
+{
+	//for (CubeHandleComponent* const pCubeHandle : m_pCubeHandles)
+	//{
+	//	if (!pCubeHandle->GetisActivated())
+	//		return;
+	//}
+	//SceneManager::GetInstance().NextScene();
+
+	//for (CubeHandleComponent* const pCubeHandle : m_pCubeHandles)
+	//{
+	//	if (pCubeHandle->GetisActivated())
+	//		SceneManager::GetInstance().NextScene();
+	//}
+
 }

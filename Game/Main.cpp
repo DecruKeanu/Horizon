@@ -7,6 +7,8 @@
 #include "DemoScene.h"
 #include "MainMenuScene.h"
 #include "SoloLevel1Scene.h"
+#include "SoloLevel2Scene.h"
+#include "SoloLevel3Scene.h"
 
 void InitializeGame()
 {
@@ -14,6 +16,8 @@ void InitializeGame()
 	Horizon::ResourceManager::GetInstance().Init("../Game/Resources/");
 
 	Horizon::SceneManager::GetInstance().AddScene(new SoloLevel1Scene());
+	//Horizon::SceneManager::GetInstance().AddScene(new SoloLevel2Scene());
+	//Horizon::SceneManager::GetInstance().AddScene(new SoloLevel3Scene());
 }
 
 int main(int,char*[])

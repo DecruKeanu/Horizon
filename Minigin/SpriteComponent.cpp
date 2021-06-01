@@ -5,7 +5,7 @@
 using namespace Horizon;
 
 SpriteComponent::SpriteComponent(GameObject* parent, SDL_Rect srcRect, int spriteAmount) : Component(parent),
-	m_CurrentSprite{1},
+	m_CurrentSprite{0},
 	m_SrcRect{srcRect},
 	m_SpriteAmount{spriteAmount}
 {
@@ -33,7 +33,19 @@ void SpriteComponent::Initialize()
 void SpriteComponent::SetCurrentSprite(int spriteNumber)
 {
 	m_CurrentSprite = spriteNumber;
-	m_pTextureComponent->SetSrcRect(m_SrcRect.x + (m_SpriteWidth * (m_CurrentSprite - 1)), m_SrcRect.y, m_SpriteWidth, m_SrcRect.h);
+	m_pTextureComponent->SetSrcRect(m_SrcRect.x + (m_SpriteWidth * m_CurrentSprite), m_SrcRect.y, m_SpriteWidth, m_SrcRect.h);
+}
+
+void Horizon::SpriteComponent::NextSprite()
+{
+	m_CurrentSprite++;
+	m_pTextureComponent->SetSrcRect(m_SrcRect.x + (m_SpriteWidth * m_CurrentSprite), m_SrcRect.y, m_SpriteWidth, m_SrcRect.h);
+}
+
+void Horizon::SpriteComponent::PreviousSprite()
+{
+	m_CurrentSprite--;
+	m_pTextureComponent->SetSrcRect(m_SrcRect.x + (m_SpriteWidth * m_CurrentSprite), m_SrcRect.y, m_SpriteWidth, m_SrcRect.h);
 }
 
 

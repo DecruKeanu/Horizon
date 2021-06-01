@@ -13,6 +13,8 @@ namespace Horizon
 		SpriteComponent(GameObject* parent, SDL_Rect srcRect, int spriteAmount);
 		int GetCurrentSprite();
 		void SetCurrentSprite(int spriteNumber);
+		void NextSprite();
+		void PreviousSprite();
 	private:
 		void Initialize() override;
 

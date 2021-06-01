@@ -253,12 +253,12 @@ xcopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="HealthDisplayObserver.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="MathHelper.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="MutedSoundSystem.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="Prefab.h" />
     <ClInclude Include="PrefabFactory.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -280,6 +280,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="TextureComponent.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="TriggerComponent.h" />
+    <ClInclude Include="TriggerManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\backends\imgui_impl_opengl2.cpp">
@@ -337,6 +339,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     </ClCompile>
     <ClCompile Include="HealthDisplayObserver.cpp" />
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -348,7 +351,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClCompile Include="MutedSoundSystem.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Observer.cpp" />
-    <ClCompile Include="Prefab.cpp" />
     <ClCompile Include="PrefabFactory.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
@@ -367,6 +369,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClCompile Include="TextureComponent.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
+    <ClCompile Include="TriggerComponent.cpp" />
+    <ClCompile Include="TriggerManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

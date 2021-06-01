@@ -1,5 +1,4 @@
 #pragma once
-#include "Prefab.h"
 #include "document.h"
 
 class QBertMovementComponent;

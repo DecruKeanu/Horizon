@@ -44,11 +44,11 @@ namespace Horizon
 	};
 
 	using Controllerkey = std::pair<ControllerButtonState, ControllerButton>;
-	using ControllerCommandsMap = std::map<Controllerkey, std::unique_ptr<Command>>;
-	using ControllerButtonPair = std::pair <Controllerkey, std::unique_ptr<Command>>;
+	using ControllerCommandsMap = std::multimap<Controllerkey, std::unique_ptr<Command>>;
+	using ControllerButtonPair = std::pair<Controllerkey, std::unique_ptr<Command>>;
 
 	using Keyboardkey = std::pair<KeyboardButtonState, SDLK>;
-	using KeyboardCommandsMap = std::map<Keyboardkey, std::unique_ptr<Command>>;
+	using KeyboardCommandsMap = std::multimap<Keyboardkey, std::unique_ptr<Command>>;
 	using KeyboardButtonPair = std::pair<Keyboardkey, std::unique_ptr<Command>>;
 
 	class InputManager final : public Singleton<InputManager>

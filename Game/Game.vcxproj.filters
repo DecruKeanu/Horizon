@@ -63,6 +63,12 @@
     <ClCompile Include="CubeHandleObserver.cpp">
       <Filter>Observers</Filter>
     </ClCompile>
+    <ClCompile Include="SoloLevel2Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SoloLevel3Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoScene.h">
@@ -97,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="CubeHandleObserver.h">
       <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="SoloLevel2Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SoloLevel3Scene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

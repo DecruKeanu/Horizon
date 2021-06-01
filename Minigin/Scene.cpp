@@ -69,3 +69,28 @@ void Scene::RootRender() const
 	}
 }
 
+GameObject* Horizon::Scene::GetGameObject(const std::string& identifier)
+{
+	for (GameObject* const pGameObject : m_pObjects)
+	{
+		if (pGameObject->GetName() == identifier)
+			return pGameObject;
+	}
+
+	Logger::LogWarning("Scene::GetGameObject >> GameObject with identifier could not be found, returning nullptr");
+	return nullptr;
+}
+
+std::vector<GameObject*> Horizon::Scene::GetGameObjects(const std::string& identifier)
+{
+	std::vector<GameObject*> pIdentifierObjects{};
+
+	for (GameObject* const pGameObject : m_pObjects)
+	{
+		if (pGameObject->GetName() == identifier)
+			pIdentifierObjects.push_back(pGameObject);
+	}
+
+	return pIdentifierObjects;
+}
+

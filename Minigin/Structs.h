@@ -35,4 +35,9 @@ namespace Horizon
 		SoundId id = 0;
 		int volume = 0;
 	};
+
+	struct IRect final
+	{
+		int x = 0, y = 0, width = 0, height = 0;
+	};
 }

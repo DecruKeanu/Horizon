@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "Timer.h"
 #include "Command.h"
+#include "TriggerManager.h"
 #include <thread>
 
 using namespace std;
@@ -89,10 +90,11 @@ void Horizon::Minigin::Run() //no fpsCap because vsync does it automatically
 				sceneManager.FixedUpdate();
 				lag -= Timer::GetInstance().GetFixedFrameTime();
 			}
-
+			
 			sceneManager.Update();
 			sceneManager.LateUpdate();
 			renderer.Render(lag / Timer::GetInstance().GetFixedFrameTime());
+			TriggerManager::GetInstance().Update();
 			Timer::GetInstance().CalculateFPS();
 		}
 		audioThread.join();

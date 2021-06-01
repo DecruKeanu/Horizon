@@ -7,6 +7,22 @@
 #include "TextComponent.h"
 #include "FPS.h"
 
+size_t Horizon::GameObject::m_LastId{};
+
+Horizon::GameObject::GameObject() : 
+	m_Name{ "NoIdentifier" },
+	m_Id{m_LastId++}
+{
+
+}
+
+Horizon::GameObject::GameObject(const std::string& identifier):
+	m_Name{identifier},
+	m_Id{ m_LastId++ }
+{
+
+}
+
 Horizon::GameObject::~GameObject()
 {
 	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
@@ -46,4 +62,14 @@ void Horizon::GameObject::Render() const
 void Horizon::GameObject::AddComponent(Component* component)
 {
 	m_pObjectComponents.push_back(component);
+}
+
+const std::string& Horizon::GameObject::GetName()
+{
+	return m_Name;
+}
+
+bool Horizon::GameObject::Equals(GameObject* pOther) const
+{
+	return (m_Id == pOther->m_Id);
 }

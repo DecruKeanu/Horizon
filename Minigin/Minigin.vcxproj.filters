@@ -26,9 +26,6 @@
     <Filter Include="Rapidjson">
       <UniqueIdentifier>{a5b3e45c-5df0-473d-b847-42816e8ee2b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="prefabs">
-      <UniqueIdentifier>{3c33280a-0e73-4c4e-ab40-336b3e658eb6}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Timer.h">
@@ -163,9 +160,6 @@
     <ClInclude Include="..\3rdParty\rapidjson\stream.h">
       <Filter>Rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="Prefab.h">
-      <Filter>prefabs</Filter>
-    </ClInclude>
     <ClInclude Include="PrefabFactory.h">
       <Filter>Helpers</Filter>
     </ClInclude>
@@ -177,6 +171,15 @@
     </ClInclude>
     <ClInclude Include="SpriteComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MathHelper.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -285,9 +288,6 @@
     <ClCompile Include="MutedSoundSystem.cpp">
       <Filter>SoundSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Prefab.cpp">
-      <Filter>prefabs</Filter>
-    </ClCompile>
     <ClCompile Include="PrefabFactory.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
@@ -296,6 +296,15 @@
     </ClCompile>
     <ClCompile Include="SpriteComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MathHelper.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerManager.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

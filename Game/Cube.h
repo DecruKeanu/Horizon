@@ -1,12 +1,10 @@
 #pragma once
 #include "document.h"
-#include "Prefab.h"
 
 namespace Horizon
 {
 	class GameObject;
 }
-
 
 class Cube final
 {

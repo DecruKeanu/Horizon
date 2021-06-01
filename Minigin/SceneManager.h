@@ -11,7 +11,8 @@ namespace Horizon
 		void AddScene(Scene* pScene);
 		void RemoveScene(Scene* pScene);
 		void SetActiveScene(Scene* pScene);
-		//void NextScene();
+		Scene* GetActiveScene();
+		void NextScene();
 		//void PreviousScene();
 		void Initialize();
 		void FixedUpdate();
@@ -25,5 +26,6 @@ namespace Horizon
 		std::vector<Scene*> m_pScenes;
 
 		Scene* m_pActiveScene = nullptr;
+		Scene* m_pNewActiveScene = nullptr;
 	};
 }

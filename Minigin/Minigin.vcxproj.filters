@@ -181,8 +181,8 @@
     <ClInclude Include="TriggerManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="TimedFunction.h">
-      <Filter>Helpers</Filter>
+    <ClInclude Include="TimedFunctionComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -309,8 +309,8 @@
     <ClCompile Include="TriggerManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-    <ClCompile Include="TimedFunction.cpp">
-      <Filter>Helpers</Filter>
+    <ClCompile Include="TimedFunctionComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

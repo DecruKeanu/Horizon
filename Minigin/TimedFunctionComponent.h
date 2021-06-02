@@ -8,10 +8,10 @@ namespace Horizon
 
 	using TimerFunction = std::function<void()>;
 
-	class TimedFunction final : public Component
+	class TimedFunctionComponent final : public Component
 	{
 	public:
-		TimedFunction(GameObject* pParent, bool isLooping, float maxTime);
+		TimedFunctionComponent(GameObject* pParent, bool isLooping, float maxTime);
 		void SetTimerFunction(const TimerFunction& timerFunction);
 
 		void Activate();

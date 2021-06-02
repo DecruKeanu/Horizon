@@ -5,7 +5,6 @@ namespace Horizon
 {
 	class GameObject;
 	class SpriteComponent;
-	class TimedFunction;
 }
 
 
@@ -19,7 +18,6 @@ private:
 	float m_SpriteTimer;
 	int m_CurrentSpriteNumber;
 
-	Horizon::TimedFunction* m_pTimedFunction = nullptr;
 	Horizon::SpriteComponent* m_pSpriteComponent = nullptr;
 };
 

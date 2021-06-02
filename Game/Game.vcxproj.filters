@@ -45,9 +45,6 @@
     <ClCompile Include="LevelReader.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="SoloLevel1Scene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="GamePCH.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
@@ -60,13 +57,10 @@
     <ClCompile Include="CubeHandleComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="CubeHandleObserver.cpp">
-      <Filter>Observers</Filter>
+    <ClCompile Include="QBertInputComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="SoloLevel2Scene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="SoloLevel3Scene.cpp">
+    <ClCompile Include="SinglePlayerLevel.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,9 +77,6 @@
     <ClInclude Include="LevelReader.h">
       <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="SoloLevel1Scene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="GamePCH.h">
       <Filter>Helpers</Filter>
     </ClInclude>
@@ -101,13 +92,13 @@
     <ClInclude Include="CubeHandleComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="CubeHandleObserver.h">
-      <Filter>Observers</Filter>
+    <ClInclude Include="QBertInputComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="SoloLevel2Scene.h">
+    <ClInclude Include="SinglePlayerLevel.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="SoloLevel3Scene.h">
+    <ClInclude Include="LevelType.h">
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>

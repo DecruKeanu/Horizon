@@ -174,7 +174,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeHandleComponent.cpp" />
-    <ClCompile Include="CubeHandleObserver.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="GamePCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -183,28 +182,26 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="QBert.cpp" />
+    <ClCompile Include="QBertInputComponent.cpp" />
     <ClCompile Include="QBertMovementComponent.cpp" />
-    <ClCompile Include="SoloLevel1Scene.cpp" />
+    <ClCompile Include="SinglePlayerLevel.cpp" />
     <ClCompile Include="LevelReader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
-    <ClCompile Include="SoloLevel2Scene.cpp" />
-    <ClCompile Include="SoloLevel3Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeHandleComponent.h" />
-    <ClInclude Include="CubeHandleObserver.h" />
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="GameCommands.h" />
     <ClInclude Include="GamePCH.h" />
+    <ClInclude Include="LevelType.h" />
     <ClInclude Include="QBert.h" />
+    <ClInclude Include="QBertInputComponent.h" />
     <ClInclude Include="QBertMovementComponent.h" />
-    <ClInclude Include="SoloLevel1Scene.h" />
+    <ClInclude Include="SinglePlayerLevel.h" />
     <ClInclude Include="LevelReader.h" />
     <ClInclude Include="MainMenuScene.h" />
-    <ClInclude Include="SoloLevel2Scene.h" />
-    <ClInclude Include="SoloLevel3Scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

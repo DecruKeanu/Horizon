@@ -23,8 +23,9 @@ namespace Horizon
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
 		~SceneManager();
-		std::vector<Scene*> m_pScenes;
 
+		std::vector<Scene*> m_pScenes;
+		bool m_Initialized = false;
 		Scene* m_pActiveScene = nullptr;
 		Scene* m_pNewActiveScene = nullptr;
 	};

@@ -29,8 +29,9 @@ void Cube::Initialize()
 	const int positionY = m_Value["positionY"].GetInt();
 	const float scale = 2.f;
 	const SDL_Rect srcRect = LevelNumberToSrcRect(m_Value["level"].GetInt());
-	const int srcWidth = srcRect.w/14;
+	const int srcWidth = srcRect.w/8;
 	const int srcHeight = srcRect.h/2;
+
 	CubeType cubeType = {};
 	switch (m_Value["level"].GetInt())
 	{
@@ -52,7 +53,15 @@ void Cube::Initialize()
 	blockTexture->SetScale(scale);
 	SpriteComponent* const pSpriteComponent = new SpriteComponent(pGameObject, srcRect, 7);
 	TransformComponent* const blockTransform = new TransformComponent(pGameObject, positionX, positionY, 0);
-	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { positionX , positionY, int(scale * srcWidth), int(scale * srcHeight) });
+	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { int(srcWidth), srcHeight - 4, int(srcWidth/2), int(srcHeight/2) });
+
+	pTriggerComponent->SetOnTriggerCallBack([pHandleCubeComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction)
+		{
+			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetName() == "Qbert")
+			{
+				pHandleCubeComponent->ActivateCube();
+			}
+		});
 
 	pGameObject->AddComponent(pHandleCubeComponent);
 	pGameObject->AddComponent(blockTexture);

@@ -27,3 +27,9 @@ bool Horizon::MathHelper::AreRectsOverlapping(const IRect& firstRect, const IRec
 
 	return true;
 }
+
+int Horizon::MathHelper::ILerp(const int startValue, const int endValue, float lerpValue)
+{
+	//returns a value between startValue and endValue at the hand of the lerpValue
+	return int(startValue + (endValue - startValue) * lerpValue);
+}

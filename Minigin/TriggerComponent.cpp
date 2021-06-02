@@ -6,6 +6,8 @@
 
 Horizon::TriggerComponent::TriggerComponent(GameObject* pParent, const Horizon::IRect& collisionRect) : Component(pParent),
 	m_CollisionRect{collisionRect},
+	m_OffsetX{collisionRect.x},
+	m_OffsetY{collisionRect.y},
 	m_pOverlappingActors{}
 {
 	m_CallBackFunction = [](GameObject*, GameObject*, TriggerAction) {};
@@ -35,17 +37,22 @@ const Horizon::IRect& Horizon::TriggerComponent::GetCollisionRect() const
 	return m_CollisionRect;
 }
 
+const size_t Horizon::TriggerComponent::GetOverlappingActorsSize()
+{
+	return m_pOverlappingActors.size();
+}
+
 void Horizon::TriggerComponent::Initialize()
 {
 	m_pTransformComponent = m_pGameObject->GetComponent<Horizon::TransformComponent>();
 	if (m_pTransformComponent == nullptr)
 	{
-		Horizon::Logger::LogWarning("TriggerComponent::Initialize >> QBert does not have transformComponent");
+		Horizon::Logger::LogWarning("TriggerComponent::Initialize >> GameObject does not have transformComponent");
 		return;
 	}
 
-	m_CollisionRect.x = m_pTransformComponent->GetPosition().x;
-	m_CollisionRect.y = m_pTransformComponent->GetPosition().y;
+	m_CollisionRect.x = m_pTransformComponent->GetPosition().x + m_OffsetX;
+	m_CollisionRect.y = m_pTransformComponent->GetPosition().y + m_OffsetY;
 
 	m_pOverlappingActors.reserve(4);
 
@@ -72,13 +79,13 @@ void Horizon::TriggerComponent::Update()
 		overlapData.IsOverlapping = false;
 	}
 
-	m_CollisionRect.x = m_pTransformComponent->GetPosition().x;
-	m_CollisionRect.y = m_pTransformComponent->GetPosition().y;
+	m_CollisionRect.x = m_pTransformComponent->GetPosition().x + m_OffsetX;
+	m_CollisionRect.y = m_pTransformComponent->GetPosition().y + m_OffsetY;
 }
 
 void Horizon::TriggerComponent::Render() const
 {
-	const bool visualise = false;
+	const bool visualise = true;
 
 	if (!visualise)
 		return;

@@ -5,6 +5,7 @@
 #include <TransformComponent.h>
 #include <TriggerComponent.h>
 #include "QBertMovementComponent.h"
+#include "QBertInputComponent.h"
 #include "SpriteComponent.h"
 #include <Scene.h>
 
@@ -37,17 +38,18 @@ void QBert::Initialize()
 	TransformComponent* const QBertTransform = new TransformComponent(pGameObject, positionX, positionY, 0);
 	QBertMovementComponent* const pMovementComponent = new QBertMovementComponent(pGameObject);
 
-	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { positionX , positionY, int(scale * srcWidth), int(scale * srcHeight) });
+	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { 0 ,0, int(scale * srcWidth), int(scale * srcHeight) });
+	QBertInputComponent* const pInputComponent = new QBertInputComponent(pGameObject);
 
-	pTriggerComponent->SetOnTriggerCallBack([](GameObject*, GameObject*, TriggerComponent::TriggerAction triggerAction)
-		{
-			if (triggerAction == TriggerComponent::TriggerAction::Exit)
-			{
-				std::cout << "EXIT\n";
-			}
-			else
-				std::cout << "ENTER\n";
-		});
+	//pTriggerComponent->SetOnTriggerCallBack([](GameObject*, GameObject*, TriggerComponent::TriggerAction triggerAction)
+	//	{
+	//		if (triggerAction == TriggerComponent::TriggerAction::Exit)
+	//		{
+	//			std::cout << "EXIT\n";
+	//		}
+	//		else
+	//			std::cout << "ENTER\n";
+	//	});
 
 
 	pGameObject->AddComponent(QBertTexture);
@@ -55,6 +57,7 @@ void QBert::Initialize()
 	pGameObject->AddComponent(QBertTransform);
 	pGameObject->AddComponent(pMovementComponent);
 	pGameObject->AddComponent(pTriggerComponent);
+	pGameObject->AddComponent(pInputComponent);
 
 	m_pGameObject = pGameObject;
 }

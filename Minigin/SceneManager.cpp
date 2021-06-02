@@ -12,6 +12,8 @@ void Horizon::SceneManager::Initialize()
 {
 	for (auto& scene : m_pScenes)
 		scene->RootInitialize();
+
+	m_Initialized = true;
 }
 
 void Horizon::SceneManager::FixedUpdate()
@@ -22,11 +24,8 @@ void Horizon::SceneManager::FixedUpdate()
 
 void Horizon::SceneManager::Update()
 {
-	//for (auto& scene : m_pScenes)
-		//scene->RootUpdate();
-
-	if (m_pActiveScene)
-		m_pActiveScene->RootUpdate();
+	for (auto& scene : m_pScenes)
+		scene->RootUpdate();
 }
 
 void Horizon::SceneManager::LateUpdate()
@@ -48,6 +47,9 @@ void Horizon::SceneManager::AddScene(Scene* pScene)
 	if (it == m_pScenes.end())
 	{
 		m_pScenes.push_back(pScene);
+
+		if (m_Initialized)
+			pScene->RootInitialize();
 
 		if (m_pActiveScene == nullptr)
 			m_pActiveScene = pScene;

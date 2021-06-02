@@ -44,11 +44,11 @@ namespace Horizon
 	};
 
 	using Controllerkey = std::pair<ControllerButtonState, ControllerButton>;
-	using ControllerCommandsMap = std::multimap<Controllerkey, std::unique_ptr<Command>>;
+	using ControllerCommandsMap = std::map<Controllerkey, std::unique_ptr<Command>>;
 	using ControllerButtonPair = std::pair<Controllerkey, std::unique_ptr<Command>>;
 
 	using Keyboardkey = std::pair<KeyboardButtonState, SDLK>;
-	using KeyboardCommandsMap = std::multimap<Keyboardkey, std::unique_ptr<Command>>;
+	using KeyboardCommandsMap = std::map<Keyboardkey, std::unique_ptr<Command>>;
 	using KeyboardButtonPair = std::pair<Keyboardkey, std::unique_ptr<Command>>;
 
 	class InputManager final : public Singleton<InputManager>
@@ -56,6 +56,9 @@ namespace Horizon
 	public:
 		void AddControllerInput(ControllerButton button, ControllerButtonState buttonState, std::unique_ptr<Command> action);
 		void AddKeyboardInput(SDLK key, KeyboardButtonState keyState, std::unique_ptr<Command> action);
+		bool IsControllerInputPressed(const ControllerButton& button);
+		bool IsKeyboardInputPressed(const SDLK& key);
+		void ClearInput();
 		bool ProcessInput();
 	private:
 		void ExecuteControllerInput(const std::pair<const Controllerkey, std::unique_ptr<Command>>& it) const;
@@ -63,6 +66,7 @@ namespace Horizon
 		void HandleControllerInput(const std::pair<const Controllerkey, std::unique_ptr<Command>>& it) const;
 		void HandleKeyboardInput(const std::pair<const Keyboardkey, std::unique_ptr<Command>>& it) const;
 		SDL_Keycode m_SDLKeyCode{};
+		Uint32 m_KeyboardInput{};
 		XINPUT_KEYSTROKE m_InputKeyStroke{};
 		int m_MaxAmountOfControllers{ XUSER_MAX_COUNT };
 		XINPUT_STATE m_InputState{};

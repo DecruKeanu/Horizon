@@ -5,34 +5,24 @@ namespace Horizon
 	class GameObject;
 	class TransformComponent;
 	class SpriteComponent;
+	class TriggerComponent;
 }
-
-enum class Movement
-{
-	idle,
-	leftDown,
-	leftUp,
-	rightDown,
-	rightUp
-};
+class QBertInputComponent;
 
 class QBertMovementComponent final : public Horizon::Component
 {
 public:
 	QBertMovementComponent(Horizon::GameObject* parent);
-	~QBertMovementComponent();
-	void SetCurrentMovement(Movement movement);
 private:
 	void Initialize() override;
 	void Update() override;
 
-	bool m_CanInputBeRegistered;
 	float m_ElapsedTime;
 	Horizon::IPoint2 m_OriginalPoint;
-	Movement m_CurrentMovement;
+
+	QBertInputComponent* m_pQBertInputComponent = nullptr;
 	Horizon::TransformComponent* m_pTransformComponent = nullptr;
 	Horizon::SpriteComponent* m_pSpriteComponent = nullptr;
-
-	std::vector<Horizon::GameObject*> m_pCubes;
+	Horizon::TriggerComponent* m_pTriggerComponent = nullptr;
 };
 

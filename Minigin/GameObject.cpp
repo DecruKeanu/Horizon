@@ -1,9 +1,11 @@
 #include "MiniginPCH.h"
 #include "GameObject.h"
 #include "ResourceManager.h"
+#include "TriggerManager.h"
 #include "Renderer.h"
 
 #include "TextureComponent.h"
+#include "TriggerComponent.h"
 #include "TextComponent.h"
 #include "FPS.h"
 
@@ -25,38 +27,40 @@ Horizon::GameObject::GameObject(const std::string& identifier):
 
 Horizon::GameObject::~GameObject()
 {
-	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
-		SafeDelete<Component>(m_pObjectComponents[idx]);
+	TriggerManager::GetInstance().RemoveTriggerComponent(GetComponent<TriggerComponent>());
+
+	for (Component* const pComponent : m_pObjectComponents)
+		SafeDelete<Component>(pComponent);
 }
 
 void Horizon::GameObject::Initialize()
 {
-	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
-		m_pObjectComponents[idx]->Initialize();
+	for (Component* const pComponent : m_pObjectComponents)
+		pComponent->Initialize();
 }
 
 void Horizon::GameObject::FixedUpdate()
 {
-	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
-		m_pObjectComponents[idx]->FixedUpdate();
+	for (Component* const pComponent : m_pObjectComponents)
+		pComponent->FixedUpdate();
 }
 
 void Horizon::GameObject::Update()
 {
-	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
-		m_pObjectComponents[idx]->Update();
+	for (Component* const pComponent : m_pObjectComponents)
+		pComponent->Update();
 }
 
 void Horizon::GameObject::LateUpdate()
 {
-	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
-		m_pObjectComponents[idx]->LateUpdate();
+	for (Component* const pComponent : m_pObjectComponents)
+		pComponent->LateUpdate();
 }
 
 void Horizon::GameObject::Render() const
 {
-	for (size_t idx{}; idx < m_pObjectComponents.size(); idx++)
-		m_pObjectComponents[idx]->Render();
+	for (const Component* const pComponent : m_pObjectComponents)
+		pComponent->Render();
 }
 
 void Horizon::GameObject::AddComponent(Component* component)

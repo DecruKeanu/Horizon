@@ -2,36 +2,74 @@
 #include "Command.h"
 #include "QBertMovementComponent.h"
 
-class MoveDownCommand final : public Horizon::Command
-{
-public:
-	MoveDownCommand(QBertMovementComponent* pMovementComponent) : m_pMovementComponent{ pMovementComponent } {}
-	void Execute() override { m_pMovementComponent->SetCurrentMovement(Movement::leftDown); }
-	QBertMovementComponent* m_pMovementComponent = nullptr;
-};
-
 class MoveUpCommand final : public Horizon::Command
 {
 public:
-	MoveUpCommand(QBertMovementComponent* pMovementComponent) : m_pMovementComponent{ pMovementComponent } {}
-	void Execute() override { m_pMovementComponent->SetCurrentMovement(Movement::rightUp); }
-	QBertMovementComponent* m_pMovementComponent = nullptr;
+	MoveUpCommand(Horizon::IPoint2& move, const bool& canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
+	void Execute() override
+	{
+		if (m_CanInputBeRegistered)
+		{
+			m_Move.x = -1;
+			m_Move.y = -1;
+		}
+	}
+
+	Horizon::IPoint2& m_Move;
+	const bool& m_CanInputBeRegistered;
 };
+
+class MoveDownCommand final : public Horizon::Command
+{
+public:
+	MoveDownCommand(Horizon::IPoint2& move, const bool& canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
+	void Execute() override
+	{ 
+		if (m_CanInputBeRegistered)
+		{
+			m_Move.x = 1;
+			m_Move.y = 1;
+		}
+	}
+
+	Horizon::IPoint2& m_Move;
+	const bool& m_CanInputBeRegistered;
+};
+
+
 
 class MoveLeftCommand final : public Horizon::Command
 {
 public:
-	MoveLeftCommand(QBertMovementComponent* pMovementComponent) : m_pMovementComponent{ pMovementComponent } {}
-	void Execute() override { m_pMovementComponent->SetCurrentMovement(Movement::leftUp); }
-	QBertMovementComponent* m_pMovementComponent = nullptr;
-};
+	MoveLeftCommand(Horizon::IPoint2& move, const bool& canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
+	void Execute() override
+	{
+		if (m_CanInputBeRegistered)
+		{
+			m_Move.x = -1;
+			m_Move.y = 1;
+		}
+	}
 
+	Horizon::IPoint2& m_Move;
+	const bool& m_CanInputBeRegistered;
+};
+//
 class MoveRightCommand final : public Horizon::Command
 {
 public:
-	MoveRightCommand(QBertMovementComponent* pMovementComponent) : m_pMovementComponent{ pMovementComponent } {}
-	void Execute() override { m_pMovementComponent->SetCurrentMovement(Movement::rightDown); }
-	QBertMovementComponent* m_pMovementComponent = nullptr;
+	MoveRightCommand(Horizon::IPoint2& move, const bool& canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
+	void Execute() override
+	{
+		if (m_CanInputBeRegistered)
+		{
+			m_Move.x = 1;
+			m_Move.y = -1;
+		}
+	}
+
+	Horizon::IPoint2& m_Move;
+	const bool& m_CanInputBeRegistered;
 };
 
 

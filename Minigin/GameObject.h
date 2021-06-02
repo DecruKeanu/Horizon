@@ -47,6 +47,7 @@ namespace Horizon
 			if (pComponent)
 				return pComponent;
 		}
+		Logger::LogWarning("GameObject::GetComponent >> Component could not be found");
 		return nullptr;
 	}
 }

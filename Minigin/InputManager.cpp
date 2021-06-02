@@ -13,7 +13,6 @@ bool Horizon::InputManager::ProcessInput()
 	SDL_Event e;
 	while (SDL_PollEvent(&e))
 	{
-		m_SDLKeyCode = e.key.keysym.sym;
 		if (e.type == SDL_QUIT)
 		{
 			return false;
@@ -21,7 +20,11 @@ bool Horizon::InputManager::ProcessInput()
 		for (const auto& pair : m_KeyboardCommands)
 		{
 			if (e.type == Uint32(pair.first.first))
+			{
+				m_SDLKeyCode = e.key.keysym.sym;
+				m_KeyboardInput = Uint32(KeyboardButtonState::KeyDown);
 				HandleKeyboardInput(pair);
+			}
 		}
 	}
 
@@ -46,12 +49,14 @@ bool Horizon::InputManager::ProcessInput()
 
 void Horizon::InputManager::ExecuteControllerInput(const std::pair<const Controllerkey, std::unique_ptr<Command>>& it) const
 {
-	it.second->Execute();
+	if (it.second)
+		it.second->Execute();
 }
 
 void Horizon::InputManager::ExecuteKeyboardInput(const std::pair<const Keyboardkey, std::unique_ptr<Command>>& it) const
 {
-	it.second->Execute();
+	if (it.second)
+		it.second->Execute();
 }
 
 void Horizon::InputManager::HandleControllerInput(const std::pair<const Controllerkey, std::unique_ptr<Command>>& it) const
@@ -74,4 +79,36 @@ void Horizon::InputManager::AddControllerInput(ControllerButton button, Controll
 void Horizon::InputManager::AddKeyboardInput(SDLK key, KeyboardButtonState keyState, std::unique_ptr<Command> action)
 {
 	m_KeyboardCommands.insert({ Keyboardkey(keyState,key),std::move(action) });
+}
+
+bool Horizon::InputManager::IsControllerInputPressed(const ControllerButton& button)
+{
+	if (m_InputKeyStroke.Flags != WORD(ControllerButtonState::ButtonDown))
+		return false;
+
+	if (m_InputKeyStroke.VirtualKey == WORD(button))
+		return true;
+
+	return false;
+}
+
+bool Horizon::InputManager::IsKeyboardInputPressed(const SDLK& key)
+{
+	if (m_KeyboardInput != Uint32(KeyboardButtonState::KeyDown))
+		return false;
+
+	if (m_SDLKeyCode == int(key))
+	{
+		m_KeyboardInput = 0;
+		return true;
+	}
+
+
+	return false;
+}
+
+void Horizon::InputManager::ClearInput()
+{
+	m_ControllerCommands.clear();
+	m_KeyboardCommands.clear();
 }

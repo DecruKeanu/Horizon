@@ -8,6 +8,16 @@ void Horizon::TriggerManager::AddTriggerComponent(TriggerComponent* pTriggerComp
 	m_pTriggerComponents.push_back(pTriggerComponent);
 }
 
+void Horizon::TriggerManager::RemoveTriggerComponent(TriggerComponent* pTriggerComponent)
+{
+	const auto it = find(m_pTriggerComponents.begin(), m_pTriggerComponents.end(), pTriggerComponent);
+
+	if (it != m_pTriggerComponents.end())
+	{
+		m_pTriggerComponents.erase(it);
+	}
+}
+
 void Horizon::TriggerManager::Update()
 {
 	for (size_t firstIdx{}; firstIdx < m_pTriggerComponents.size(); firstIdx++)

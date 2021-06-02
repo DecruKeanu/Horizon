@@ -33,11 +33,14 @@ namespace Horizon
 		void OverlapsWith(GameObject* pGameObject);
 
 		const Horizon::IRect& GetCollisionRect() const;
+		const size_t GetOverlappingActorsSize();
 	private:
 		void Initialize() override;
 		void Update() override;
 		void Render() const override;
 		Horizon::IRect m_CollisionRect;
+		int m_OffsetX;
+		int m_OffsetY;
 		CallBackFunction m_CallBackFunction;
 		std::vector<OverlapData> m_pOverlappingActors;
 		Horizon::TransformComponent* m_pTransformComponent = nullptr;;

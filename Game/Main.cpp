@@ -6,18 +6,14 @@
 #include <ResourceManager.h>
 #include "DemoScene.h"
 #include "MainMenuScene.h"
-#include "SoloLevel1Scene.h"
-#include "SoloLevel2Scene.h"
-#include "SoloLevel3Scene.h"
+#include "SinglePlayerlevel.h"
 
 void InitializeGame()
 {
 	// tell the resource manager where he can find the game data
 	Horizon::ResourceManager::GetInstance().Init("../Game/Resources/");
 
-	Horizon::SceneManager::GetInstance().AddScene(new SoloLevel1Scene());
-	//Horizon::SceneManager::GetInstance().AddScene(new SoloLevel2Scene());
-	//Horizon::SceneManager::GetInstance().AddScene(new SoloLevel3Scene());
+	Horizon::SceneManager::GetInstance().AddScene(new SinglePlayerLevel(1,LevelType::SinglePlayer));
 }
 
 int main(int,char*[])

@@ -33,6 +33,8 @@ void Scene::RootInitialize()
 
 	for (GameObject* const object : m_pObjects)
 		object->Initialize();
+
+	m_IsInitialized = true;
 }
 
 void Scene::RootFixedUpdate()

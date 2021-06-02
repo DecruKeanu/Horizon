@@ -9,7 +9,9 @@ SpriteComponent::SpriteComponent(GameObject* parent, SDL_Rect srcRect, int sprit
 	m_SrcRect{srcRect},
 	m_SpriteAmount{spriteAmount}
 {
-	m_SpriteWidth = m_SrcRect.w / m_SpriteAmount;
+	const float spriteWidthRounded = std::roundf(float(m_SrcRect.w) / m_SpriteAmount);
+
+	m_SpriteWidth = int(spriteWidthRounded);
 }
 
 int SpriteComponent::GetCurrentSprite()
@@ -20,18 +22,14 @@ int SpriteComponent::GetCurrentSprite()
 void SpriteComponent::Initialize()
 {
 	m_pTextureComponent = m_pGameObject->GetComponent<TextureComponent>();
-
-	if (m_pTextureComponent == nullptr)
-	{
-		Logger::LogWarning("SpriteComponent::Initialize() >> GameObject does not have transformComponent");
-		return;
-	}
-
 	m_pTextureComponent->SetSrcRect(m_SrcRect.x, m_SrcRect.y, m_SpriteWidth, m_SrcRect.h);
 }
 
 void SpriteComponent::SetCurrentSprite(int spriteNumber)
 {
+	if (m_CurrentSprite == spriteNumber)
+		return;
+
 	m_CurrentSprite = spriteNumber;
 	m_pTextureComponent->SetSrcRect(m_SrcRect.x + (m_SpriteWidth * m_CurrentSprite), m_SrcRect.y, m_SpriteWidth, m_SrcRect.h);
 }

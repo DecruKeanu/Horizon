@@ -1,12 +1,12 @@
 #include "GamePCH.h"
-#include "QBertInputComponent.h"
+#include "PlayerInputComponent.h"
 #include "InputManager.h"
 #include <Command.h>
 #include "GameCommands.h"
 #include <Timer.h>
 using namespace Horizon;
 
-QBertInputComponent::QBertInputComponent(Horizon::GameObject* parent) : Component(parent),
+PlayerInputComponent::PlayerInputComponent(Horizon::GameObject* parent) : Component(parent),
 m_Move{},
 m_CurrentInput{},
 m_InputTimer{},
@@ -15,23 +15,23 @@ m_CanInputBeRegistered{ true }
 
 }
 
-void QBertInputComponent::ResetInput()
+void PlayerInputComponent::ResetInput()
 {
 	m_CanInputBeRegistered = true;
 	m_Move = {};
 }
 
-bool QBertInputComponent::GetCanInputBeRegistered()
+bool PlayerInputComponent::GetCanInputBeRegistered()
 {
 	return m_CanInputBeRegistered;
 }
 
-const Horizon::IPoint2& QBertInputComponent::GetMove() const
+const Horizon::IPoint2& PlayerInputComponent::GetMove() const
 {
 	return m_Move;
 }
 
-void QBertInputComponent::Initialize()
+void PlayerInputComponent::Initialize()
 {
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_s, KeyboardButtonState::KeyDown, std::make_unique<MoveDownCommand>(m_Move,m_CanInputBeRegistered));
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_q, KeyboardButtonState::KeyDown, std::make_unique<MoveLeftCommand>(m_Move, m_CanInputBeRegistered));
@@ -39,7 +39,7 @@ void QBertInputComponent::Initialize()
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_d, KeyboardButtonState::KeyDown, std::make_unique<MoveRightCommand>(m_Move, m_CanInputBeRegistered));
 }
 
-void QBertInputComponent::Update()
+void PlayerInputComponent::Update()
 {
 	if (m_CanInputBeRegistered)
 	{

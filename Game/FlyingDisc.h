@@ -6,15 +6,16 @@ namespace Horizon
 	class GameObject;
 }
 
-class QBert final
+
+class FlyingDisc final
 {
 public:
-	QBert(const rapidjson::Value& jsonObject);
+	FlyingDisc(const rapidjson::Value& jsonObject);
 	Horizon::GameObject* GetGameObject() const;
 private:
 	void Initialize();
-
+	SDL_Rect LevelNumberToSrcRect(const int levelNumber);
 	const rapidjson::Value& m_Value;
-	Horizon::GameObject* m_pGameObject;
+	Horizon::GameObject* m_pGameObject = nullptr;;
 };
 

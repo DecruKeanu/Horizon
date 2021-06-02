@@ -1,6 +1,6 @@
 #include "MiniginPCH.h"
 #include "Timer.h"
-
+#include "TimedFunction.h"
 using namespace std::chrono;
 
 void Horizon::Timer::UpdateLastTime()
@@ -8,7 +8,7 @@ void Horizon::Timer::UpdateLastTime()
 	m_LastTime = high_resolution_clock::now();
 }
 
-void Horizon::Timer::UpdateGameLoop()
+void Horizon::Timer::Update()
 {
 	m_CurrentTime = high_resolution_clock::now();
 	m_DeltaTime = duration<float>(m_CurrentTime - m_LastTime).count();
@@ -47,4 +47,3 @@ int Horizon::Timer::GetFPS() const
 {
 	return m_FPS;
 }
-

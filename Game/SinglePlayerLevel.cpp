@@ -25,7 +25,7 @@ void SinglePlayerLevel::Initialize()
 	const std::wstring fileName = L"SoloLevel" + std::to_wstring(m_Level) + L".json";
 	levelReader.ParseLevel(fileName);
 
-	for (GameObject* const pPrefab : levelReader.GetPrefabs())
+	for (GameObject* const pPrefab : levelReader.GetGameObjects())
 	{
 		Add(pPrefab);
 	}
@@ -69,6 +69,7 @@ void SinglePlayerLevel::Update()
 		break;
 	}
 
+	Horizon::SceneManager::GetInstance().AddScene(new SinglePlayerLevel(2, LevelType::SinglePlayer));
 	SceneManager::GetInstance().NextScene();
 	SceneManager::GetInstance().RemoveScene(this);
 }

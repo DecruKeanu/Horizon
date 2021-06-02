@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Cube.h"
 #include "QBert.h"
+#include "FlyingDisc.h"
 #include "rapidjson.h"
 #include "document.h"
 #include "stream.h"
@@ -11,16 +12,11 @@
 using namespace Horizon;
 
 LevelReader::LevelReader() :
-	m_pPrefabs{}
+	m_pGameObjects{}
 {
 	m_Factory.RegisterPrefab<Cube>();
 	m_Factory.RegisterPrefab<QBert>();
-}
-
-LevelReader::~LevelReader()
-{
-	//for (GameObject* const m_pPrefab : m_pPrefabs)
-	//	SafeDelete(m_pPrefab);
+	m_Factory.RegisterPrefab<FlyingDisc>();
 }
 
 //class needs to include namespace and needs to be the same name as cpp 
@@ -54,12 +50,12 @@ void LevelReader::ParseLevel(const std::wstring& fileName)
 	const Value::Array& gameObjects = doc["gameObjects"].GetArray();
 
 	for (const rapidjson::Value& gameObject : gameObjects)
-		m_pPrefabs.push_back(m_Factory.GetPrefab(gameObject));
+		m_pGameObjects.push_back(m_Factory.GetPrefab(gameObject));
 
 	fclose(pIFile);
 }
 
-const std::vector<GameObject*>& LevelReader::GetPrefabs() const
+const std::vector<GameObject*>& LevelReader::GetGameObjects() const
 {
-	return m_pPrefabs;
+	return m_pGameObjects;
 }

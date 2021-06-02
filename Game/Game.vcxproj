@@ -175,6 +175,9 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeHandleComponent.cpp" />
     <ClCompile Include="DemoScene.cpp" />
+    <ClCompile Include="FlyingDisc.cpp" />
+    <ClCompile Include="FlyingDiscMovementComponent.cpp" />
+    <ClCompile Include="FlyingDiscSpriteComponent.cpp" />
     <ClCompile Include="GamePCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -182,8 +185,9 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="QBert.cpp" />
-    <ClCompile Include="QBertInputComponent.cpp" />
-    <ClCompile Include="QBertMovementComponent.cpp" />
+    <ClCompile Include="PlayerInputComponent.cpp" />
+    <ClCompile Include="PlayerMovementComponent.cpp" />
+    <ClCompile Include="QbertSpriteComponent.cpp" />
     <ClCompile Include="SinglePlayerLevel.cpp" />
     <ClCompile Include="LevelReader.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -193,12 +197,16 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeHandleComponent.h" />
     <ClInclude Include="DemoScene.h" />
+    <ClInclude Include="FlyingDisc.h" />
+    <ClInclude Include="FlyingDiscMovementComponent.h" />
+    <ClInclude Include="FlyingDiscSpriteComponent.h" />
     <ClInclude Include="GameCommands.h" />
     <ClInclude Include="GamePCH.h" />
     <ClInclude Include="LevelType.h" />
     <ClInclude Include="QBert.h" />
-    <ClInclude Include="QBertInputComponent.h" />
-    <ClInclude Include="QBertMovementComponent.h" />
+    <ClInclude Include="PlayerInputComponent.h" />
+    <ClInclude Include="PlayerMovementComponent.h" />
+    <ClInclude Include="QbertSpriteComponent.h" />
     <ClInclude Include="SinglePlayerLevel.h" />
     <ClInclude Include="LevelReader.h" />
     <ClInclude Include="MainMenuScene.h" />

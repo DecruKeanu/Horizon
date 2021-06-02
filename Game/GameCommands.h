@@ -1,6 +1,6 @@
 #pragma once
 #include "Command.h"
-#include "QBertMovementComponent.h"
+#include "PlayerMovementComponent.h"
 
 class MoveUpCommand final : public Horizon::Command
 {

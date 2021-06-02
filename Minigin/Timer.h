@@ -9,7 +9,7 @@ namespace Horizon
 	{
 	public:
 		void UpdateLastTime();
-		void UpdateGameLoop();
+		void Update();
 		void CalculateFPS();
 		std::chrono::steady_clock::time_point getCurrentTime() const;
 		float GetDeltaTime() const;

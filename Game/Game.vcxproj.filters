@@ -28,6 +28,12 @@
     <Filter Include="Observers">
       <UniqueIdentifier>{44ff1bd5-7034-459a-af74-51afdcdbdbbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Player">
+      <UniqueIdentifier>{b77b9233-6123-4ad7-8451-3a59e9d9fcd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\FlyingDisc">
+      <UniqueIdentifier>{be15b89d-7dd8-4240-9796-c27ea7fb052d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -51,17 +57,29 @@
     <ClCompile Include="QBert.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="QBertMovementComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="CubeHandleComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="QBertInputComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="SinglePlayerLevel.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyingDisc.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="QbertSpriteComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInputComponent.cpp">
+      <Filter>Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMovementComponent.cpp">
+      <Filter>Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyingDiscMovementComponent.cpp">
+      <Filter>Components\FlyingDisc</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyingDiscSpriteComponent.cpp">
+      <Filter>Components\FlyingDisc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,16 +101,10 @@
     <ClInclude Include="QBert.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="QBertMovementComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="GameCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CubeHandleComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="QBertInputComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="SinglePlayerLevel.h">
@@ -100,6 +112,24 @@
     </ClInclude>
     <ClInclude Include="LevelType.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyingDisc.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertSpriteComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMovementComponent.h">
+      <Filter>Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInputComponent.h">
+      <Filter>Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyingDiscSpriteComponent.h">
+      <Filter>Components\FlyingDisc</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyingDiscMovementComponent.h">
+      <Filter>Components\FlyingDisc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

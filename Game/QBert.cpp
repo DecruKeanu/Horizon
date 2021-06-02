@@ -4,8 +4,9 @@
 #include <TextureComponent.h>
 #include <TransformComponent.h>
 #include <TriggerComponent.h>
-#include "QBertMovementComponent.h"
-#include "QBertInputComponent.h"
+#include "PlayerMovementComponent.h"
+#include "PlayerInputComponent.h"
+#include "QbertSpriteComponent.h"
 #include "SpriteComponent.h"
 #include <Scene.h>
 
@@ -33,23 +34,21 @@ void QBert::Initialize()
 	GameObject* const pGameObject = new GameObject("Qbert");
 
 	TextureComponent* const QBertTexture = new TextureComponent(pGameObject, "QBertTextures.png");
-	SpriteComponent* const pSpriteComponent = new SpriteComponent(pGameObject, SDL_Rect{ 0, 0, srcWidth * 8, srcHeight}, 8);
+	QbertSpriteComponent* const pSpriteComponent = new QbertSpriteComponent(pGameObject, SDL_Rect{ 0, 0, srcWidth * 8, srcHeight});
 	QBertTexture->SetScale(scale);
 	TransformComponent* const QBertTransform = new TransformComponent(pGameObject, positionX, positionY, 0);
-	QBertMovementComponent* const pMovementComponent = new QBertMovementComponent(pGameObject);
+	PlayerMovementComponent* const pMovementComponent = new PlayerMovementComponent(pGameObject);
 
 	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { 0 ,0, int(scale * srcWidth), int(scale * srcHeight) });
-	QBertInputComponent* const pInputComponent = new QBertInputComponent(pGameObject);
+	PlayerInputComponent* const pInputComponent = new PlayerInputComponent(pGameObject);
 
-	//pTriggerComponent->SetOnTriggerCallBack([](GameObject*, GameObject*, TriggerComponent::TriggerAction triggerAction)
-	//	{
-	//		if (triggerAction == TriggerComponent::TriggerAction::Exit)
-	//		{
-	//			std::cout << "EXIT\n";
-	//		}
-	//		else
-	//			std::cout << "ENTER\n";
-	//	});
+	pTriggerComponent->SetOnTriggerCallBack([](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction)
+		{
+			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetName() == "FlyingDisc")
+			{
+				Logger::LogInfo("QBert on flying disc");
+			}
+		});
 
 
 	pGameObject->AddComponent(QBertTexture);

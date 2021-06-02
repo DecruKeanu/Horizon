@@ -80,7 +80,7 @@ void Horizon::Minigin::Run() //no fpsCap because vsync does it automatically
 
 		while (doContinue)
 		{
-			Timer::GetInstance().UpdateGameLoop();
+			Timer::GetInstance().Update();
 			lag += Timer::GetInstance().GetDeltaTime();
 
 			doContinue = input.ProcessInput();

@@ -181,6 +181,9 @@
     <ClInclude Include="TriggerManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="TimedFunction.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\imgui.cpp">
@@ -305,6 +308,9 @@
     </ClCompile>
     <ClCompile Include="TriggerManager.cpp">
       <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedFunction.cpp">
+      <Filter>Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

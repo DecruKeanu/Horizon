@@ -170,6 +170,12 @@
       "level": 1
     },
     {
+      "class": "FlyingDisc",
+      "positionX": 464,
+      "positionY": 222,
+      "level": 1
+    },
+    {
       "class": "QBert",
       "positionX": 292,
       "positionY": 72

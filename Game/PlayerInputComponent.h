@@ -18,10 +18,10 @@ enum class Input
 };
 
 
-class QBertInputComponent final : public Horizon::Component
+class PlayerInputComponent final : public Horizon::Component
 {
 public:
-	QBertInputComponent(Horizon::GameObject* parent);
+	PlayerInputComponent(Horizon::GameObject* parent);
 	void ResetInput();
 	bool GetCanInputBeRegistered();
 	const Horizon::IPoint2& GetMove() const;

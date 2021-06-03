@@ -3,6 +3,7 @@
 #include <TransformComponent.h>
 #include <Timer.h>
 #include <MathHelper.h>
+
 using namespace Horizon;
 
 FlyingDiscMovementComponent::FlyingDiscMovementComponent(Horizon::GameObject* pParent) : Component(pParent),
@@ -40,22 +41,21 @@ void FlyingDiscMovementComponent::Update()
 	const float lerpTime = 2.f;
 	m_ElapsedTime = std::min(lerpTime, m_ElapsedTime + Timer::GetInstance().GetDeltaTime());
 
-	const int xPos = MathHelper::ILerp(m_OriginalPos.x, m_DesiredPos.x, m_ElapsedTime / lerpTime);
-	const int yPos = MathHelper::ILerp(m_OriginalPos.y, m_DesiredPos.y, m_ElapsedTime / lerpTime);
+	const IPoint2 currentPos = MathHelper::IPoint2Lerp(m_OriginalPos, m_DesiredPos, m_ElapsedTime / lerpTime);
 
-	m_pTransformComponent->SetPosition(xPos, yPos, 0);
+	m_pTransformComponent->SetPosition(currentPos.x, currentPos.y, 0);
 
-	if (xPos == m_DesiredPos.x && yPos == m_DesiredPos.y)
+	if (currentPos.x == m_DesiredPos.x && currentPos.y == m_DesiredPos.y)
 	{
-		m_ElapsedTime = 0.f;
-		m_Turns++;
-		std::swap(m_OriginalPos, m_DesiredPos);
+		m_pGameObject->Deactivate();
+		//m_ElapsedTime = 0.f;
+		//m_Turns++;
+		//std::swap(m_OriginalPos, m_DesiredPos);
 
-		if (m_Turns == 2)
-		{
-			m_Turns = 0;
-			Deactivate();
-		}
-			
+		//if (m_Turns == 2)
+		//{
+		//	m_Turns = 0;
+		//	Deactivate();
+		//}
 	}
 }

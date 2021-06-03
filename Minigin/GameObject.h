@@ -32,11 +32,16 @@ namespace Horizon
 
 		const std::string& GetIdentifier();
 		bool Equals(GameObject* pOther) const;
+
+		bool GetIsActive() const;
+		void Deactivate();
 	private:
 		std::vector<Component*> m_pObjectComponents;
 		std::string m_Identifier;
 		const size_t m_Id;
 		static size_t m_LastId;
+
+		bool m_IsActive;
 	};
 
 	template<typename T>

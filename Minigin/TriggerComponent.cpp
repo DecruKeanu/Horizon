@@ -37,6 +37,9 @@ void Horizon::TriggerComponent::OverlapsWith(TriggerComponent* pOtherTrigger)
 		return;
 	}
 
+	if (pOtherTrigger->GetParent()->GetIsActive() == false)
+		return;
+
 	const OverlapData currentOverlap = OverlapData{ pOtherTrigger, true };
 
 	m_pOverlappingActors.push_back(currentOverlap);

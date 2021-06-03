@@ -32,7 +32,10 @@ void Horizon::TriggerManager::Update()
 			TriggerComponent* const pFirstTriggerComponent = m_pTriggerComponents[firstIdx];
 			TriggerComponent* const pSecondTriggerComponent = m_pTriggerComponents[secondIdx];
 
-			if (pFirstTriggerComponent->GetParent()->Equals(pSecondTriggerComponent->GetParent()))
+			GameObject* const pFirstGameObject = pFirstTriggerComponent->GetParent();
+			GameObject* const pSecondGameObject = pSecondTriggerComponent->GetParent();
+
+			if (pFirstGameObject->Equals(pSecondGameObject))
 				return;
 
 			const IRect& firstRect = pFirstTriggerComponent->GetCollisionRect();

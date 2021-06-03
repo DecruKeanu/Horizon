@@ -28,6 +28,17 @@ void Scene::Add(GameObject* object)
 	m_pObjects.push_back(object);
 }
 
+void Horizon::Scene::Remove(GameObject* pObject)
+{
+	const auto it = find(m_pObjects.begin(), m_pObjects.end(), pObject);
+
+	if (it != m_pObjects.end())
+	{
+		delete *it;
+		m_pObjects.erase(it);
+	}
+}
+
 void Scene::RootInitialize()
 {
 	Initialize();

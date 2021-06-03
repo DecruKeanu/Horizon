@@ -23,6 +23,9 @@ namespace Horizon
 		GameObject* GetGameObject(const std::string& identifier);
 		std::vector<GameObject*> GetGameObjects(const std::string& identifier);
 
+		void Add(GameObject* object);
+		void Remove(GameObject* pObject);
+
 	protected:
 		virtual void Initialize() {};
 		virtual void FixedUpdate() {};
@@ -30,7 +33,7 @@ namespace Horizon
 		virtual void LateUpdate() {};
 		virtual void Render() const {};
 
-		void Add(GameObject* object);
+
 
 	private: 
 		std::string m_Name;

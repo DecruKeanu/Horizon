@@ -4,16 +4,17 @@
 #include <SpriteComponent.h>
 #include "PlayerInputComponent.h"
 
-QbertSpriteComponent::QbertSpriteComponent(Horizon::GameObject* pParent, const SDL_Rect& srcRect) : Component(pParent),
+QbertSpriteComponent::QbertSpriteComponent(Horizon::GameObject* pParent,const std::string& fileName, const SDL_Rect& srcRect) : Component(pParent),
 m_CurrentSpriteNumber{ 5 }
 {
-	m_pSpriteComponent = new Horizon::SpriteComponent(m_pGameObject, srcRect, 8);
+	m_pSpriteComponent = new Horizon::SpriteComponent(m_pGameObject,fileName, srcRect, 8);
 	m_pGameObject->AddComponent(m_pSpriteComponent);
 }
 
 void QbertSpriteComponent::Initialize()
 {
 	m_pInputComponent = m_pGameObject->GetComponent<PlayerInputComponent>();
+	m_pSpriteComponent->Scale(2.f);
 }
 
 void QbertSpriteComponent::Update()
@@ -29,8 +30,5 @@ void QbertSpriteComponent::Update()
 	else if (move.x == 1 && move.y == -1)
 		m_CurrentSpriteNumber = 1;
 
-	if (move.x == 0 && move.y == 0)
-		m_pSpriteComponent->SetCurrentSprite(m_CurrentSpriteNumber - 1);
-	else
-		m_pSpriteComponent->SetCurrentSprite(m_CurrentSpriteNumber);
+	(move.x == 0 && move.y == 0) ? m_pSpriteComponent->SetCurrentSprite(m_CurrentSpriteNumber - 1) : m_pSpriteComponent->SetCurrentSprite(m_CurrentSpriteNumber);
 }

@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include "TriggerManager.h"
 
 using namespace Horizon;
 
@@ -75,7 +76,7 @@ GameObject* Horizon::Scene::GetGameObject(const std::string& identifier)
 {
 	for (GameObject* const pGameObject : m_pObjects)
 	{
-		if (pGameObject->GetName() == identifier)
+		if (pGameObject->GetIdentifier() == identifier)
 			return pGameObject;
 	}
 
@@ -89,7 +90,7 @@ std::vector<GameObject*> Horizon::Scene::GetGameObjects(const std::string& ident
 
 	for (GameObject* const pGameObject : m_pObjects)
 	{
-		if (pGameObject->GetName() == identifier)
+		if (pGameObject->GetIdentifier() == identifier)
 			pIdentifierObjects.push_back(pGameObject);
 	}
 

@@ -10,6 +10,9 @@ void Horizon::Timer::UpdateLastTime()
 
 void Horizon::Timer::Update()
 {
+	for (TimedFunction* const pTimedFunction : m_pTimedFunctions)
+		pTimedFunction->Update();
+
 	m_CurrentTime = high_resolution_clock::now();
 	m_DeltaTime = duration<float>(m_CurrentTime - m_LastTime).count();
 	m_LastTime = m_CurrentTime;
@@ -46,4 +49,19 @@ float Horizon::Timer::GetFixedFrameTime() const
 int Horizon::Timer::GetFPS() const
 {
 	return m_FPS;
+}
+
+void Horizon::Timer::AddTimedFunction(TimedFunction* pTimedFunction)
+{
+	m_pTimedFunctions.push_back(pTimedFunction);
+}
+
+void Horizon::Timer::RemoveTimedFunction(TimedFunction* pTimedFunction)
+{
+	const auto it = std::find(m_pTimedFunctions.begin(), m_pTimedFunctions.end(), pTimedFunction);
+
+	if (it != m_pTimedFunctions.end())
+	{
+		m_pTimedFunctions.erase(it);
+	}
 }

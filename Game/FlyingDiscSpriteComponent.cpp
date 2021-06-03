@@ -1,30 +1,35 @@
 #include "GamePCH.h"
 #include "FlyingDiscSpriteComponent.h"
 #include <SpriteComponent.h>
-#include <TimedFunctionComponent.h>
+#include <Timer.h>
+#include <TimedFunction.h>
 
-FlyingDiscSpriteComponent::FlyingDiscSpriteComponent(Horizon::GameObject* pParent, const SDL_Rect& srcRect) : Component(pParent),
-	m_SpriteTimer{},
-	m_CurrentSpriteNumber{}
+FlyingDiscSpriteComponent::FlyingDiscSpriteComponent(Horizon::GameObject* pParent, const std::string& textureName, const SDL_Rect& srcRect) : Component(pParent),
+m_SpriteTimer{},
+m_CurrentSpriteNumber{}
 {
-	//Component makes sprite because sprite is knowhere else used and this class defines the spritebehavior
-	m_pSpriteComponent = new Horizon::SpriteComponent(m_pGameObject, srcRect, 12);
+	textureName;
+	//Component makes sprite because sprite is knowhere else used and this class defines the spritebehaviour
+	m_pSpriteComponent = new Horizon::SpriteComponent(m_pGameObject,textureName, srcRect, 4);
+	m_pSpriteComponent->Scale(2.f);
 	m_pGameObject->AddComponent(m_pSpriteComponent);
-
-	ConstructTimedFunction();
 }
 
-void FlyingDiscSpriteComponent::ConstructTimedFunction()
+FlyingDiscSpriteComponent::~FlyingDiscSpriteComponent()
 {
-	Horizon::TimedFunctionComponent* const pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, true, 0.1f);
-	pTimedFunction->SetTimerFunction([this, pTimedFunction]()
+	Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
+	SafeDelete(m_pTimedFunction);
+}
+
+void FlyingDiscSpriteComponent::Initialize()
+{
+	m_pTimedFunction = new Horizon::TimedFunction(true, 0.1f);
+	m_pTimedFunction->SetTimerFunction([this](float)
 		{
-			m_CurrentSpriteNumber++;
-			m_pSpriteComponent->SetCurrentSprite(m_CurrentSpriteNumber % 4);
+			m_pSpriteComponent->NextSprite();
 		});
 
-	pTimedFunction->Activate();
-
-	m_pGameObject->AddComponent(pTimedFunction);
+	m_pTimedFunction->Activate();
+	Horizon::Timer::GetInstance().AddTimedFunction(m_pTimedFunction);
 }
 

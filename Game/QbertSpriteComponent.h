@@ -12,7 +12,7 @@ class PlayerInputComponent;
 class QbertSpriteComponent final : public Horizon::Component
 {
 public:
-	QbertSpriteComponent(Horizon::GameObject* pParent, const SDL_Rect& srcRect);
+	QbertSpriteComponent(Horizon::GameObject* pParent, const std::string& fileName, const SDL_Rect& srcRect);
 private:
 	void Initialize() override;
 	void Update() override;

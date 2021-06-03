@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Structs.h"
-#include <array>
+#include <vector>
 #include <functional>
 
 //Credit to Elise Briers
@@ -16,7 +16,9 @@ namespace Horizon
 	private:
 		struct OverlapData
 		{
-			GameObject* pOverlapObject;
+			TriggerComponent* pTrigger;
+			//GameObject* pOverlapObject;
+			//std::string triggerIdentifier;
 			bool IsOverlapping;
 		};
 	public:
@@ -26,11 +28,12 @@ namespace Horizon
 			Exit
 		};
 
-		using CallBackFunction = std::function<void(GameObject*, GameObject*, TriggerAction)>;
+		using CallBackFunction = std::function<void(GameObject*, GameObject*, TriggerAction, const std::string&)>;
 
 		TriggerComponent(GameObject* pParent, const Horizon::IRect& collisionRect);
+		TriggerComponent(GameObject* pParent, const std::string& identifier, const Horizon::IRect& collisionRect);
 		void SetOnTriggerCallBack(const CallBackFunction& function);
-		void OverlapsWith(GameObject* pGameObject);
+		void OverlapsWith(TriggerComponent* pOtherTrigger);
 
 		const Horizon::IRect& GetCollisionRect() const;
 		const size_t GetOverlappingActorsSize();

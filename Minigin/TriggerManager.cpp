@@ -18,6 +18,11 @@ void Horizon::TriggerManager::RemoveTriggerComponent(TriggerComponent* pTriggerC
 	}
 }
 
+void Horizon::TriggerManager::ClearTriggerComponents()
+{
+	m_pTriggerComponents.clear();
+}
+
 void Horizon::TriggerManager::Update()
 {
 	for (size_t firstIdx{}; firstIdx < m_pTriggerComponents.size(); firstIdx++)
@@ -27,6 +32,9 @@ void Horizon::TriggerManager::Update()
 			TriggerComponent* const pFirstTriggerComponent = m_pTriggerComponents[firstIdx];
 			TriggerComponent* const pSecondTriggerComponent = m_pTriggerComponents[secondIdx];
 
+			if (pFirstTriggerComponent->GetParent()->Equals(pSecondTriggerComponent->GetParent()))
+				return;
+
 			const IRect& firstRect = pFirstTriggerComponent->GetCollisionRect();
 			const IRect& secondRect = pSecondTriggerComponent->GetCollisionRect();
 
@@ -34,11 +42,9 @@ void Horizon::TriggerManager::Update()
 
 			if (areOverlapping)
 			{
-				GameObject* const pFirstGameObject = pFirstTriggerComponent->GetParent();
-				GameObject* const pSecondGameObject = pSecondTriggerComponent->GetParent();
+				pFirstTriggerComponent->OverlapsWith(pSecondTriggerComponent);
+				pSecondTriggerComponent->OverlapsWith(pFirstTriggerComponent);
 
-				pFirstTriggerComponent->OverlapsWith(pSecondGameObject);
-				pSecondTriggerComponent->OverlapsWith(pFirstGameObject);
 			}
 		}
 	}

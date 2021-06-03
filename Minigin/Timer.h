@@ -5,6 +5,8 @@
 
 namespace Horizon
 {
+	class TimedFunction;
+
 	class Timer final : public Singleton<Timer>
 	{
 	public:
@@ -15,6 +17,9 @@ namespace Horizon
 		float GetDeltaTime() const;
 		float GetFixedFrameTime() const;
 		int GetFPS() const;
+
+		void AddTimedFunction(TimedFunction* pTimedFunction);
+		void RemoveTimedFunction(TimedFunction* pTimedFunction);
 	private:
 		std::chrono::steady_clock::time_point m_CurrentTime{};
 		std::chrono::steady_clock::time_point m_LastTime{};
@@ -23,5 +28,7 @@ namespace Horizon
 		float m_DeltaTime{};
 		int m_FPS{};
 		int m_FPSCount{};
+
+		std::vector<TimedFunction*> m_pTimedFunctions;
 	};
 }

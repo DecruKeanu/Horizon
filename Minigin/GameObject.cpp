@@ -12,14 +12,14 @@
 size_t Horizon::GameObject::m_LastId{};
 
 Horizon::GameObject::GameObject() : 
-	m_Name{ "NoIdentifier" },
+	m_Identifier{ "NoIdentifier" },
 	m_Id{m_LastId++}
 {
 
 }
 
 Horizon::GameObject::GameObject(const std::string& identifier):
-	m_Name{identifier},
+	m_Identifier{identifier},
 	m_Id{ m_LastId++ }
 {
 
@@ -27,8 +27,6 @@ Horizon::GameObject::GameObject(const std::string& identifier):
 
 Horizon::GameObject::~GameObject()
 {
-	TriggerManager::GetInstance().RemoveTriggerComponent(GetComponent<TriggerComponent>());
-
 	for (Component* const pComponent : m_pObjectComponents)
 		SafeDelete<Component>(pComponent);
 }
@@ -68,9 +66,9 @@ void Horizon::GameObject::AddComponent(Component* component)
 	m_pObjectComponents.push_back(component);
 }
 
-const std::string& Horizon::GameObject::GetName()
+const std::string& Horizon::GameObject::GetIdentifier()
 {
-	return m_Name;
+	return m_Identifier;
 }
 
 bool Horizon::GameObject::Equals(GameObject* pOther) const

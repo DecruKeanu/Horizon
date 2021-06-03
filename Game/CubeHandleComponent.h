@@ -4,31 +4,22 @@
 namespace Horizon
 {
 	class GameObject;
-	class TransformComponent;
 	class SpriteComponent;
 }
-
-enum class CubeType
-{
-	oneJump,
-	twoJumps,
-	loopjumps
-};
-
 
 class CubeHandleComponent final : public Horizon::Component
 {
 public:
-	CubeHandleComponent(Horizon::GameObject* parent, const CubeType& cubeType);
+	CubeHandleComponent(Horizon::GameObject* parent, int level);
 	void ActivateCube();
 	bool GetisActivated() const;
+	void SwitchSprite();
 private:
 	void Initialize() override;
 	Horizon::SpriteComponent* m_pSpriteComponent = nullptr;
 
-	CubeType m_CubeType;
+	int m_Level;
 	int m_jumps;
 	bool m_IsActivated;
-
 };
 

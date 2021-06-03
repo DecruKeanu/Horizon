@@ -10,11 +10,13 @@ namespace Horizon
 	class SpriteComponent final : public Component
 	{
 	public:
-		SpriteComponent(GameObject* parent, SDL_Rect srcRect, int spriteAmount);
+		SpriteComponent(GameObject* parent, const std::string& fileName, const SDL_Rect& srcRect, int spriteAmount);
 		int GetCurrentSprite();
 		void SetCurrentSprite(int spriteNumber);
 		void NextSprite();
 		void PreviousSprite();
+
+		void Scale(float scale);
 	private:
 		void Initialize() override;
 

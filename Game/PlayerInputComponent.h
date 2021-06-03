@@ -1,38 +1,28 @@
 #pragma once
 #include <Component.h>
+
 namespace Horizon
 {
 	class GameObject;
-	class TransformComponent;
-	class SpriteComponent;
-	class TriggerComponent;
+	class TimedFunction;
 }
-
-enum class Input
-{
-	noInput,
-	leftDown = SDLK_s,
-	leftUp = SDLK_q,
-	rightDown = SDLK_d,
-	rightUp = SDLK_z
-};
-
 
 class PlayerInputComponent final : public Horizon::Component
 {
 public:
 	PlayerInputComponent(Horizon::GameObject* parent);
+	~PlayerInputComponent();
 	void ResetInput();
 	bool GetCanInputBeRegistered();
-	const Horizon::IPoint2& GetMove() const;
+	void DeactivateInput();
+
+	const Horizon::IPoint2& GetMove();
 private:
 	void Initialize() override;
 	void Update() override;
 
-	Horizon::IPoint2 m_Move;
-	Input m_CurrentInput;
-
-	float m_InputTimer;
 	bool m_CanInputBeRegistered;
+	Horizon::IPoint2 m_Move;
+	Horizon::TimedFunction* m_pTimedFunction = nullptr;
 };
 

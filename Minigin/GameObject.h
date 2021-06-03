@@ -12,10 +12,10 @@ namespace Horizon
 		GameObject();
 		GameObject(const std::string& identifier);
 		~GameObject();
-		GameObject(const GameObject & other) = delete;
-		GameObject(GameObject && other) = delete;
-		GameObject& operator=(const GameObject & other) = delete;
-		GameObject& operator=(GameObject && other) = delete;
+		GameObject(const GameObject& other) = delete;
+		GameObject(GameObject&& other) = delete;
+		GameObject& operator=(const GameObject& other) = delete;
+		GameObject& operator=(GameObject&& other) = delete;
 
 		void Initialize();
 		void FixedUpdate();
@@ -27,12 +27,14 @@ namespace Horizon
 
 		template <typename T>
 		T* GetComponent() const;
+		template <typename T>
+		std::vector<T*> GetComponents() const;
 
-		const std::string& GetName();
+		const std::string& GetIdentifier();
 		bool Equals(GameObject* pOther) const;
 	private:
 		std::vector<Component*> m_pObjectComponents;
-		std::string m_Name;
+		std::string m_Identifier;
 		const size_t m_Id;
 		static size_t m_LastId;
 	};
@@ -49,6 +51,21 @@ namespace Horizon
 		}
 		Logger::LogWarning("GameObject::GetComponent >> Component could not be found");
 		return nullptr;
+	}
+
+	template<typename T>
+	inline std::vector<T*> GameObject::GetComponents() const
+	{
+		std::vector<T*> pComponents{};
+		for (Component* pObjectComponent : m_pObjectComponents)
+		{
+			T* pComponent = dynamic_cast<T*>(pObjectComponent);
+
+			if (pComponent)
+				pComponents.push_back(pComponent);
+		}
+
+		return pComponents;
 	}
 }
 

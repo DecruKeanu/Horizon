@@ -10,6 +10,7 @@ namespace Horizon
 	public:
 		void AddTriggerComponent(TriggerComponent* pTriggerComponent);
 		void RemoveTriggerComponent(TriggerComponent* pTriggerComponent);
+		void ClearTriggerComponents();
 		void Update();
 	private:
 		std::vector<TriggerComponent*> m_pTriggerComponents;

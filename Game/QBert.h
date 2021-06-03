@@ -13,6 +13,7 @@ public:
 	Horizon::GameObject* GetGameObject() const;
 private:
 	void Initialize();
+	//void FeetTriggerCallBack(GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, const std::string&);
 
 	const rapidjson::Value& m_Value;
 	Horizon::GameObject* m_pGameObject;

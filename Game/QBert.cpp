@@ -33,30 +33,35 @@ void QBert::Initialize()
 
 	GameObject* const pGameObject = new GameObject("Qbert");
 
-	TextureComponent* const QBertTexture = new TextureComponent(pGameObject, "QBertTextures.png");
-	QbertSpriteComponent* const pSpriteComponent = new QbertSpriteComponent(pGameObject, SDL_Rect{ 0, 0, srcWidth * 8, srcHeight});
-	QBertTexture->SetScale(scale);
+	QbertSpriteComponent* const pSpriteComponent = new QbertSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ 0, 0, srcWidth * 8, srcHeight});
 	TransformComponent* const QBertTransform = new TransformComponent(pGameObject, positionX, positionY, 0);
 	PlayerMovementComponent* const pMovementComponent = new PlayerMovementComponent(pGameObject);
 
-	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { 0 ,0, int(scale * srcWidth), int(scale * srcHeight) });
+	TriggerComponent* const pTriggerBodyComponent = new TriggerComponent(pGameObject, "BodyTrigger", { 0 ,0, int(scale * srcWidth), int(scale * srcHeight) });
+	TriggerComponent* const pTriggerFeetComponent = new TriggerComponent(pGameObject, "FeetTrigger",{ int(srcWidth* 0.5f) ,int(srcHeight*1.8f), int(srcWidth), int(srcHeight *0.2) });
 	PlayerInputComponent* const pInputComponent = new PlayerInputComponent(pGameObject);
 
-	pTriggerComponent->SetOnTriggerCallBack([](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction)
+	pTriggerFeetComponent->SetOnTriggerCallBack([pMovementComponent, pInputComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction,const std::string&)
 		{
-			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetName() == "FlyingDisc")
+			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "FlyingDisc")
 			{
-				Logger::LogInfo("QBert on flying disc");
+				pMovementComponent->PlayerOnFlyingDisc(pOverlappedGameObject->GetComponent<TransformComponent>());
+				pInputComponent->DeactivateInput();
+			}
+			else if (triggerAction == TriggerComponent::TriggerAction::Exit && pOverlappedGameObject->GetIdentifier() == "FlyingDisc")
+			{
+				pInputComponent->ResetInput();
 			}
 		});
 
 
-	pGameObject->AddComponent(QBertTexture);
 	pGameObject->AddComponent(pSpriteComponent);
 	pGameObject->AddComponent(QBertTransform);
 	pGameObject->AddComponent(pMovementComponent);
-	pGameObject->AddComponent(pTriggerComponent);
+	pGameObject->AddComponent(pTriggerBodyComponent);
+	pGameObject->AddComponent(pTriggerFeetComponent);
 	pGameObject->AddComponent(pInputComponent);
 
 	m_pGameObject = pGameObject;
 }
+

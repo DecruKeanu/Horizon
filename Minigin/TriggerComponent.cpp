@@ -5,12 +5,21 @@
 #include "Renderer.h"
 
 Horizon::TriggerComponent::TriggerComponent(GameObject* pParent, const Horizon::IRect& collisionRect) : Component(pParent),
-	m_CollisionRect{collisionRect},
-	m_OffsetX{collisionRect.x},
-	m_OffsetY{collisionRect.y},
-	m_pOverlappingActors{}
+m_CollisionRect{ collisionRect },
+m_OffsetX{ collisionRect.x },
+m_OffsetY{ collisionRect.y },
+m_pOverlappingActors{}
 {
-	m_CallBackFunction = [](GameObject*, GameObject*, TriggerAction) {};
+	m_CallBackFunction = [](GameObject*, GameObject*, TriggerAction, std::string) {};
+}
+
+Horizon::TriggerComponent::TriggerComponent(GameObject* pParent, const std::string& identifier, const Horizon::IRect& collisionRect) : Component(pParent, identifier),
+m_CollisionRect{ collisionRect },
+m_OffsetX{ collisionRect.x },
+m_OffsetY{ collisionRect.y },
+m_pOverlappingActors{}
+{
+	m_CallBackFunction = [](GameObject*, GameObject*, TriggerAction, std::string) {};
 }
 
 void Horizon::TriggerComponent::SetOnTriggerCallBack(const CallBackFunction& function)
@@ -18,9 +27,9 @@ void Horizon::TriggerComponent::SetOnTriggerCallBack(const CallBackFunction& fun
 	m_CallBackFunction = function;
 }
 
-void Horizon::TriggerComponent::OverlapsWith(GameObject* pGameObject)
+void Horizon::TriggerComponent::OverlapsWith(TriggerComponent* pOtherTrigger)
 {
-	const auto it = std::find_if(m_pOverlappingActors.begin(), m_pOverlappingActors.end(), [pGameObject](const OverlapData& overlapData) {return (pGameObject->Equals(overlapData.pOverlapObject)); });
+	const auto it = std::find_if(m_pOverlappingActors.begin(), m_pOverlappingActors.end(), [pOtherTrigger,this](const OverlapData& overlapData) {return (pOtherTrigger->Equals(overlapData.pTrigger)); });
 
 	if (it != m_pOverlappingActors.end())
 	{
@@ -28,8 +37,11 @@ void Horizon::TriggerComponent::OverlapsWith(GameObject* pGameObject)
 		return;
 	}
 
-	m_pOverlappingActors.push_back(OverlapData{ pGameObject, true });
-	m_CallBackFunction(m_pGameObject, pGameObject, TriggerAction::Enter);
+	const OverlapData currentOverlap = OverlapData{ pOtherTrigger, true };
+
+	m_pOverlappingActors.push_back(currentOverlap);
+	m_CallBackFunction(m_pGameObject, currentOverlap.pTrigger->GetParent(), TriggerAction::Enter, currentOverlap.pTrigger->GetIdentifier());
+
 }
 
 const Horizon::IRect& Horizon::TriggerComponent::GetCollisionRect() const
@@ -64,15 +76,15 @@ void Horizon::TriggerComponent::Update()
 	//remove_if places all elements that fullfil the predicament to the end of the vector and returns the iterator to the first element
 	const auto it = std::remove_if(m_pOverlappingActors.begin(), m_pOverlappingActors.end(), [](const OverlapData& overlapData)
 		{
-			return !overlapData.IsOverlapping; 
+			return !overlapData.IsOverlapping;
 		});
 
 	for (auto idx{ it }; idx < m_pOverlappingActors.end(); ++idx)
 	{
-		m_CallBackFunction(m_pGameObject, idx->pOverlapObject, TriggerAction::Exit);
+		m_CallBackFunction(m_pGameObject, idx->pTrigger->GetParent(), TriggerAction::Exit, it->pTrigger->GetIdentifier());
 	}
 
-	m_pOverlappingActors.erase(it,m_pOverlappingActors.end());
+	m_pOverlappingActors.erase(it, m_pOverlappingActors.end());
 
 	for (OverlapData& overlapData : m_pOverlappingActors)
 	{
@@ -85,7 +97,7 @@ void Horizon::TriggerComponent::Update()
 
 void Horizon::TriggerComponent::Render() const
 {
-	const bool visualise = false;
+	const bool visualise = true;
 
 	if (!visualise)
 		return;

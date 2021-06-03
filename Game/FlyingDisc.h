@@ -14,7 +14,7 @@ public:
 	Horizon::GameObject* GetGameObject() const;
 private:
 	void Initialize();
-	SDL_Rect LevelNumberToSrcRect(const int levelNumber);
+
 	const rapidjson::Value& m_Value;
 	Horizon::GameObject* m_pGameObject = nullptr;;
 };

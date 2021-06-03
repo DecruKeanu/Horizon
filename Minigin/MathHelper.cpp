@@ -33,3 +33,10 @@ int Horizon::MathHelper::ILerp(const int startValue, const int endValue, float l
 	//returns a value between startValue and endValue at the hand of the lerpValue
 	return int(startValue + (endValue - startValue) * lerpValue);
 }
+
+Horizon::IPoint2 Horizon::MathHelper::IPoint2Lerp(const IPoint2& startValue, const IPoint2& endValue, float lerpValue)
+{
+	const int XPos = int(startValue.x + (endValue.x - startValue.x) * lerpValue);
+	const int YPos = int(startValue.y + (endValue.y - startValue.y) * lerpValue);
+	return IPoint2{XPos, YPos};
+}

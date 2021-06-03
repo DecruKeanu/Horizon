@@ -1,24 +1,28 @@
 #include "MiniginPCH.h"
 #include "TransformComponent.h"
 
-Horizon::TransformComponent::TransformComponent(GameObject* parent, int x, int y, int z) : Component(parent),
-m_Position{ x,y,z }
+Horizon::TransformComponent::TransformComponent(GameObject* parent, int x, int y) : Component(parent),
+m_Position{ x,y}
 {
+
 }
 
-const Horizon::IPoint3& Horizon::TransformComponent::GetPosition() const
+const Horizon::IPoint2& Horizon::TransformComponent::GetPosition() const
 {
 	return m_Position;
 }
 
-void Horizon::TransformComponent::SetPosition(int x, int y, int z)
+void Horizon::TransformComponent::SetPosition(int x, int y)
 {
-	m_Position = { x,y,z };
+	m_Position = { x,y};
 }
 
-void Horizon::TransformComponent::Move(int x, int y, int z)
+void Horizon::TransformComponent::SetPosition(const IPoint2& pos)
 {
-	const IPoint3 pos = GetPosition();
+	m_Position = pos;
+}
 
-	SetPosition(pos.x + x, pos.y + y, pos.z + z);
+void Horizon::TransformComponent::Move(int x, int y)
+{
+	SetPosition(m_Position.x + x, m_Position.y + y);
 }

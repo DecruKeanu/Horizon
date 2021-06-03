@@ -61,7 +61,7 @@ void PlayerInputComponent::Update()
 {
 	if (m_CanInputBeRegistered)
 	{
-		if (m_Move.x != 0 || m_Move.y != 0)
+		if (m_Move != IPoint2{0, 0})
 		{
 			m_CanInputBeRegistered = false;
 			m_pTimedFunction->Activate();

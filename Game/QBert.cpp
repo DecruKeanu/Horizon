@@ -33,15 +33,15 @@ void QBert::Initialize()
 
 	GameObject* const pGameObject = new GameObject("Qbert");
 
-	QbertSpriteComponent* const pSpriteComponent = new QbertSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ 0, 0, srcWidth * 8, srcHeight});
-	TransformComponent* const QBertTransform = new TransformComponent(pGameObject, positionX, positionY, 0);
+	QbertSpriteComponent* const pSpriteComponent = new QbertSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ 0, 0, srcWidth * 8, srcHeight });
+	TransformComponent* const QBertTransform = new TransformComponent(pGameObject, positionX, positionY);
 	PlayerMovementComponent* const pMovementComponent = new PlayerMovementComponent(pGameObject);
 
 	TriggerComponent* const pTriggerBodyComponent = new TriggerComponent(pGameObject, "BodyTrigger", { 0 ,0, int(scale * srcWidth), int(scale * srcHeight) });
-	TriggerComponent* const pTriggerFeetComponent = new TriggerComponent(pGameObject, "FeetTrigger",{ int(srcWidth* 0.5f) ,int(srcHeight*1.8f), int(srcWidth), int(srcHeight *0.2) });
+	TriggerComponent* const pTriggerFeetComponent = new TriggerComponent(pGameObject, "FeetTrigger", { int(srcWidth * 0.5f) ,int(srcHeight * 1.8f), int(srcWidth), int(srcHeight * 0.2) });
 	PlayerInputComponent* const pInputComponent = new PlayerInputComponent(pGameObject);
 
-	pTriggerFeetComponent->SetOnTriggerCallBack([pMovementComponent, pInputComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction,const std::string&)
+	pTriggerFeetComponent->SetOnTriggerCallBack([pMovementComponent, pInputComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, const std::string&)
 		{
 			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "FlyingDisc")
 			{

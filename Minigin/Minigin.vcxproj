@@ -252,6 +252,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="HealthDisplayComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="HealthDisplayObserver.h" />
+    <ClInclude Include="IPoint2Operators.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="Minigin.h" />
@@ -339,6 +340,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="HealthDisplayObserver.cpp" />
+    <ClCompile Include="IPoint2Operators.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="Minigin.cpp" />

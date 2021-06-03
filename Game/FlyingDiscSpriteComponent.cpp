@@ -4,11 +4,8 @@
 #include <Timer.h>
 #include <TimedFunction.h>
 
-FlyingDiscSpriteComponent::FlyingDiscSpriteComponent(Horizon::GameObject* pParent, const std::string& textureName, const SDL_Rect& srcRect) : Component(pParent),
-m_SpriteTimer{},
-m_CurrentSpriteNumber{}
+FlyingDiscSpriteComponent::FlyingDiscSpriteComponent(Horizon::GameObject* pParent, const std::string& textureName, const SDL_Rect& srcRect) : Component(pParent)
 {
-	textureName;
 	//Component makes sprite because sprite is knowhere else used and this class defines the spritebehaviour
 	m_pSpriteComponent = new Horizon::SpriteComponent(m_pGameObject,textureName, srcRect, 4);
 	m_pSpriteComponent->Scale(2.f);

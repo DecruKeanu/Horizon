@@ -17,9 +17,6 @@ public:
 private:
 	void Initialize() override;
 
-	float m_SpriteTimer;
-	int m_CurrentSpriteNumber;
-
 	Horizon::SpriteComponent* m_pSpriteComponent = nullptr;
 	Horizon::TimedFunction* m_pTimedFunction = nullptr;
 };

@@ -184,6 +184,9 @@
     <ClInclude Include="TimedFunction.h">
       <Filter>Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="IPoint2Operators.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\imgui.cpp">
@@ -310,6 +313,9 @@
       <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="TimedFunction.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="IPoint2Operators.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
   </ItemGroup>

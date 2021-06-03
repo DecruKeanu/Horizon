@@ -1,6 +1,4 @@
 #pragma once
-#include "Structs.h"
-
 namespace Horizon
 {
 	namespace MathHelper

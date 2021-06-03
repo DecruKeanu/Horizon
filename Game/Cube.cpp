@@ -41,7 +41,7 @@ void Cube::Initialize()
 	CubeHandleComponent* const pHandleCubeComponent = new CubeHandleComponent(pGameObject, level);
 	SpriteComponent* const pSpriteComponent = new SpriteComponent(pGameObject,"QBertTextures.png", srcRect, spriteAmount);
 	pSpriteComponent->Scale(scale);
-	TransformComponent* const blockTransform = new TransformComponent(pGameObject, positionX, positionY, 0);
+	TransformComponent* const blockTransform = new TransformComponent(pGameObject, positionX, positionY);
 	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { 20,10, 20, int(srcRect.w / 8) });
 
 	pTriggerComponent->SetOnTriggerCallBack([pHandleCubeComponent](GameObject*, GameObject*, TriggerComponent::TriggerAction triggerAction, const std::string& overlappedTriggerIdentifier)

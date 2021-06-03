@@ -53,7 +53,7 @@ void SinglePlayerLevel::Initialize()
 	{
 		GameObject* const singlePlayerObject = new GameObject();
 		TextComponent* const singlePlayerText = new TextComponent(singlePlayerObject, "Level " + std::to_string(m_Level), QBertFont, { 255, 140, 0 });
-		TransformComponent* const singlePlayerTransform = new TransformComponent(singlePlayerObject, 20, 20, 0);
+		TransformComponent* const singlePlayerTransform = new TransformComponent(singlePlayerObject, 20, 20);
 		singlePlayerObject->AddComponent(singlePlayerTransform);
 		singlePlayerObject->AddComponent(singlePlayerText);
 		Add(singlePlayerObject);
@@ -62,7 +62,7 @@ void SinglePlayerLevel::Initialize()
 	{
 		GameObject* const singlePlayerObject = new GameObject();
 		TextComponent* const singlePlayerText = new TextComponent(singlePlayerObject, "Change to" , QBertFont, { 255, 140, 0 });
-		TransformComponent* const singlePlayerTransform = new TransformComponent(singlePlayerObject, 20, 60, 0);
+		TransformComponent* const singlePlayerTransform = new TransformComponent(singlePlayerObject, 20, 60);
 		singlePlayerObject->AddComponent(singlePlayerTransform);
 		singlePlayerObject->AddComponent(singlePlayerText);
 		Add(singlePlayerObject);
@@ -94,7 +94,7 @@ void SinglePlayerLevel::Initialize()
 
 		SpriteComponent* pSpriteComponent = new SpriteComponent(CubeObject,"QBertTextures.png", { posX,posY,width,height }, 7);
 		pSpriteComponent->Scale(1.6f);
-		TransformComponent* const singlePlayerTransform = new TransformComponent(CubeObject, 75, 88, 0);
+		TransformComponent* const singlePlayerTransform = new TransformComponent(CubeObject, 75, 88);
 		//CubeObject->AddComponent(pTextureComponent);
 		CubeObject->AddComponent(pSpriteComponent);
 		CubeObject->AddComponent(singlePlayerTransform);

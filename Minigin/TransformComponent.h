@@ -8,11 +8,12 @@ namespace Horizon
 	class TransformComponent final : public Component
 	{
 	public:
-		TransformComponent(GameObject* parent, int x, int y, int z);
-		const IPoint3& GetPosition() const;
-		void SetPosition(int x, int y, int z);
-		void Move(int x, int y, int z);
+		TransformComponent(GameObject* parent, int x, int y);
+		const IPoint2& GetPosition() const;
+		void SetPosition(int x, int y);
+		void SetPosition(const IPoint2& pos);
+		void Move(int x, int y);
 	private:
-		IPoint3 m_Position;
+		IPoint2 m_Position;
 	};
 }

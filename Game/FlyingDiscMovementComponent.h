@@ -18,9 +18,8 @@ private:
 	void Update() override;
 
 	Horizon::TransformComponent* m_pTransformComponent = nullptr;
-
-	Horizon::IPoint2 m_DesiredPos;
 	Horizon::IPoint2 m_OriginalPos;
+
 	float m_ElapsedTime;
 	int m_Turns;
 	bool m_IsActive;

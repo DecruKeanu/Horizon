@@ -35,7 +35,12 @@
 
 #include <vld.h>
 #include <Structs.h>
-#include "Logger.h"
+
+//Own files
+#include <Structs.h>
+#include <MathHelper.h>
+#include <Logger.h>
+#include <IPoint2Operators.h>
 
 //credit to Rhidian De Wit
 template<typename Type>

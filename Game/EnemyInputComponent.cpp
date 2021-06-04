@@ -1,21 +1,15 @@
 #include "GamePCH.h"
 #include "EnemyInputComponent.h"
-#include <TimedFunction.h>
+#include <TimedFunctionComponent.h>
 #include <Timer.h>
 
 EnemyInputComponent::EnemyInputComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& movementDirection) : Component(pParent),
 m_MovementDirection{ movementDirection },
 m_Move{},
-m_Moves{},
+m_StepsTaken{},
 m_CanMoveBeUpdated{}
 {
 
-}
-
-EnemyInputComponent::~EnemyInputComponent()
-{
-	Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
-	SafeDelete(m_pTimedFunction);
 }
 
 const Horizon::IPoint2& EnemyInputComponent::GetMove()
@@ -33,12 +27,17 @@ void EnemyInputComponent::EnableMovement()
 	m_pTimedFunction->Activate();
 }
 
+int EnemyInputComponent::GetStepsTaken() const
+{
+	return m_StepsTaken;
+}
+
 void EnemyInputComponent::Initialize()
 {
-	m_pTimedFunction = new Horizon::TimedFunction(true, 1.f);
+	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject,true, 1.f);
 	m_pTimedFunction->SetTimerFunction([this](float)
 		{
-			m_Moves++;
+
 
 			m_CanMoveBeUpdated = !m_CanMoveBeUpdated;
 
@@ -48,14 +47,12 @@ void EnemyInputComponent::Initialize()
 				return;
 			}
 
+			m_StepsTaken++;
 			const int randomMove = (rand() % 2) ? 1 : -1;
 			m_Move.x = (m_MovementDirection.x == 0) ? randomMove : m_MovementDirection.x;
 			m_Move.y = (m_MovementDirection.y == 0) ? randomMove : m_MovementDirection.y;
-
-			if (m_MovementDirection.x != 0)
-				m_MovementDirection.y = (m_MovementDirection.y != 0 && m_Moves > 3) ? 0 : m_MovementDirection.y;
 		});
 	EnableMovement();
-	Horizon::Timer::GetInstance().AddTimedFunction(m_pTimedFunction);
+	m_pGameObject->AddComponent(m_pTimedFunction);
 }
 

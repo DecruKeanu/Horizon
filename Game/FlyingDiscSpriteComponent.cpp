@@ -2,7 +2,7 @@
 #include "FlyingDiscSpriteComponent.h"
 #include <SpriteComponent.h>
 #include <Timer.h>
-#include <TimedFunction.h>
+#include <TimedFunctionComponent.h>
 
 FlyingDiscSpriteComponent::FlyingDiscSpriteComponent(Horizon::GameObject* pParent, const std::string& textureName, const SDL_Rect& srcRect) : Component(pParent)
 {
@@ -10,23 +10,19 @@ FlyingDiscSpriteComponent::FlyingDiscSpriteComponent(Horizon::GameObject* pParen
 	m_pSpriteComponent = new Horizon::SpriteComponent(m_pGameObject,textureName, srcRect, 4);
 	m_pSpriteComponent->Scale(2.f);
 	m_pGameObject->AddComponent(m_pSpriteComponent);
+
+	InitializeTimedFunction();
 }
 
-FlyingDiscSpriteComponent::~FlyingDiscSpriteComponent()
+void FlyingDiscSpriteComponent::InitializeTimedFunction()
 {
-	//Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
-	//SafeDelete(m_pTimedFunction);
-}
-
-void FlyingDiscSpriteComponent::Initialize()
-{
-	m_pTimedFunction = new Horizon::TimedFunction(true, 0.1f);
-	m_pTimedFunction->SetTimerFunction([this](float)
+	Horizon::TimedFunctionComponent* const pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject,true, 0.1f);
+	pTimedFunction->SetTimerFunction([this](float)
 		{
 			m_pSpriteComponent->NextSprite();
 		});
 
-	m_pTimedFunction->Activate();
-	Horizon::Timer::GetInstance().AddTimedFunction(m_pTimedFunction);
+	pTimedFunction->Activate();
+	m_pGameObject->AddComponent(pTimedFunction);
 }
 

@@ -2,7 +2,6 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "TriggerManager.h"
-#include "TimedFunction.h"
 #include "Timer.h"
 
 using namespace Horizon;
@@ -18,9 +17,6 @@ Scene::Scene(const std::string& name) :
 
 Scene::~Scene()
 {
-	for (TimedFunction*& pTimedFunction : Timer::GetInstance().GetTimedFunctions())
-		SafeDelete(pTimedFunction);
-
 	for (size_t idx{}; idx < m_pObjects.size(); idx++)
 		SafeDelete<GameObject>(m_pObjects[idx]);
 }

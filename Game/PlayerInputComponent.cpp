@@ -3,7 +3,7 @@
 #include "InputManager.h"
 #include <Command.h>
 #include "GameCommands.h"
-#include <TimedFunction.h>
+#include <TimedFunctionComponent.h>
 #include <Timer.h>
 using namespace Horizon;
 
@@ -50,13 +50,13 @@ void PlayerInputComponent::Initialize()
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_z, KeyboardButtonState::KeyDown, std::make_unique<MoveUpCommand>(m_Move, m_CanInputBeRegistered));
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_d, KeyboardButtonState::KeyDown, std::make_unique<MoveRightCommand>(m_Move, m_CanInputBeRegistered));
 
-	m_pTimedFunction = new Horizon::TimedFunction(false, 1.f);
+	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject,false, 1.f);
 	m_pTimedFunction->SetTimerFunction([this](float)
 		{
 			ResetInput();
 		});
 
-	Horizon::Timer::GetInstance().AddTimedFunction(m_pTimedFunction);
+	m_pGameObject->AddComponent(m_pTimedFunction);
 
 	//Horizon::TimedFunction* pTimedFunction = new Horizon::TimedFunction(false, 1.f);
 	//pTimedFunction->SetTimerFunction([this](float)

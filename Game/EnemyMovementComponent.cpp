@@ -11,10 +11,9 @@
 
 using namespace Horizon;
 
-EnemyMovementComponent::EnemyMovementComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& fallPoint, const Horizon::IPoint2 blockOffset, bool hopping) : Component(pParent),
+EnemyMovementComponent::EnemyMovementComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& fallPoint, bool IsMovementSideways) : Component(pParent),
 m_FallPoint{ fallPoint },
-m_BlockOffset{ blockOffset },
-m_Hopping{hopping},
+m_IsMovementSideways{ IsMovementSideways },
 m_OriginalPoint{},
 m_ElapsedTime{},
 m_IsEnemyOnFloor{},
@@ -43,17 +42,34 @@ void EnemyMovementComponent::Update()
 
 	m_ElapsedTime = std::min(1.f, m_ElapsedTime + Timer::GetInstance().GetDeltaTime());
 
-	const IPoint2 moveDistance = m_BlockOffset * move;
+	IPoint2 blockOffset = {};
+
+	if (m_IsMovementSideways == false)
+		blockOffset = { 32,48 };
+	else
+	{
+		if (move.y == -1)
+			blockOffset = { 64,0 };
+		else if (move.y == 1)
+			blockOffset = { 32,-48 };
+	}
+
+	const IPoint2 moveDistance = blockOffset * move;
 	const IPoint2 desiredPos = m_OriginalPoint + moveDistance;
 	const IPoint2 currentPos = MathHelper::IPoint2Lerp(m_OriginalPoint, desiredPos, m_ElapsedTime);
 
-	if (m_TilesEncountered == false && m_pTriggerComponent->GetOverlappingActorsSize() > 0)
+
+	if (m_pMovementComponent->GetStepsTaken() < 7)
+	{
+		m_TilesEncountered = true;
+	}
+	else if (m_TilesEncountered == false && m_pTriggerComponent->GetOverlappingActorsSize() > 0 && m_ElapsedTime > 0.5f)
 	{
 		m_TilesEncountered = true;
 	}
 
 
-	const int height = (m_Hopping) ? int(moveDistance.y * sinf(m_ElapsedTime * float(M_PI))) : 0;
+	const int height = (!m_IsMovementSideways) ? int(moveDistance.y * sinf(m_ElapsedTime * float(M_PI))) : 0;
 	m_pTransformComponent->SetPosition(currentPos.x, currentPos.y - height * move.y);
 
 	if (currentPos == desiredPos)

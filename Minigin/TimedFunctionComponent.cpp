@@ -1,8 +1,8 @@
 #include "MiniginPCH.h"
-#include "TimedFunction.h"
+#include "TimedFunctionComponent.h"
 #include "Timer.h"
 
-Horizon::TimedFunction::TimedFunction(bool isLooping, float maxTime) :
+Horizon::TimedFunctionComponent::TimedFunctionComponent(GameObject* pParent, bool isLooping, float maxTime) : Component(pParent),
 	m_IsLooping{isLooping},
 	m_MaxTime{maxTime},
 	m_ElapsedTime{},
@@ -12,24 +12,24 @@ Horizon::TimedFunction::TimedFunction(bool isLooping, float maxTime) :
 	m_TimerFunction = [](float) {};
 }
 
-void Horizon::TimedFunction::SetTimerFunction(const TimerFunction& timerFunction)
+void Horizon::TimedFunctionComponent::SetTimerFunction(const TimerFunction& timerFunction)
 {
 	m_TimerFunction = timerFunction;
 }
 
-void Horizon::TimedFunction::Activate()
+void Horizon::TimedFunctionComponent::Activate()
 {
 	m_ElapsedTime = 0.f;
 	m_IsActive = true;
 }
 
-void Horizon::TimedFunction::Deactivate()
+void Horizon::TimedFunctionComponent::Deactivate()
 {
 	m_IsActive = false;
 	m_ElapsedTime = 0.f;
 }
 
-void Horizon::TimedFunction::Update()
+void Horizon::TimedFunctionComponent::Update()
 {
 	if (m_IsActive == false)
 		return;

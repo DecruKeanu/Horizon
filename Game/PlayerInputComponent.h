@@ -4,7 +4,7 @@
 namespace Horizon
 {
 	class GameObject;
-	class TimedFunction;
+	class TimedFunctionComponent;
 }
 
 class PlayerInputComponent final : public Horizon::Component
@@ -23,6 +23,6 @@ private:
 
 	bool m_CanInputBeRegistered;
 	Horizon::IPoint2 m_Move;
-	Horizon::TimedFunction* m_pTimedFunction = nullptr;
+	Horizon::TimedFunctionComponent* m_pTimedFunction = nullptr;
 };
 

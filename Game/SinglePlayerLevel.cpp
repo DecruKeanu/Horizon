@@ -12,7 +12,7 @@
 #include "Command.h"
 #include <TextureComponent.h>
 #include <SpriteComponent.h>
-#include <TimedFunction.h>
+#include <TimedFunctionComponent.h>
 #include <HealthComponent.h>
 #include <ScoreComponent.h>
 #include <ScoreDisplayComponent.h>
@@ -29,16 +29,6 @@ m_LevelType{ levelType },
 m_LevelCompleted{},
 m_SwitchToNewLevel{}
 {
-
-}
-
-SinglePlayerLevel::~SinglePlayerLevel()
-{
-	//Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
-	//SafeDelete(m_pTimedFunction);
-
-	//Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedPlayerFunction);
-	//SafeDelete(m_pTimedPlayerFunction);
 
 }
 
@@ -75,16 +65,18 @@ void SinglePlayerLevel::Initialize()
 		TransformComponent* const pPlayerSpriteTransform = new TransformComponent(pPlayerSpriteObject, 20, 20);
 		pPlayerSpriteObject->AddComponent(pPlayerSpriteTransform);
 		pPlayerSpriteObject->AddComponent(pPlayerSprite);
-		Add(pPlayerSpriteObject);
 
-		m_pTimedPlayerFunction = new TimedFunction(true, 0.1f);
 
-		m_pTimedPlayerFunction->SetTimerFunction([pPlayerSprite](float)
+		TimedFunctionComponent* const pTimedFunction = new TimedFunctionComponent(pPlayerSpriteObject,true, 0.1f);
+
+		pTimedFunction->SetTimerFunction([pPlayerSprite](float)
 			{
 				pPlayerSprite->NextSprite();
 			});
-		m_pTimedPlayerFunction->Activate();
-		Timer::GetInstance().AddTimedFunction(m_pTimedPlayerFunction);
+		pTimedFunction->Activate();
+		pPlayerSpriteObject->AddComponent(pTimedFunction);
+
+		Add(pPlayerSpriteObject);
 	}
 
 	{
@@ -206,11 +198,13 @@ void SinglePlayerLevel::Initialize()
 
 		GetGameObject("Qbert")->GetComponent<HealthComponent>()->AddObserver(new HealthDisplayObserver(QHealthScoreDisplayComponent));
 
-		SceneManager::GetInstance().GetActiveScene()->Add(QBertHealthDisplay);
+		Add(QBertHealthDisplay);
 	}
 
 	{
-		m_pTimedFunction = new TimedFunction(true, 0.1f);
+		GameObject* const pCubesSwitch = new GameObject();
+
+		m_pTimedFunction = new TimedFunctionComponent(pCubesSwitch,true, 0.1f);
 
 		m_pTimedFunction->SetTimerFunction([this](float totalTime)
 			{
@@ -223,7 +217,9 @@ void SinglePlayerLevel::Initialize()
 					m_SwitchToNewLevel = true;
 			});
 
-		Timer::GetInstance().AddTimedFunction(m_pTimedFunction);
+		pCubesSwitch->AddComponent(m_pTimedFunction);
+
+		Add(pCubesSwitch);
 	}
 }
 

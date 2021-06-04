@@ -10,48 +10,46 @@
 #include "FPS.h"
 
 #include "Timer.h"
-#include "TimedFunction.h"
+#include "TimedFunctionComponent.h"
 
 size_t Horizon::GameObject::m_LastId{};
 
-Horizon::GameObject::GameObject() : 
+Horizon::GameObject::GameObject() :
 	m_Identifier{ "NoIdentifier" },
-	m_Id{m_LastId++},
-	m_IsActive{true}
-{
-
-}
-
-Horizon::GameObject::GameObject(const std::string& identifier):
-	m_Identifier{identifier},
 	m_Id{ m_LastId++ },
-	m_IsActive{true}
+	m_IsActive{ true }
 {
 
 }
 
-Horizon::GameObject::GameObject(const std::string& identifier, float activationTime) : 
+Horizon::GameObject::GameObject(const std::string& identifier) :
+	m_Identifier{ identifier },
+	m_Id{ m_LastId++ },
+	m_IsActive{ true }
+{
+
+}
+
+Horizon::GameObject::GameObject(const std::string& identifier, float activationTime) :
 	m_Identifier{ identifier },
 	m_Id{ m_LastId++ },
 	m_IsActive{ false }
 {
-	m_pTimedFunction = new TimedFunction(false, activationTime);
+	m_pTimedFunction = new TimedFunctionComponent(this, false, activationTime);
 
 	m_pTimedFunction->SetTimerFunction([this](float)
 		{
 			Activate();
 		});
 	m_pTimedFunction->Activate();
-	Timer::GetInstance().AddTimedFunction(m_pTimedFunction);
+
+	AddComponent(m_pTimedFunction);
 }
 
 Horizon::GameObject::~GameObject()
 {
 	for (Component* const pComponent : m_pObjectComponents)
 		SafeDelete(pComponent);
-
-	//Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
-	//SafeDelete(m_pTimedFunction);
 }
 
 void Horizon::GameObject::Initialize()
@@ -71,6 +69,9 @@ void Horizon::GameObject::FixedUpdate()
 
 void Horizon::GameObject::Update()
 {
+	if (m_pTimedFunction)
+		m_pTimedFunction->Update();
+
 	if (!m_IsActive)
 		return;
 

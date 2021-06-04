@@ -4,7 +4,7 @@
 
 namespace Horizon
 {
-	class TimedFunction;
+	class TimedFunctionComponent;
 }
 
 
@@ -14,15 +14,13 @@ class SinglePlayerLevel final : public Horizon::Scene
 {
 public:
 	SinglePlayerLevel(int level, const LevelType& levelType);
-	~SinglePlayerLevel();
 private:
 	void Initialize() override;
 	void Update() override;
 	int m_Level;
 	const LevelType m_LevelType;
 	std::vector<CubeHandleComponent*> m_pCubeHandles;
-	Horizon::TimedFunction* m_pTimedFunction = nullptr;
-	Horizon::TimedFunction* m_pTimedPlayerFunction = nullptr;
+	Horizon::TimedFunctionComponent* m_pTimedFunction = nullptr;
 
 	bool m_LevelCompleted;
 	bool m_SwitchToNewLevel;

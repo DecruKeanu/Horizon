@@ -5,7 +5,7 @@ namespace Horizon
 {
 	class Texture2D;
 	class Component;
-	class TimedFunction;
+	class TimedFunctionComponent;
 
 	class GameObject final
 	{
@@ -39,7 +39,7 @@ namespace Horizon
 		void Activate();
 		void Deactivate();
 	private:
-		TimedFunction* m_pTimedFunction = nullptr;
+		TimedFunctionComponent* m_pTimedFunction = nullptr;
 		std::vector<Component*> m_pObjectComponents;
 		std::string m_Identifier;
 		const size_t m_Id;

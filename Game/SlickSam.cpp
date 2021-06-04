@@ -24,8 +24,9 @@ Horizon::GameObject* SlickSam::GetGameObject() const
 
 void SlickSam::Initialize()
 {
+	const int fallHeight = 140;
 	int positionX = m_Value["positionX"].GetInt();
-	int positionY = m_Value["positionY"].GetInt() - 200;
+	int positionY = m_Value["positionY"].GetInt() - fallHeight;
 	const std::string type = m_Value["type"].GetString();
 	const int srcPosX = 0;
 	const int srcPosY = (type == "Slick") ? 128 : 144;
@@ -41,7 +42,7 @@ void SlickSam::Initialize()
 
 	EnemySpriteComponent* const pSpriteComponent = new EnemySpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth * 8, srcHeight });
 	TransformComponent* const pSlickSamTransform = new TransformComponent(pGameObject, positionX, positionY);
-	EnemyMovementComponent* const pMovementComponent = new EnemyMovementComponent(pGameObject, IPoint2{ positionX,positionY + 200 }, false);
+	EnemyMovementComponent* const pMovementComponent = new EnemyMovementComponent(pGameObject, IPoint2{ positionX,positionY + fallHeight }, false);
 	EnemyInputComponent* const pInputComponent = new EnemyInputComponent(pGameObject, {0,1});
 
 	TriggerComponent* const pTriggerBodyComponent = new TriggerComponent(pGameObject, { 0 ,14, int(scale * srcWidth), int(scale * srcHeight) - 14 });

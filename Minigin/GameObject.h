@@ -32,7 +32,7 @@ namespace Horizon
 		template <typename T>
 		std::vector<T*> GetComponents() const;
 
-		const std::string& GetIdentifier();
+		const std::string& GetIdentifier() const;
 		bool Equals(GameObject* pOther) const;
 
 		bool GetIsActive() const;

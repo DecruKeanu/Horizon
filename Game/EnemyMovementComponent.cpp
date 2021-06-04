@@ -48,16 +48,9 @@ void EnemyMovementComponent::Update()
 		blockOffset = { 32,48 };
 	else
 	{
-		if (move.y == -1)
-			blockOffset = { 64,0 };
-		else if (move.y == 1)
-			blockOffset = { 32,-48 };
+		//Calculates the blockoffset when Escheresque movement is wanted
+		blockOffset = (move.y == -1) ? Horizon::IPoint2{ 64, 0 } : (move.y == 1) ? Horizon::IPoint2{ 32,-48 } : Horizon::IPoint2{};
 	}
-
-	const IPoint2 moveDistance = blockOffset * move;
-	const IPoint2 desiredPos = m_OriginalPoint + moveDistance;
-	const IPoint2 currentPos = MathHelper::IPoint2Lerp(m_OriginalPoint, desiredPos, m_ElapsedTime);
-
 
 	if (m_pMovementComponent->GetStepsTaken() < 7)
 	{
@@ -68,6 +61,9 @@ void EnemyMovementComponent::Update()
 		m_TilesEncountered = true;
 	}
 
+	const IPoint2 moveDistance = blockOffset * move;
+	const IPoint2 desiredPos = m_OriginalPoint + moveDistance;
+	const IPoint2 currentPos = MathHelper::IPoint2Lerp(m_OriginalPoint, desiredPos, m_ElapsedTime);
 
 	const int height = (!m_IsMovementSideways) ? int(moveDistance.y * sinf(m_ElapsedTime * float(M_PI))) : 0;
 	m_pTransformComponent->SetPosition(currentPos.x, currentPos.y - height * move.y);
@@ -96,16 +92,13 @@ void EnemyMovementComponent::LetEnemyFall()
 
 	const IPoint2 desiredPos = m_FallPoint;
 
-	m_ElapsedTime = std::min(1.f, m_ElapsedTime + Timer::GetInstance().GetDeltaTime());
-	const IPoint2 currentPos = MathHelper::IPoint2Lerp(m_OriginalPoint, desiredPos, m_ElapsedTime);
+	m_ElapsedTime += Timer::GetInstance().GetDeltaTime();
 
-	m_pTransformComponent->SetPosition(currentPos);
-
-	if (currentPos.x == desiredPos.x && currentPos.y == desiredPos.y)
+	if (HelperFunctions::MoveToLerpedPos(m_OriginalPoint, m_FallPoint, m_ElapsedTime, m_pTransformComponent))
 	{
 		m_pMovementComponent->EnableMovement();
 		m_ElapsedTime = 0.f;
-		m_OriginalPoint = { desiredPos.x, desiredPos.y };
+		m_OriginalPoint = m_FallPoint;
 		m_IsEnemyOnFloor = true;
 	}
 }

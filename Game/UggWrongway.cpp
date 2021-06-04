@@ -32,16 +32,15 @@ void UggWrongway::Initialize()
 	const int srcWidth = 128;
 	const int srcHeight = 16;
 	const float scale = 2.f;
-	const int fallOffset = (type == "Ugg") ? 200 : -200;
+	const int fallHeight = (type == "Ugg") ? 200 : -200;
 	const int movementDirectionX = (type == "Ugg") ? -1 : 1;
 
 	GameObject* const pGameObject = new GameObject("UggWrongway", 1.f/*float(rand() % 10 + 20)*/);
 
 	EnemySpriteComponent* const pSpriteComponent = new EnemySpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth, srcHeight });
-	TransformComponent* const pSlickSamTransform = new TransformComponent(pGameObject, positionX + fallOffset, positionY);
+	TransformComponent* const pSlickSamTransform = new TransformComponent(pGameObject, positionX + fallHeight, positionY);
 	EnemyMovementComponent* const pMovementComponent = new EnemyMovementComponent(pGameObject, IPoint2{ positionX,positionY }, true);
 	EnemyInputComponent* const pInputComponent = new EnemyInputComponent(pGameObject, IPoint2{ movementDirectionX,0 });
-
 	TriggerComponent* const pTriggerBodyComponent = new TriggerComponent(pGameObject, { 0 ,0, int(scale * 128 / 8), int(scale * srcHeight) });
 
 	pGameObject->AddComponent(pSpriteComponent);
@@ -49,7 +48,6 @@ void UggWrongway::Initialize()
 	pGameObject->AddComponent(pMovementComponent);
 	pGameObject->AddComponent(pInputComponent);
 	pGameObject->AddComponent(pTriggerBodyComponent);
-
 
 	m_pGameObject = pGameObject;
 }

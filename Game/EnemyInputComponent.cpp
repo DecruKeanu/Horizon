@@ -37,8 +37,6 @@ void EnemyInputComponent::Initialize()
 	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject,true, 1.f);
 	m_pTimedFunction->SetTimerFunction([this](float)
 		{
-
-
 			m_CanMoveBeUpdated = !m_CanMoveBeUpdated;
 
 			if (!m_CanMoveBeUpdated)
@@ -52,6 +50,7 @@ void EnemyInputComponent::Initialize()
 			m_Move.x = (m_MovementDirection.x == 0) ? randomMove : m_MovementDirection.x;
 			m_Move.y = (m_MovementDirection.y == 0) ? randomMove : m_MovementDirection.y;
 		});
+
 	EnableMovement();
 	m_pGameObject->AddComponent(m_pTimedFunction);
 }

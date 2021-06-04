@@ -52,7 +52,7 @@ const Horizon::IRect& Horizon::TriggerComponent::GetCollisionRect() const
 	return m_CollisionRect;
 }
 
-const size_t Horizon::TriggerComponent::GetOverlappingActorsSize()
+const size_t Horizon::TriggerComponent::GetOverlappingActorsSize() const
 {
 	return m_pOverlappingActors.size();
 }

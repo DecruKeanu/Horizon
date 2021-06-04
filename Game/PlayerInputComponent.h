@@ -11,7 +11,6 @@ class PlayerInputComponent final : public Horizon::Component
 {
 public:
 	PlayerInputComponent(Horizon::GameObject* parent);
-	~PlayerInputComponent();
 	void ResetInput();
 	bool GetCanInputBeRegistered();
 	void DeactivateInput();

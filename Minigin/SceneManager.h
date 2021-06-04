@@ -11,7 +11,7 @@ namespace Horizon
 		void AddScene(Scene* pScene);
 		void RemoveScene(Scene* pScene);
 		void SetActiveScene(Scene* pScene);
-		Scene* GetActiveScene();
+		Scene* GetActiveScene() const;
 		void NextScene();
 		//void PreviousScene();
 		void Initialize();

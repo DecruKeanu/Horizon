@@ -21,7 +21,7 @@ namespace Horizon
 
 		template <typename T>
 		void RegisterPrefab();
-		GameObject* GetPrefab(const rapidjson::Value& jsonValue);
+		GameObject* GetPrefab(const rapidjson::Value& jsonValue) const;
 	private:
 		template <typename T>
 		static GameObject* DefaultAllocator(const rapidjson::Value& jsonObject);

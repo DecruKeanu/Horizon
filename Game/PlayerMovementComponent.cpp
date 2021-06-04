@@ -54,7 +54,7 @@ void PlayerMovementComponent::Update()
 	const int height = int(moveDistance.y * sinf(m_ElapsedTime * float(M_PI)));
 	m_pTransformComponent->SetPosition(currentPos.x, currentPos.y - height * move.y);
 
-	if (currentPos == desiredPos)
+	if (currentPos.x == desiredPos.x && currentPos.y == currentPos.y)
 	{
 		m_ElapsedTime = 0.f;
 		m_OriginalPoint += moveDistance;
@@ -90,15 +90,12 @@ void PlayerMovementComponent::FallingOfFlyingDisc()
 
 	const IPoint2 desiredPos = { 307,57 };
 
-	m_ElapsedTime = std::min(1.f, m_ElapsedTime + Timer::GetInstance().GetDeltaTime());
-	const IPoint2 currentPos = MathHelper::IPoint2Lerp(m_OriginalPoint, desiredPos, m_ElapsedTime);
+	m_ElapsedTime += Timer::GetInstance().GetDeltaTime();
 
-	m_pTransformComponent->SetPosition(currentPos);
-
-	if (currentPos == desiredPos)
+	if (HelperFunctions::MoveToLerpedPos(m_OriginalPoint, desiredPos,m_ElapsedTime,m_pTransformComponent))
 	{
 		m_ElapsedTime = 0.f;
-		m_OriginalPoint = { desiredPos.x, desiredPos.y };
+		m_OriginalPoint = desiredPos;
 		m_IsFallingOfFlyingDisc = false;
 	}
 }

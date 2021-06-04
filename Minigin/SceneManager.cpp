@@ -77,7 +77,7 @@ void Horizon::SceneManager::SetActiveScene(Scene* pScene)
 	}
 }
 
-Horizon::Scene* Horizon::SceneManager::GetActiveScene()
+Horizon::Scene* Horizon::SceneManager::GetActiveScene() const
 {
 	return m_pActiveScene;
 }

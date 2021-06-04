@@ -41,6 +41,7 @@
 #include <MathHelper.h>
 #include <Logger.h>
 #include <IPoint2Operators.h>
+#include "HelperFunctions.h"
 
 //credit to Rhidian De Wit
 template<typename Type>

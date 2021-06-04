@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "PrefabFactory.h"
 
-Horizon::GameObject* Horizon::PrefabFactory::GetPrefab(const rapidjson::Value& jsonValue)
+Horizon::GameObject* Horizon::PrefabFactory::GetPrefab(const rapidjson::Value& jsonValue) const
 {
 	const std::string className = jsonValue["class"].GetString();
 

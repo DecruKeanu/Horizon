@@ -36,7 +36,7 @@ namespace Horizon
 		void OverlapsWith(TriggerComponent* pOtherTrigger);
 
 		const Horizon::IRect& GetCollisionRect() const;
-		const size_t GetOverlappingActorsSize();
+		const size_t GetOverlappingActorsSize() const;
 	private:
 		void Initialize() override;
 		void Update() override;

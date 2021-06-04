@@ -84,7 +84,7 @@ void Scene::RootRender() const
 	}
 }
 
-GameObject* Horizon::Scene::GetGameObject(const std::string& identifier)
+GameObject* Horizon::Scene::GetGameObject(const std::string& identifier) const
 {
 	for (GameObject* const pGameObject : m_pObjects)
 	{
@@ -96,7 +96,7 @@ GameObject* Horizon::Scene::GetGameObject(const std::string& identifier)
 	return nullptr;
 }
 
-std::vector<GameObject*> Horizon::Scene::GetGameObjects(const std::string& identifier)
+std::vector<GameObject*> Horizon::Scene::GetGameObjects(const std::string& identifier) const
 {
 	std::vector<GameObject*> pIdentifierObjects{};
 

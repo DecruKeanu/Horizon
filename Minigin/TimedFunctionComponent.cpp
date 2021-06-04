@@ -41,10 +41,7 @@ void Horizon::TimedFunctionComponent::Update()
 	{
 		m_TimerFunction(m_TotalTime);
 
-		if (m_IsLooping)
-			Activate();
-		else
-			Deactivate();
+		(m_IsLooping) ? Activate() : Deactivate();
 	}
 
 }

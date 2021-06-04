@@ -9,7 +9,7 @@ Horizon::GameObject* Horizon::Component::GetParent() const
 	return m_pGameObject;
 }
 
-const std::string& Horizon::Component::GetIdentifier()
+const std::string& Horizon::Component::GetIdentifier() const
 {
 	return m_Identifier;
 }

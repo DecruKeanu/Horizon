@@ -14,12 +14,6 @@ m_Move{}
 
 }
 
-PlayerInputComponent::~PlayerInputComponent()
-{
-	//Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
-	//SafeDelete(m_pTimedFunction);
-}
-
 void PlayerInputComponent::ResetInput()
 {
 	m_CanInputBeRegistered = true;
@@ -45,36 +39,29 @@ const IPoint2& PlayerInputComponent::GetMove()
 
 void PlayerInputComponent::Initialize()
 {
-	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_s, KeyboardButtonState::KeyDown, std::make_unique<MoveDownCommand>(m_Move,m_CanInputBeRegistered));
+	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_s, KeyboardButtonState::KeyDown, std::make_unique<MoveDownCommand>(m_Move, m_CanInputBeRegistered));
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_q, KeyboardButtonState::KeyDown, std::make_unique<MoveLeftCommand>(m_Move, m_CanInputBeRegistered));
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_z, KeyboardButtonState::KeyDown, std::make_unique<MoveUpCommand>(m_Move, m_CanInputBeRegistered));
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_d, KeyboardButtonState::KeyDown, std::make_unique<MoveRightCommand>(m_Move, m_CanInputBeRegistered));
 
-	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject,false, 1.f);
+	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, false, 1.f);
 	m_pTimedFunction->SetTimerFunction([this](float)
 		{
 			ResetInput();
 		});
 
 	m_pGameObject->AddComponent(m_pTimedFunction);
-
-	//Horizon::TimedFunction* pTimedFunction = new Horizon::TimedFunction(false, 1.f);
-	//pTimedFunction->SetTimerFunction([this](float)
-	//	{
-	//		ResetInput();
-	//	});
-
-	//Horizon::Timer::GetInstance().AddTimedFunction(pTimedFunction);
 }
 
 void PlayerInputComponent::Update()
 {
-	if (m_CanInputBeRegistered)
+	if (!m_CanInputBeRegistered)
+		return;
+
+	if (m_Move != IPoint2{ 0, 0 })
 	{
-		if (m_Move != IPoint2{0, 0})
-		{
-			m_CanInputBeRegistered = false;
-			m_pTimedFunction->Activate();
-		}
+		m_CanInputBeRegistered = false;
+		m_pTimedFunction->Activate();
 	}
+
 }

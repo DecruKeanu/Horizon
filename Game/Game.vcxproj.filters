@@ -102,6 +102,9 @@
     <ClCompile Include="UggWrongway.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="HelperFunctions.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoScene.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="UggWrongway.h">
       <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="HelperFunctions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

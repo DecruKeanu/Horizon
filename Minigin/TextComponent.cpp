@@ -35,7 +35,7 @@ void Horizon::TextComponent::Update()
 {
 	if (m_NeedsUpdate)
 	{
-		const SDL_Color color = { m_textColor.r,m_textColor.g,m_textColor.b }; // only white text is supported now
+		const SDL_Color color = { m_textColor.r,m_textColor.g,m_textColor.b };
 		const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), color);
 		if (surf == nullptr)
 		{

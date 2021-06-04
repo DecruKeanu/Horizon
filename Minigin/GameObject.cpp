@@ -102,7 +102,7 @@ void Horizon::GameObject::AddComponent(Component* component)
 	m_pObjectComponents.push_back(component);
 }
 
-const std::string& Horizon::GameObject::GetIdentifier()
+const std::string& Horizon::GameObject::GetIdentifier() const
 {
 	return m_Identifier;
 }

@@ -3,7 +3,7 @@ struct SDL_Window;
 
 namespace Horizon
 {
-	class Minigin
+	class Horizon
 	{
 	public:
 		void Initialize();

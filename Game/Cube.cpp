@@ -8,6 +8,7 @@
 #include <SpriteComponent.h>
 #include "CubeHandleComponent.h"
 #include "TriggerComponent.h"
+#include <ScoreComponent.h>
 #include <Scene.h>
 
 using namespace Horizon;
@@ -42,13 +43,20 @@ void Cube::Initialize()
 	SpriteComponent* const pSpriteComponent = new SpriteComponent(pGameObject,"QBertTextures.png", srcRect, spriteAmount);
 	pSpriteComponent->Scale(scale);
 	TransformComponent* const blockTransform = new TransformComponent(pGameObject, positionX, positionY);
-	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { 20,10, 20, int(srcRect.w / 8) });
+	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { 20,6, 20, 10 });
 
-	pTriggerComponent->SetOnTriggerCallBack([pHandleCubeComponent](GameObject*, GameObject*, TriggerComponent::TriggerAction triggerAction, const std::string& overlappedTriggerIdentifier)
+	pTriggerComponent->SetOnTriggerCallBack([pHandleCubeComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, const std::string& overlappedTriggerIdentifier)
 		{
-			if (triggerAction == TriggerComponent::TriggerAction::Enter && overlappedTriggerIdentifier == "FeetTrigger")
+			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "Qbert" &&  overlappedTriggerIdentifier == "FeetTrigger")
 			{
+				if (pHandleCubeComponent->GetisActivated() == false && pOverlappedGameObject->GetComponent<ScoreComponent>())
+					pOverlappedGameObject->GetComponent<ScoreComponent>()->IncreaseScore(25);
+
 				pHandleCubeComponent->ActivateCube();
+			}
+			else if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "SlickSam")
+			{
+				pHandleCubeComponent->DeactivateCube();
 			}
 		});
 

@@ -5,12 +5,14 @@ namespace Horizon
 {
 	class Texture2D;
 	class Component;
+	class TimedFunction;
 
 	class GameObject final
 	{
 	public:
 		GameObject();
 		GameObject(const std::string& identifier);
+		GameObject(const std::string& identifier, float activationTime);
 		~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
@@ -34,8 +36,10 @@ namespace Horizon
 		bool Equals(GameObject* pOther) const;
 
 		bool GetIsActive() const;
+		void Activate();
 		void Deactivate();
 	private:
+		TimedFunction* m_pTimedFunction = nullptr;
 		std::vector<Component*> m_pObjectComponents;
 		std::string m_Identifier;
 		const size_t m_Id;

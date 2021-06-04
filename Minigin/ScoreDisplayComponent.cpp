@@ -12,12 +12,14 @@ void Horizon::ScoreDisplayComponent::Initialize()
 {
 	m_pParentTextComponent = m_pGameObject->GetComponent<TextComponent>();
 
-	m_StartText = m_pParentTextComponent->GetText();
-	m_pParentTextComponent->SetText(m_StartText + std::to_string(0));
+	m_pParentTextComponent->SetText(std::to_string(0));
 }
 
 void Horizon::ScoreDisplayComponent::ScoreIncreased(int score) const
 {
-	m_pParentTextComponent->SetText(m_StartText + std::to_string(score));
+	if (m_pParentTextComponent == nullptr)
+		return;
+
+	m_pParentTextComponent->SetText(std::to_string(score));
 }
 

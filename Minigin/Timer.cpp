@@ -3,6 +3,11 @@
 #include "TimedFunction.h"
 using namespace std::chrono;
 
+Horizon::Timer::~Timer()
+{
+	Logger::LogError("");
+}
+
 void Horizon::Timer::UpdateLastTime()
 {
 	m_LastTime = high_resolution_clock::now();
@@ -58,6 +63,9 @@ void Horizon::Timer::AddTimedFunction(TimedFunction* pTimedFunction)
 
 void Horizon::Timer::RemoveTimedFunction(TimedFunction* pTimedFunction)
 {
+	if (pTimedFunction == nullptr)
+		return;
+
 	const auto it = std::find(m_pTimedFunctions.begin(), m_pTimedFunctions.end(), pTimedFunction);
 
 	if (it != m_pTimedFunctions.end())
@@ -65,3 +73,10 @@ void Horizon::Timer::RemoveTimedFunction(TimedFunction* pTimedFunction)
 		m_pTimedFunctions.erase(it);
 	}
 }
+
+std::vector<Horizon::TimedFunction*>& Horizon::Timer::GetTimedFunctions()
+{
+	return m_pTimedFunctions;
+}
+
+

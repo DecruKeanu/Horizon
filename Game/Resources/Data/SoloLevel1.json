@@ -176,6 +176,30 @@
       "level": 1
     },
     {
+      "class": "SlickSam",
+      "positionX": 260,
+      "positionY": 120,
+      "type": "Slick"
+    },
+    {
+      "class": "SlickSam",
+      "positionX": 326,
+      "positionY": 120,
+      "type": "Sam"
+    },
+    {
+      "class": "UggWrongway",
+      "positionX": 520,
+      "positionY": 390,
+      "type": "Ugg"
+    },
+    {
+      "class": "UggWrongway",
+      "positionX": 94,
+      "positionY": 390,
+      "type": "Wrongway"
+    },
+    {
       "class": "QBert",
       "positionX": 292,
       "positionY": 72

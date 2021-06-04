@@ -32,6 +32,23 @@ void CubeHandleComponent::ActivateCube()
 	m_pSpriteComponent->NextSprite();
 }
 
+void CubeHandleComponent::DeactivateCube()
+{
+	if (!m_IsActivated)
+		return;
+
+	m_jumps--;
+
+	if (m_Level == 1)
+		m_IsActivated = false;
+	else if (m_Level == 2)
+		m_IsActivated = (m_jumps == 2);
+	else if (m_Level == 3)
+		m_IsActivated = m_jumps % 2;
+
+	m_pSpriteComponent->PreviousSprite();
+}
+
 bool CubeHandleComponent::GetisActivated() const
 {
 	return m_IsActivated;

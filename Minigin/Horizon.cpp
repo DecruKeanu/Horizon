@@ -1,22 +1,17 @@
 #include "MiniginPCH.h"
-#include "Minigin.h"
+#include "Horizon.h"
 #include <thread>
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
-#include "ResourceManager.h"
 #include "SDLSoundSystem.h"
 #include "SoundSystemServiceLocator.h"
-#include "GameObject.h"
 #include "Timer.h"
 #include "Command.h"
 #include "TriggerManager.h"
 #include <thread>
 
-using namespace std;
-using namespace std::chrono;
-
-void Horizon::Minigin::Initialize()
+void Horizon::Horizon::Initialize()
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
@@ -36,17 +31,17 @@ void Horizon::Minigin::Initialize()
 
 	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) < 0)
 	{
-		printf("Unable to open audio!\n");
+		Logger::LogError("Horizon::Initialize >> SDL_MIXER could not be initialized");
 		exit(1);
 	}
 
 	if (Mix_Init(MIX_INIT_MOD) != MIX_INIT_MOD)
-		std::cout << "error";
+		Logger::LogError("Horizon::Initialize >> SDL_MIXER could not be initialized");
 
 	SoundSystemServiceLocator::RegisterSoundSystem(new SDLSoundSystem());
 }
 
-void Horizon::Minigin::Cleanup()
+void Horizon::Horizon::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_pWindow);
@@ -58,7 +53,7 @@ void Horizon::Minigin::Cleanup()
 	SDL_Quit();
 }
 
-void Horizon::Minigin::Run() //no fpsCap because vsync does it automatically
+void Horizon::Horizon::Run() //no fpsCap because vsync does it automatically
 {
 	Initialize();
 	{

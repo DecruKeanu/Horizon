@@ -1,8 +1,6 @@
 #include "GamePCH.h"
-#include <iostream>
-#include <Minigin.h>
-#include <SDL_mixer.h>
-#include "SceneManager.h"
+#include <Horizon.h>
+#include <SceneManager.h>
 #include <ResourceManager.h>
 #include "DemoScene.h"
 #include "MainMenuScene.h"
@@ -10,6 +8,8 @@
 
 void InitializeGame()
 {
+	srand(unsigned int(time(NULL)));
+
 	// tell the resource manager where he can find the game data
 	Horizon::ResourceManager::GetInstance().Init("../Game/Resources/");
 
@@ -20,7 +20,7 @@ int main(int,char*[])
 {
 	InitializeGame();
 
-	Horizon::Minigin engine;
+	Horizon::Horizon engine;
 	engine.Run();
 	return 0;
 }

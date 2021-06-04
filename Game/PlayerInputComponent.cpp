@@ -8,15 +8,16 @@
 using namespace Horizon;
 
 PlayerInputComponent::PlayerInputComponent(Horizon::GameObject* parent) : Component(parent),
-m_CanInputBeRegistered{ true }
+m_CanInputBeRegistered{ true },
+m_Move{}
 {
 
 }
 
 PlayerInputComponent::~PlayerInputComponent()
 {
-	Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
-	SafeDelete(m_pTimedFunction);
+	//Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
+	//SafeDelete(m_pTimedFunction);
 }
 
 void PlayerInputComponent::ResetInput()
@@ -34,6 +35,7 @@ void PlayerInputComponent::DeactivateInput()
 {
 	m_CanInputBeRegistered = false;
 	m_pTimedFunction->Deactivate();
+	m_Move = {};
 }
 
 const IPoint2& PlayerInputComponent::GetMove()
@@ -55,6 +57,14 @@ void PlayerInputComponent::Initialize()
 		});
 
 	Horizon::Timer::GetInstance().AddTimedFunction(m_pTimedFunction);
+
+	//Horizon::TimedFunction* pTimedFunction = new Horizon::TimedFunction(false, 1.f);
+	//pTimedFunction->SetTimerFunction([this](float)
+	//	{
+	//		ResetInput();
+	//	});
+
+	//Horizon::Timer::GetInstance().AddTimedFunction(pTimedFunction);
 }
 
 void PlayerInputComponent::Update()

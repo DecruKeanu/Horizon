@@ -6,6 +6,7 @@ namespace Horizon
 	class TransformComponent;
 	class TriggerComponent;
 }
+
 class PlayerInputComponent;
 
 class PlayerMovementComponent final : public Horizon::Component

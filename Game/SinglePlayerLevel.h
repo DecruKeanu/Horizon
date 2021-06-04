@@ -22,6 +22,7 @@ private:
 	const LevelType m_LevelType;
 	std::vector<CubeHandleComponent*> m_pCubeHandles;
 	Horizon::TimedFunction* m_pTimedFunction = nullptr;
+	Horizon::TimedFunction* m_pTimedPlayerFunction = nullptr;
 
 	bool m_LevelCompleted;
 	bool m_SwitchToNewLevel;

@@ -10,6 +10,7 @@ namespace Horizon
 	class Timer final : public Singleton<Timer>
 	{
 	public:
+		~Timer();
 		void UpdateLastTime();
 		void Update();
 		void CalculateFPS();
@@ -20,7 +21,10 @@ namespace Horizon
 
 		void AddTimedFunction(TimedFunction* pTimedFunction);
 		void RemoveTimedFunction(TimedFunction* pTimedFunction);
+
+		std::vector<TimedFunction*>& GetTimedFunctions();
 	private:
+
 		std::chrono::steady_clock::time_point m_CurrentTime{};
 		std::chrono::steady_clock::time_point m_LastTime{};
 		float m_FPSTimer{};

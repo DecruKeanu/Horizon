@@ -34,6 +34,12 @@
     <Filter Include="Components\FlyingDisc">
       <UniqueIdentifier>{be15b89d-7dd8-4240-9796-c27ea7fb052d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Cubes">
+      <UniqueIdentifier>{51211986-f477-4b46-8ed7-805a6496d7dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Enemy">
+      <UniqueIdentifier>{0c54ad3f-3327-4152-82d8-0d8521f9a4ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -57,17 +63,11 @@
     <ClCompile Include="QBert.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="CubeHandleComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="SinglePlayerLevel.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="FlyingDisc.cpp">
       <Filter>Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="QbertSpriteComponent.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="PlayerInputComponent.cpp">
       <Filter>Components\Player</Filter>
@@ -80,6 +80,27 @@
     </ClCompile>
     <ClCompile Include="FlyingDiscSpriteComponent.cpp">
       <Filter>Components\FlyingDisc</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSpriteComponent.cpp">
+      <Filter>Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeHandleComponent.cpp">
+      <Filter>Components\Cubes</Filter>
+    </ClCompile>
+    <ClCompile Include="SlickSam.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyMovementComponent.cpp">
+      <Filter>Components\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyInputComponent.cpp">
+      <Filter>Components\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpriteComponent.cpp">
+      <Filter>Components\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="UggWrongway.cpp">
+      <Filter>Prefabs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,9 +125,6 @@
     <ClInclude Include="GameCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CubeHandleComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="SinglePlayerLevel.h">
       <Filter>Scenes</Filter>
     </ClInclude>
@@ -115,9 +133,6 @@
     </ClInclude>
     <ClInclude Include="FlyingDisc.h">
       <Filter>Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="QbertSpriteComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="PlayerMovementComponent.h">
       <Filter>Components\Player</Filter>
@@ -130,6 +145,27 @@
     </ClInclude>
     <ClInclude Include="FlyingDiscMovementComponent.h">
       <Filter>Components\FlyingDisc</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSpriteComponent.h">
+      <Filter>Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeHandleComponent.h">
+      <Filter>Components\Cubes</Filter>
+    </ClInclude>
+    <ClInclude Include="SlickSam.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyMovementComponent.h">
+      <Filter>Components\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyInputComponent.h">
+      <Filter>Components\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpriteComponent.h">
+      <Filter>Components\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="UggWrongway.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

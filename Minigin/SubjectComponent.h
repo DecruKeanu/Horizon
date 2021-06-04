@@ -12,6 +12,6 @@ namespace Horizon
 		void RemoveObserver(Observer* observer);
 		void Notify(const Event& event);
 	private:
-		std::vector<Observer*> m_Observers{nullptr };
+		std::vector<Observer*> m_Observers{};
 	};
 }

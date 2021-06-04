@@ -14,8 +14,8 @@ FlyingDiscSpriteComponent::FlyingDiscSpriteComponent(Horizon::GameObject* pParen
 
 FlyingDiscSpriteComponent::~FlyingDiscSpriteComponent()
 {
-	Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
-	SafeDelete(m_pTimedFunction);
+	//Horizon::Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
+	//SafeDelete(m_pTimedFunction);
 }
 
 void FlyingDiscSpriteComponent::Initialize()

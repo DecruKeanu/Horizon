@@ -12,6 +12,7 @@ class CubeHandleComponent final : public Horizon::Component
 public:
 	CubeHandleComponent(Horizon::GameObject* parent, int level);
 	void ActivateCube();
+	void DeactivateCube();
 	bool GetisActivated() const;
 	void SwitchSprite();
 private:

@@ -80,5 +80,5 @@ bool Horizon::operator==(const Horizon::IPoint2& lhs, const Horizon::IPoint2& rh
 
 bool Horizon::operator!=(const Horizon::IPoint2& lhs, const Horizon::IPoint2& rhs)
 {
-	return !(lhs.x == rhs.x && rhs.y == rhs.y);
+	return !(lhs == rhs);
 }

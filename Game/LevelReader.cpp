@@ -4,6 +4,8 @@
 #include "Cube.h"
 #include "QBert.h"
 #include "FlyingDisc.h"
+#include "SlickSam.h"
+#include "UggWrongway.h"
 #include "rapidjson.h"
 #include "document.h"
 #include "stream.h"
@@ -17,6 +19,8 @@ LevelReader::LevelReader() :
 	m_Factory.RegisterPrefab<Cube>();
 	m_Factory.RegisterPrefab<QBert>();
 	m_Factory.RegisterPrefab<FlyingDisc>();
+	m_Factory.RegisterPrefab<SlickSam>();
+	m_Factory.RegisterPrefab<UggWrongway>();
 }
 
 //class needs to include namespace and needs to be the same name as cpp 

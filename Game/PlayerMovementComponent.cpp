@@ -8,7 +8,6 @@
 #include "Timer.h"
 #include <SceneManager.h>
 #include <GameObject.h>
-#include <MathHelper.h>
 
 using namespace Horizon;
 
@@ -44,12 +43,12 @@ void PlayerMovementComponent::Update()
 		return;
 
 	const Horizon::IPoint2& move = m_pMovementComponent->GetMove();
+
 	m_ElapsedTime = std::min(1.f, m_ElapsedTime + Timer::GetInstance().GetDeltaTime());
 
 	const IPoint2 blockOffset = { 32, 48 };
 	const IPoint2 moveDistance = blockOffset * move;
 	const IPoint2 desiredPos = m_OriginalPoint + moveDistance;
-	//const IPoint2 desiredPos{ m_OriginalPoint.x + moveDistance.x, m_OriginalPoint.y + moveDistance.y };
 	const IPoint2 currentPos = MathHelper::IPoint2Lerp(m_OriginalPoint, desiredPos, m_ElapsedTime);
 
 	const int height = int(moveDistance.y * sinf(m_ElapsedTime * float(M_PI)));
@@ -60,7 +59,7 @@ void PlayerMovementComponent::Update()
 		m_ElapsedTime = 0.f;
 		m_OriginalPoint += moveDistance;
 
-		if (m_pTriggerComponent->GetOverlappingActorsSize() == 0)
+		if (m_pTriggerComponent->GetOverlappingActorsSize() == 0 && move.x != 0 && move.y != 0)
 			Logger::LogInfo("Player is in the void");
 	}
 }
@@ -74,7 +73,7 @@ void PlayerMovementComponent::PlayerOnFlyingDisc()
 	const IPoint2 desiredPos = { 310 + playerOffset.x,32 + playerOffset.y };
 
 	if (m_pTransformComponent->GetPosition() != desiredPos)
-		m_pTransformComponent->Move(m_pFlyingDiscTransformComponent->GetPosition().x + playerOffset.x, m_pFlyingDiscTransformComponent->GetPosition().y + playerOffset.y);
+		m_pTransformComponent->SetPosition(m_pFlyingDiscTransformComponent->GetPosition().x + playerOffset.x, m_pFlyingDiscTransformComponent->GetPosition().y + playerOffset.y);
 	else
 	{
 		m_ElapsedTime = 0.f;

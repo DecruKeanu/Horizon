@@ -13,9 +13,6 @@
     <Filter Include="Managers">
       <UniqueIdentifier>{a0da084d-26dc-432b-93e5-2105bc2526d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Minigin">
-      <UniqueIdentifier>{2b3ac2f1-d189-4b3f-bff2-4d7b9db4c4e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Helpers">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -25,6 +22,9 @@
     </Filter>
     <Filter Include="Rapidjson">
       <UniqueIdentifier>{a5b3e45c-5df0-473d-b847-42816e8ee2b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Horizon">
+      <UniqueIdentifier>{2b3ac2f1-d189-4b3f-bff2-4d7b9db4c4e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -116,25 +116,25 @@
       <Filter>Observers</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClInclude>
-    <ClInclude Include="Minigin.h">
-      <Filter>Minigin</Filter>
+    <ClInclude Include="Horizon.h">
+      <Filter>Horizon</Filter>
     </ClInclude>
     <ClInclude Include="MiniginPCH.h">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClInclude>
     <ClInclude Include="SoundSystem.h">
       <Filter>SoundSystem</Filter>
@@ -259,25 +259,25 @@
       <Filter>Observers</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClCompile>
-    <ClCompile Include="Minigin.cpp">
-      <Filter>Minigin</Filter>
+    <ClCompile Include="Horizon.cpp">
+      <Filter>Horizon</Filter>
     </ClCompile>
     <ClCompile Include="MiniginPCH.cpp">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClCompile>
     <ClCompile Include="Font.cpp">
-      <Filter>Minigin</Filter>
+      <Filter>Horizon</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Helpers</Filter>

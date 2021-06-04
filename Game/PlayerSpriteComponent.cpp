@@ -1,23 +1,23 @@
 #include "GamePCH.h"
-#include "QbertSpriteComponent.h"
+#include "PlayerSpriteComponent.h"
 #include <GameObject.h>
 #include <SpriteComponent.h>
 #include "PlayerInputComponent.h"
 
-QbertSpriteComponent::QbertSpriteComponent(Horizon::GameObject* pParent,const std::string& fileName, const SDL_Rect& srcRect) : Component(pParent),
+PlayerSpriteComponent::PlayerSpriteComponent(Horizon::GameObject* pParent,const std::string& fileName, const SDL_Rect& srcRect) : Component(pParent),
 m_CurrentSpriteNumber{ 5 }
 {
 	m_pSpriteComponent = new Horizon::SpriteComponent(m_pGameObject,fileName, srcRect, 8);
 	m_pGameObject->AddComponent(m_pSpriteComponent);
 }
 
-void QbertSpriteComponent::Initialize()
+void PlayerSpriteComponent::Initialize()
 {
 	m_pInputComponent = m_pGameObject->GetComponent<PlayerInputComponent>();
 	m_pSpriteComponent->Scale(2.f);
 }
 
-void QbertSpriteComponent::Update()
+void PlayerSpriteComponent::Update()
 {
 	const Horizon::IPoint2& move = m_pInputComponent->GetMove();
 

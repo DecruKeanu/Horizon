@@ -9,6 +9,9 @@
 #include "TextComponent.h"
 #include "FPS.h"
 
+#include "Timer.h"
+#include "TimedFunction.h"
+
 size_t Horizon::GameObject::m_LastId{};
 
 Horizon::GameObject::GameObject() : 
@@ -27,10 +30,28 @@ Horizon::GameObject::GameObject(const std::string& identifier):
 
 }
 
+Horizon::GameObject::GameObject(const std::string& identifier, float activationTime) : 
+	m_Identifier{ identifier },
+	m_Id{ m_LastId++ },
+	m_IsActive{ false }
+{
+	m_pTimedFunction = new TimedFunction(false, activationTime);
+
+	m_pTimedFunction->SetTimerFunction([this](float)
+		{
+			Activate();
+		});
+	m_pTimedFunction->Activate();
+	Timer::GetInstance().AddTimedFunction(m_pTimedFunction);
+}
+
 Horizon::GameObject::~GameObject()
 {
 	for (Component* const pComponent : m_pObjectComponents)
-		SafeDelete<Component>(pComponent);
+		SafeDelete(pComponent);
+
+	//Timer::GetInstance().RemoveTimedFunction(m_pTimedFunction);
+	//SafeDelete(m_pTimedFunction);
 }
 
 void Horizon::GameObject::Initialize()
@@ -93,6 +114,11 @@ bool Horizon::GameObject::Equals(GameObject* pOther) const
 bool Horizon::GameObject::GetIsActive() const
 {
 	return m_IsActive;
+}
+
+void Horizon::GameObject::Activate()
+{
+	m_IsActive = true;
 }
 
 void Horizon::GameObject::Deactivate()

@@ -8,6 +8,7 @@ Horizon::SubjectComponent::~SubjectComponent()
 		delete m_Observers[idx];
 		m_Observers[idx] = nullptr;
 	}
+	m_Observers.clear();
 }
 
 void Horizon::SubjectComponent::AddObserver(Observer* observer)

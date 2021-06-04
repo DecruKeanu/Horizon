@@ -4,6 +4,8 @@
 namespace Horizon
 {
 	class GameObject;
+	class ScoreComponent;
+	class HealthComponent;
 }
 
 class QBert final
@@ -13,7 +15,7 @@ public:
 	Horizon::GameObject* GetGameObject() const;
 private:
 	void Initialize();
-	//void FeetTriggerCallBack(GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, const std::string&);
+	void InitializeHealthDisplay(Horizon::HealthComponent* const pQbertHealth);
 
 	const rapidjson::Value& m_Value;
 	Horizon::GameObject* m_pGameObject;

@@ -49,7 +49,7 @@ void QBert::Initialize()
 	PlayerMovementComponent* const pMovementComponent = new PlayerMovementComponent(pGameObject);
 	PlayerInputComponent* const pInputComponent = new PlayerInputComponent(pGameObject);
 
-	TriggerComponent* const pTriggerBodyComponent = new TriggerComponent(pGameObject, "BodyTrigger", { 0 ,2, int(scale * srcWidth), int(scale * srcHeight) - 2 });
+	TriggerComponent* const pTriggerBodyComponent = new TriggerComponent(pGameObject, "BodyTrigger", { 4 ,10, int(scale * srcWidth) - 8, int(scale * srcHeight) - 10 });
 	TriggerComponent* const pTriggerFeetComponent = new TriggerComponent(pGameObject, "FeetTrigger", { int(srcWidth * 0.5f) ,int(srcHeight * 1.8f), int(srcWidth), int(srcHeight * 0.2) });
 	ScoreComponent* const pScoreComponent = new ScoreComponent(pGameObject);
 	HealthComponent* const pHealthComponent = new HealthComponent(pGameObject);
@@ -71,7 +71,7 @@ void QBert::Initialize()
 				pInputComponent->ResetInput();
 			}
 		});
-	pTriggerBodyComponent->SetOnTriggerCallBack([pScoreComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, const std::string&)
+	pTriggerBodyComponent->SetOnTriggerCallBack([pScoreComponent,pHealthComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, const std::string&)
 		{
 			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "SlickSam")
 			{
@@ -80,11 +80,11 @@ void QBert::Initialize()
 			}
 			else if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "UggWrongway")
 			{
-				Logger::LogInfo("player should die");
+				pHealthComponent->DecreaseLive();
 			}
 			else if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "Coily")
 			{
-				Logger::LogInfo("player should die");
+				pHealthComponent->DecreaseLive();
 			}
 		});
 

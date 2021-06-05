@@ -10,7 +10,7 @@ namespace Horizon
 		RemainingDisc,
 		CatchingSamOrSlick,
 		DefeatCoily,
-		CubeActivated
+		PreviousLevelData
 	};
 
 	struct IEventData abstract

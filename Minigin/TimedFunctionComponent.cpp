@@ -43,5 +43,4 @@ void Horizon::TimedFunctionComponent::Update()
 
 		(m_IsLooping) ? Activate() : Deactivate();
 	}
-
 }

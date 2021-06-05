@@ -39,3 +39,10 @@ int Horizon::HealthComponent::GetCurrentLives() const
 {
     return m_CurrentLives;
 }
+
+void Horizon::HealthComponent::SetCurrentLives(int currentLives)
+{
+    m_CurrentLives = currentLives;
+
+    m_pSubject->Notify(Event(PossibleEvent::PreviousLevelData,m_CurrentLives));
+}

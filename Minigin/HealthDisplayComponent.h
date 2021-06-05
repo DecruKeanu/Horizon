@@ -7,12 +7,12 @@ namespace Horizon
 	class HealthDisplayComponent final : public Component
 	{
 	public:
-		HealthDisplayComponent(GameObject* parent);
+		HealthDisplayComponent(GameObject* parent,int health);
 		void Initialize() override;
-		void LifeLost(int CurrentLives) const;
+		void SetHealthText(int CurrentLives) const;
 		void GameOver() const;
 	private:
 		TextComponent* m_pParentTextComponent = nullptr;
-		std::string m_StartText;
+		int m_StartHealth;
 	};
 }

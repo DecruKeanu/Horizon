@@ -67,5 +67,4 @@ void PlayerInputComponent::Update()
 		m_CanInputBeRegistered = false;
 		m_pTimedFunction->Activate();
 	}
-
 }

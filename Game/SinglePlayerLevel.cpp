@@ -23,9 +23,11 @@
 
 using namespace Horizon;
 
-SinglePlayerLevel::SinglePlayerLevel(int level, const LevelType& levelType) : Scene("SinglePlayerScene"),
+SinglePlayerLevel::SinglePlayerLevel(int level, const LevelType& levelType, int playerScore, int playerLives) : Scene("SinglePlayerScene"),
 m_Level{ level },
 m_LevelType{ levelType },
+m_PlayerScore{ playerScore },
+m_PlayerLives{ playerLives },
 m_LevelCompleted{},
 m_SwitchToNewLevel{}
 {
@@ -180,8 +182,9 @@ void SinglePlayerLevel::Initialize()
 		QBertScoreDisplay->AddComponent(QBertScoreDisplayComponent);
 
 		GetGameObject("Qbert")->GetComponent<ScoreComponent>()->AddObserver(new ScoreDisplayObserver(QBertScoreDisplayComponent));
-
 		Add(QBertScoreDisplay);
+
+		GetGameObject("Qbert")->GetComponent<ScoreComponent>()->IncreaseScore(m_PlayerScore);
 	}
 	{
 		GameObject* const QBertHealthDisplay = new GameObject();
@@ -189,7 +192,7 @@ void SinglePlayerLevel::Initialize()
 
 		TextComponent* const QBertHealthText = new TextComponent(QBertHealthDisplay, "", QBertFont24, { 255, 140, 0 });
 
-		HealthDisplayComponent* const QHealthScoreDisplayComponent = new HealthDisplayComponent(QBertHealthDisplay);
+		HealthDisplayComponent* const QHealthScoreDisplayComponent = new HealthDisplayComponent(QBertHealthDisplay, m_PlayerLives);
 
 
 		QBertHealthDisplay->AddComponent(QBertHealthTransform);
@@ -199,6 +202,8 @@ void SinglePlayerLevel::Initialize()
 		GetGameObject("Qbert")->GetComponent<HealthComponent>()->AddObserver(new HealthDisplayObserver(QHealthScoreDisplayComponent));
 
 		Add(QBertHealthDisplay);
+
+		GetGameObject("Qbert")->GetComponent<HealthComponent>()->SetCurrentLives(m_PlayerLives);
 	}
 
 	{
@@ -227,6 +232,23 @@ void SinglePlayerLevel::Update()
 {
 	if (m_LevelCompleted == false)
 	{
+		if (GetGameObject("Qbert")->GetComponent<HealthComponent>()->GetCurrentLives() == 0)
+		{
+			InputManager::GetInstance().ClearInput();
+			TriggerManager::GetInstance().ClearTriggerComponents();
+			Horizon::SceneManager::GetInstance().AddScene(new MainMenuScene());
+			SceneManager::GetInstance().NextScene();
+		}
+		else if (GetGameObject("Qbert")->GetComponent<HealthComponent>()->GetCurrentLives() < m_PlayerLives)
+		{
+			InputManager::GetInstance().ClearInput();
+			TriggerManager::GetInstance().ClearTriggerComponents();
+			m_PlayerScore = GetGameObject("Qbert")->GetComponent<ScoreComponent>()->GetScore();
+			m_PlayerLives = GetGameObject("Qbert")->GetComponent<HealthComponent>()->GetCurrentLives();
+			Horizon::SceneManager::GetInstance().AddScene(new SinglePlayerLevel(m_Level, LevelType::SinglePlayer, m_PlayerScore, m_PlayerLives));
+			SceneManager::GetInstance().NextScene();
+		}
+
 		for (CubeHandleComponent* const pCubeHandle : m_pCubeHandles)
 		{
 			if (!pCubeHandle->GetisActivated())
@@ -243,8 +265,9 @@ void SinglePlayerLevel::Update()
 
 	TriggerManager::GetInstance().ClearTriggerComponents();
 
-	(m_Level == 3) ? Horizon::SceneManager::GetInstance().AddScene(new MainMenuScene()) : Horizon::SceneManager::GetInstance().AddScene(new SinglePlayerLevel(m_Level + 1, LevelType::SinglePlayer));
+	m_PlayerScore = GetGameObject("Qbert")->GetComponent<ScoreComponent>()->GetScore();
+
+	(m_Level == 3) ? Horizon::SceneManager::GetInstance().AddScene(new MainMenuScene()) : Horizon::SceneManager::GetInstance().AddScene(new SinglePlayerLevel(m_Level + 1, LevelType::SinglePlayer,m_PlayerScore, m_PlayerLives));
 
 	SceneManager::GetInstance().NextScene();
-	SceneManager::GetInstance().RemoveScene(this);
 }

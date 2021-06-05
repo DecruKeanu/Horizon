@@ -7,9 +7,6 @@ namespace Horizon
 	class SpriteComponent;
 }
 
-class EnemyInputComponent;
-
-
 class GameSpriteComponent final : public Horizon::Component
 {
 public:
@@ -27,6 +24,5 @@ private:
 	int m_CurrentSpriteNumber;
 	Horizon::IPoint2 m_Move;
 	Horizon::SpriteComponent* m_pSpriteComponent = nullptr;
-	EnemyInputComponent* m_pInputComponent = nullptr;
 };
 

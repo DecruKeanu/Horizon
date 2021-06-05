@@ -20,15 +20,19 @@ void Horizon::ScoreComponent::IncreaseScore(int scoreIncrease)
 
 	if (scoreIncrease == 25)
 		m_pSubject->Notify(Event(PossibleEvent::ColorChange, m_CurrentScore));
-
-	if (scoreIncrease == 50)
+	else if (scoreIncrease == 50)
 		m_pSubject->Notify(Event(PossibleEvent::RemainingDisc, m_CurrentScore));
-
-	if (scoreIncrease == 300)
+	else if (scoreIncrease == 300)
 		m_pSubject->Notify(Event(PossibleEvent::CatchingSamOrSlick,m_CurrentScore));
-
-	if (scoreIncrease == 500)
+	else if (scoreIncrease == 500)
 		m_pSubject->Notify(Event(PossibleEvent::DefeatCoily,m_CurrentScore));
+	else
+		m_pSubject->Notify(Event(PossibleEvent::PreviousLevelData, m_CurrentScore));
+}
+
+int Horizon::ScoreComponent::GetScore() const
+{
+	return m_CurrentScore;
 }
 
 void Horizon::ScoreComponent::AddObserver(Observer* observer)

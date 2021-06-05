@@ -24,5 +24,8 @@ void Horizon::ScoreDisplayObserver::OnNotify(const Event& event)
 	case PossibleEvent::DefeatCoily:
 		m_pScoreDisplayComponent->ScoreIncreased(event.GetData<int>());
 		break;
+	case PossibleEvent::PreviousLevelData:
+		m_pScoreDisplayComponent->ScoreIncreased(event.GetData<int>());
+		break;
 	}
 }

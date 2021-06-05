@@ -77,6 +77,8 @@ void Horizon::GameObject::Update()
 
 	for (Component* const pComponent : m_pObjectComponents)
 		pComponent->Update();
+
+	//UnpausableUpdate()
 }
 
 void Horizon::GameObject::LateUpdate()

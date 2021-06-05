@@ -14,6 +14,7 @@ namespace Horizon
 		void DecreaseLive();
 		void AddObserver(Observer* observer);
 		int GetCurrentLives() const;
+		void SetCurrentLives(int currentLives);
 	private:
 		int m_CurrentLives;
 		SubjectComponent* m_pSubject = nullptr;

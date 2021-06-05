@@ -11,6 +11,7 @@ namespace Horizon
 		ScoreComponent(GameObject* parent);
 		~ScoreComponent();
 		void IncreaseScore(int scoreIncrease);
+		int GetScore() const;
 		void AddObserver(Observer* observer);
 	private:
 		int m_CurrentScore;

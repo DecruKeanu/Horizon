@@ -36,7 +36,6 @@ void GameSpriteComponent::SetSpriteOffset(const Horizon::IPoint2& offset)
 
 void GameSpriteComponent::Initialize()
 {
-	m_pInputComponent = m_pGameObject->GetComponent<EnemyInputComponent>();
 	m_pSpriteComponent->Scale(2.f);
 }
 

@@ -8,15 +8,15 @@ void Horizon::TriggerManager::AddTriggerComponent(TriggerComponent* pTriggerComp
 	m_pTriggerComponents.push_back(pTriggerComponent);
 }
 
-void Horizon::TriggerManager::RemoveTriggerComponent(TriggerComponent* pTriggerComponent)
-{
-	const auto it = find(m_pTriggerComponents.begin(), m_pTriggerComponents.end(), pTriggerComponent);
-
-	if (it != m_pTriggerComponents.end())
-	{
-		m_pTriggerComponents.erase(it);
-	}
-}
+//void Horizon::TriggerManager::RemoveTriggerComponent(TriggerComponent* pTriggerComponent)
+//{
+//	const auto it = find(m_pActiveTriggerComponents.begin(), m_pActiveTriggerComponents.end(), pTriggerComponent);
+//
+//	if (it != m_pActiveTriggerComponents.end())
+//	{
+//		m_pActiveTriggerComponents.erase(it);
+//	}
+//}
 
 void Horizon::TriggerManager::ClearTriggerComponents()
 {

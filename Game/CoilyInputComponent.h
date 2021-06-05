@@ -5,9 +5,10 @@ namespace Horizon
 {
 	class GameObject;
 	class TransformComponent;
+	class TriggerComponent;
 }
 
-class EnemyMovementComponent;
+class MovementComponent;
 class GameSpriteComponent;
 
 class CoilyInputComponent final : public Horizon::Component
@@ -22,9 +23,10 @@ private:
 	bool m_IsCoilyTransformed;
 	Horizon::IPoint2 m_Move;
 
-	EnemyMovementComponent* m_pMovementComponent = nullptr;
+	MovementComponent* m_pMovementComponent = nullptr;
 	GameSpriteComponent* m_pSpriteComponent = nullptr;
 
+	Horizon::TriggerComponent* m_pTriggerComponent = nullptr;
 	Horizon::TimedFunctionComponent* m_pTimedFunction = nullptr;
 	Horizon::TransformComponent* m_pCoilyTransformComponent = nullptr;
 	Horizon::TransformComponent* m_pQbertTransformComponent = nullptr;

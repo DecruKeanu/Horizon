@@ -1,7 +1,5 @@
 #include "GamePCH.h"
-#include "EnemyMovementComponent.h"
-#include "EnemyInputComponent.h"
-#include "CoilyInputComponent.h"
+#include "MovementComponent.h"
 #include "SpriteComponent.h"
 #include <TriggerComponent.h>
 #include "InputManager.h"
@@ -12,26 +10,30 @@
 
 using namespace Horizon;
 
-EnemyMovementComponent::EnemyMovementComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& fallPoint, bool IsMovementSideways) : Component(pParent),
-m_FallPoint{ fallPoint },
-m_IsMovementSideways{ IsMovementSideways },
-m_OriginalPoint{},
-m_Move{},
-m_StepsTaken{},
-m_ElapsedTime{},
-m_IsEnemyOnFloor{},
-m_TilesEncountered{}
+MovementComponent::MovementComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& fallPoint, bool IsMovementSideways) : Component(pParent),
+	m_FallPoint{fallPoint},
+	m_IsMovementSideways{IsMovementSideways},
+	m_OriginalPoint{},
+	m_Move{},
+	m_StepsTaken{},
+	m_ElapsedTime{},
+	m_IsCharacterOnFloor{},
+	m_TilesEncountered{}
 {
 
 }
 
-
-void EnemyMovementComponent::SetMove(const Horizon::IPoint2& input)
+void MovementComponent::SetMove(const Horizon::IPoint2& input)
 {
 	m_Move = input;
 }
 
-void EnemyMovementComponent::Initialize()
+void MovementComponent::SetOriginalPos(const Horizon::IPoint2& input)
+{
+	m_OriginalPoint = input;
+}
+
+void MovementComponent::Initialize()
 {
 	m_pTransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 	m_pTriggerComponent = m_pGameObject->GetComponent<TriggerComponent>();
@@ -39,13 +41,12 @@ void EnemyMovementComponent::Initialize()
 	m_OriginalPoint = { m_pTransformComponent->GetPosition().x, m_pTransformComponent->GetPosition().y };
 }
 
-void EnemyMovementComponent::Update()
+void MovementComponent::Update()
 {
-	LetEnemyFall();
+	LetCharacterFall();
 
-	if (!m_IsEnemyOnFloor)
+	if (!m_IsCharacterOnFloor|| (m_Move.x == 0 && m_Move.y == 0))
 		return;
-
 
 	m_ElapsedTime = std::min(1.f, m_ElapsedTime + Timer::GetInstance().GetDeltaTime());
 
@@ -59,14 +60,6 @@ void EnemyMovementComponent::Update()
 		blockOffset = (m_Move.y == -1) ? Horizon::IPoint2{ 64, 0 } : (m_Move.y == 1) ? Horizon::IPoint2{ 32,-48 } : Horizon::IPoint2{};
 	}
 
-	//if (m_StepsTaken < 7)
-	//{
-	//	m_TilesEncountered = true;
-	//}
-	//else if (m_TilesEncountered == false && m_pTriggerComponent->GetOverlappingActorsSize() > 0 && m_ElapsedTime > 0.5f)
-	//{
-	//	m_TilesEncountered = true;
-	//}
 
 	const IPoint2 moveDistance = blockOffset * m_Move;
 	const IPoint2 desiredPos = m_OriginalPoint + moveDistance;
@@ -75,25 +68,18 @@ void EnemyMovementComponent::Update()
 	const int height = (!m_IsMovementSideways) ? int(moveDistance.y * sinf(m_ElapsedTime * float(M_PI))) : 0;
 	m_pTransformComponent->SetPosition(currentPos.x, currentPos.y - height * m_Move.y);
 
-	if (currentPos == desiredPos)
+	if (currentPos.x == desiredPos.x && currentPos.y == desiredPos.y)
 	{
 		m_ElapsedTime = 0.f;
 		m_OriginalPoint += moveDistance;
 
-		if (m_Move.x == 0 && m_Move.y == 0)
-			return;
-
-		//m_StepsTaken++;
-		//if (m_TilesEncountered == false)
-		//	m_pGameObject->Deactivate();
-
-		//m_TilesEncountered = false;
+		m_Move = { 0,0 };
 	}
 }
 
-void EnemyMovementComponent::LetEnemyFall()
+void MovementComponent::LetCharacterFall()
 {
-	if (m_IsEnemyOnFloor)
+	if (m_IsCharacterOnFloor)
 		return;
 
 	const IPoint2 desiredPos = m_FallPoint;
@@ -104,6 +90,7 @@ void EnemyMovementComponent::LetEnemyFall()
 	{
 		m_ElapsedTime = 0.f;
 		m_OriginalPoint = m_FallPoint;
-		m_IsEnemyOnFloor = true;
+		m_IsCharacterOnFloor = true;
 	}
 }
+

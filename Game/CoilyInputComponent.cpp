@@ -1,7 +1,8 @@
 #include "GamePCH.h"
 #include "CoilyInputComponent.h"
-#include "EnemyMovementComponent.h"
+#include "MovementComponent.h"
 #include "GameSpriteComponent.h"
+#include <TriggerComponent.h>
 #include <TransformComponent.h>
 #include <TimedFunctionComponent.h>
 #include <SceneManager.h>
@@ -18,10 +19,11 @@ m_IsCoilyTransformed{}
 
 void CoilyInputComponent::Initialize()
 {
+	m_pTriggerComponent = m_pGameObject->GetComponent<Horizon::TriggerComponent>();
 	m_pSpriteComponent = m_pGameObject->GetComponent<GameSpriteComponent>();
 	m_pCoilyTransformComponent = m_pGameObject->GetComponent<Horizon::TransformComponent>();
 	m_pQbertTransformComponent = Horizon::SceneManager::GetInstance().GetActiveScene()->GetGameObject("Qbert")->GetComponent<Horizon::TransformComponent>();
-	m_pMovementComponent = m_pGameObject->GetComponent<EnemyMovementComponent>();
+	m_pMovementComponent = m_pGameObject->GetComponent<MovementComponent>();
 
 	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, true, 1.f);
 	m_pTimedFunction->SetTimerFunction([this](float)
@@ -33,9 +35,11 @@ void CoilyInputComponent::Initialize()
 				m_pSpriteComponent->SetSpriteAmount(8);
 				m_pSpriteComponent->SetSpriteOffset({ 0,-24 });
 			}
-			//m_IsCoilyTransformed = (m_StepsTaken >= 6);
 
 			m_CanMoveBeUpdated = !m_CanMoveBeUpdated;
+
+			if (m_pTriggerComponent->GetOverlappingActorsSize() == 0)
+				m_pGameObject->Deactivate();
 
 			if (!m_CanMoveBeUpdated)
 			{

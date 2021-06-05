@@ -4,9 +4,10 @@
 #include <TextureComponent.h>
 #include <TransformComponent.h>
 #include <TriggerComponent.h>
-#include "PlayerMovementComponent.h"
 #include "PlayerInputComponent.h"
 #include "GameSpriteComponent.h"
+#include "MovementComponent.h"
+#include "PlayerDiscComponent.h"
 #include "SpriteComponent.h"
 #include <HealthComponent.h>
 #include <ScoreComponent.h>
@@ -33,8 +34,9 @@ GameObject* QBert::GetGameObject() const
 
 void QBert::Initialize()
 {
+	const int fallOffset = 50;
 	int positionX = m_Value["positionX"].GetInt();
-	int positionY = m_Value["positionY"].GetInt();
+	int positionY = m_Value["positionY"].GetInt() - fallOffset;
 	const int srcWidth = 15;
 	const int srcHeight = 16;
 	const float scale = 2.f;
@@ -46,7 +48,7 @@ void QBert::Initialize()
 
 	GameSpriteComponent* const pSpriteComponent = new GameSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ 0, 0, srcWidth * 8, srcHeight },8);
 	TransformComponent* const QBertTransform = new TransformComponent(pGameObject, positionX, positionY);
-	PlayerMovementComponent* const pMovementComponent = new PlayerMovementComponent(pGameObject);
+	MovementComponent* const pMovementComponent = new MovementComponent(pGameObject, {positionX,positionY + fallOffset},false);
 	PlayerInputComponent* const pInputComponent = new PlayerInputComponent(pGameObject);
 
 	TriggerComponent* const pTriggerBodyComponent = new TriggerComponent(pGameObject, "BodyTrigger", { 4 ,10, int(scale * srcWidth) - 8, int(scale * srcHeight) - 10 });
@@ -54,16 +56,13 @@ void QBert::Initialize()
 	ScoreComponent* const pScoreComponent = new ScoreComponent(pGameObject);
 	HealthComponent* const pHealthComponent = new HealthComponent(pGameObject);
 
-	pTriggerFeetComponent->SetOnTriggerCallBack([pScoreComponent,pMovementComponent, pInputComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, const std::string&)
-		{
-			//if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "Cube")
-			//{
-			//	pScoreComponent->IncreaseScore(25);
-			//}
+	PlayerDiscComponent* const pPlayerDiscComponent = new PlayerDiscComponent(pGameObject);
 
+	pTriggerFeetComponent->SetOnTriggerCallBack([pScoreComponent,pMovementComponent, pInputComponent,pPlayerDiscComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, const std::string&)
+		{
 			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "FlyingDisc")
 			{
-				pMovementComponent->PlayerOnFlyingDisc(pOverlappedGameObject->GetComponent<TransformComponent>());
+				pPlayerDiscComponent->PlayerOnDisc(pOverlappedGameObject->GetComponent<TransformComponent>());
 				pInputComponent->DeactivateInput();
 			}
 			else if (triggerAction == TriggerComponent::TriggerAction::Exit && pOverlappedGameObject->GetIdentifier() == "FlyingDisc")
@@ -98,49 +97,7 @@ void QBert::Initialize()
 	pGameObject->AddComponent(pScoreComponent);
 	pGameObject->AddComponent(pHealthComponent);
 
-	//InitializeScoreDisplay(pScoreComponent);
-	//InitializeHealthDisplay(pHealthComponent);
+	pGameObject->AddComponent(pPlayerDiscComponent);
 
 	m_pGameObject = pGameObject;
 }
-
-//void QBert::InitializeScoreDisplay(ScoreComponent* const pQbertScore)
-//{
-//	GameObject* const QBertScoreDisplay = new GameObject();
-//	TransformComponent* const QBertScoreTransform = new TransformComponent(QBertScoreDisplay, 20, 50);
-//
-//	const auto QBertFont = ResourceManager::GetInstance().LoadFont("QBert.ttf", 24);
-//	TextComponent* const QBertScoreText = new TextComponent(QBertScoreDisplay, "", QBertFont, { 255, 140, 0 });
-//
-//	ScoreDisplayComponent* const QBertScoreDisplayComponent = new ScoreDisplayComponent(QBertScoreDisplay);
-//
-//
-//	QBertScoreDisplay->AddComponent(QBertScoreTransform);
-//	QBertScoreDisplay->AddComponent(QBertScoreText);
-//	QBertScoreDisplay->AddComponent(QBertScoreDisplayComponent);
-//
-//	pQbertScore->AddObserver(new ScoreDisplayObserver(QBertScoreDisplayComponent));
-//
-//	SceneManager::GetInstance().GetActiveScene()->Add(QBertScoreDisplay);
-//}
-
-//void QBert::InitializeHealthDisplay(Horizon::HealthComponent* const)
-//{
-//	GameObject* const QBertHealthDisplay = new GameObject();
-//	TransformComponent* const QBertHealthTransform = new TransformComponent(QBertHealthDisplay, 20, 200);
-//
-//	const auto QBertFont = ResourceManager::GetInstance().LoadFont("QBert.ttf", 24);
-//	TextComponent* const QBertHealthText = new TextComponent(QBertHealthDisplay, "", QBertFont, { 255, 140, 0 });
-//
-//	HealthDisplayComponent* const QHealthScoreDisplayComponent = new HealthDisplayComponent(QBertHealthDisplay);
-//
-//
-//	QBertHealthDisplay->AddComponent(QBertHealthTransform);
-//	QBertHealthDisplay->AddComponent(QBertHealthText);
-//	QBertHealthDisplay->AddComponent(QHealthScoreDisplayComponent);
-//
-//	pQbertHealth->AddObserver(new HealthDisplayObserver(QHealthScoreDisplayComponent));
-//
-//	SceneManager::GetInstance().GetActiveScene()->Add(QBertHealthDisplay);
-//}
-

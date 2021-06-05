@@ -4,7 +4,7 @@
 #include <TextureComponent.h>
 #include <TransformComponent.h>
 #include <TriggerComponent.h>
-#include "EnemyMovementComponent.h"
+#include "MovementComponent.h"
 #include "EnemyInputComponent.h"
 #include "GameSpriteComponent.h"
 #include "SpriteComponent.h"
@@ -38,11 +38,11 @@ void SlickSam::Initialize()
 	positionY -= srcHeight;
 
 	 
-	GameObject* const pGameObject = new GameObject("SlickSam", 4.f/*float(rand() % 10 + 20)*/);
+	GameObject* const pGameObject = new GameObject("SlickSam", float(rand() % 20 + 20));
 
 	GameSpriteComponent* const pSpriteComponent = new GameSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth * 8, srcHeight },8);
 	TransformComponent* const pSlickSamTransform = new TransformComponent(pGameObject, positionX, positionY);
-	EnemyMovementComponent* const pMovementComponent = new EnemyMovementComponent(pGameObject, IPoint2{ positionX,positionY + fallHeight }, false);
+	MovementComponent* const pMovementComponent = new MovementComponent(pGameObject, IPoint2{ positionX,positionY + fallHeight }, false);
 	EnemyInputComponent* const pInputComponent = new EnemyInputComponent(pGameObject, {0,1});
 
 	TriggerComponent* const pTriggerBodyComponent = new TriggerComponent(pGameObject, { 0 ,14, int(scale * srcWidth), int(scale * srcHeight) - 14 });

@@ -72,9 +72,6 @@
     <ClCompile Include="PlayerInputComponent.cpp">
       <Filter>Components\Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMovementComponent.cpp">
-      <Filter>Components\Player</Filter>
-    </ClCompile>
     <ClCompile Include="FlyingDiscMovementComponent.cpp">
       <Filter>Components\FlyingDisc</Filter>
     </ClCompile>
@@ -108,6 +105,12 @@
     <ClCompile Include="GameSpriteComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDiscComponent.cpp">
+      <Filter>Components\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoScene.h">
@@ -139,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="FlyingDisc.h">
       <Filter>Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMovementComponent.h">
-      <Filter>Components\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerInputComponent.h">
       <Filter>Components\Player</Filter>
@@ -178,6 +178,12 @@
     </ClInclude>
     <ClInclude Include="GameSpriteComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDiscComponent.h">
+      <Filter>Components\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

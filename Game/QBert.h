@@ -15,7 +15,6 @@ public:
 	Horizon::GameObject* GetGameObject() const;
 private:
 	void Initialize();
-	void InitializeHealthDisplay(Horizon::HealthComponent* const pQbertHealth);
 
 	const rapidjson::Value& m_Value;
 	Horizon::GameObject* m_pGameObject;

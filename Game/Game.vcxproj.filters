@@ -81,9 +81,6 @@
     <ClCompile Include="FlyingDiscSpriteComponent.cpp">
       <Filter>Components\FlyingDisc</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerSpriteComponent.cpp">
-      <Filter>Components\Player</Filter>
-    </ClCompile>
     <ClCompile Include="CubeHandleComponent.cpp">
       <Filter>Components\Cubes</Filter>
     </ClCompile>
@@ -94,9 +91,6 @@
       <Filter>Components\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="EnemyInputComponent.cpp">
-      <Filter>Components\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemySpriteComponent.cpp">
       <Filter>Components\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="UggWrongway.cpp">
@@ -110,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Coily.cpp">
       <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSpriteComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +152,6 @@
     <ClInclude Include="FlyingDiscMovementComponent.h">
       <Filter>Components\FlyingDisc</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerSpriteComponent.h">
-      <Filter>Components\Player</Filter>
-    </ClInclude>
     <ClInclude Include="CubeHandleComponent.h">
       <Filter>Components\Cubes</Filter>
     </ClInclude>
@@ -168,9 +162,6 @@
       <Filter>Components\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyInputComponent.h">
-      <Filter>Components\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemySpriteComponent.h">
       <Filter>Components\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="UggWrongway.h">
@@ -184,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Coily.h">
       <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSpriteComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

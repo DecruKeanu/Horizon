@@ -6,7 +6,7 @@
 #include <TriggerComponent.h>
 #include "EnemyMovementComponent.h"
 #include "EnemyInputComponent.h"
-#include "EnemySpriteComponent.h"
+#include "GameSpriteComponent.h"
 #include "SpriteComponent.h"
 
 using namespace Horizon;
@@ -40,7 +40,7 @@ void SlickSam::Initialize()
 	 
 	GameObject* const pGameObject = new GameObject("SlickSam", 4.f/*float(rand() % 10 + 20)*/);
 
-	EnemySpriteComponent* const pSpriteComponent = new EnemySpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth * 8, srcHeight },8);
+	GameSpriteComponent* const pSpriteComponent = new GameSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth * 8, srcHeight },8);
 	TransformComponent* const pSlickSamTransform = new TransformComponent(pGameObject, positionX, positionY);
 	EnemyMovementComponent* const pMovementComponent = new EnemyMovementComponent(pGameObject, IPoint2{ positionX,positionY + fallHeight }, false);
 	EnemyInputComponent* const pInputComponent = new EnemyInputComponent(pGameObject, {0,1});

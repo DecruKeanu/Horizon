@@ -1,7 +1,7 @@
 #include "GamePCH.h"
 #include "CoilyInputComponent.h"
 #include "EnemyMovementComponent.h"
-#include "EnemySpriteComponent.h"
+#include "GameSpriteComponent.h"
 #include <TransformComponent.h>
 #include <TimedFunctionComponent.h>
 #include <SceneManager.h>
@@ -18,7 +18,7 @@ m_IsCoilyTransformed{}
 
 void CoilyInputComponent::Initialize()
 {
-	m_pSpriteComponent = m_pGameObject->GetComponent<EnemySpriteComponent>();
+	m_pSpriteComponent = m_pGameObject->GetComponent<GameSpriteComponent>();
 	m_pCoilyTransformComponent = m_pGameObject->GetComponent<Horizon::TransformComponent>();
 	m_pQbertTransformComponent = Horizon::SceneManager::GetInstance().GetActiveScene()->GetGameObject("Qbert")->GetComponent<Horizon::TransformComponent>();
 	m_pMovementComponent = m_pGameObject->GetComponent<EnemyMovementComponent>();

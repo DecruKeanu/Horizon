@@ -6,7 +6,7 @@
 #include <TriggerComponent.h>
 #include "PlayerMovementComponent.h"
 #include "PlayerInputComponent.h"
-#include "PlayerSpriteComponent.h"
+#include "GameSpriteComponent.h"
 #include "SpriteComponent.h"
 #include <HealthComponent.h>
 #include <ScoreComponent.h>
@@ -44,7 +44,7 @@ void QBert::Initialize()
 
 	GameObject* const pGameObject = new GameObject("Qbert");
 
-	PlayerSpriteComponent* const pSpriteComponent = new PlayerSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ 0, 0, srcWidth * 8, srcHeight });
+	GameSpriteComponent* const pSpriteComponent = new GameSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ 0, 0, srcWidth * 8, srcHeight },8);
 	TransformComponent* const QBertTransform = new TransformComponent(pGameObject, positionX, positionY);
 	PlayerMovementComponent* const pMovementComponent = new PlayerMovementComponent(pGameObject);
 	PlayerInputComponent* const pInputComponent = new PlayerInputComponent(pGameObject);

@@ -10,10 +10,10 @@ namespace Horizon
 class EnemyInputComponent;
 
 
-class EnemySpriteComponent final : public Horizon::Component
+class GameSpriteComponent final : public Horizon::Component
 {
 public:
-	EnemySpriteComponent(Horizon::GameObject* pParent, const std::string& fileName, const SDL_Rect& srcRect, int spriteAmount);
+	GameSpriteComponent(Horizon::GameObject* pParent, const std::string& fileName, const SDL_Rect& srcRect, int spriteAmount);
 
 	void SetMove(const Horizon::IPoint2& input);
 	void SetSrcRect(const SDL_Rect& srcRect);

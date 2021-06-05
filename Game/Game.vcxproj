@@ -179,7 +179,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="EnemyInputComponent.cpp" />
     <ClCompile Include="EnemyMovementComponent.cpp" />
-    <ClCompile Include="EnemySpriteComponent.cpp" />
+    <ClCompile Include="GameSpriteComponent.cpp" />
     <ClCompile Include="FlyingDisc.cpp" />
     <ClCompile Include="FlyingDiscMovementComponent.cpp" />
     <ClCompile Include="FlyingDiscSpriteComponent.cpp" />
@@ -193,7 +193,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="QBert.cpp" />
     <ClCompile Include="PlayerInputComponent.cpp" />
     <ClCompile Include="PlayerMovementComponent.cpp" />
-    <ClCompile Include="PlayerSpriteComponent.cpp" />
     <ClCompile Include="SinglePlayerLevel.cpp" />
     <ClCompile Include="LevelReader.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -209,7 +208,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="EnemyInputComponent.h" />
     <ClInclude Include="EnemyMovementComponent.h" />
-    <ClInclude Include="EnemySpriteComponent.h" />
+    <ClInclude Include="GameSpriteComponent.h" />
     <ClInclude Include="FlyingDisc.h" />
     <ClInclude Include="FlyingDiscMovementComponent.h" />
     <ClInclude Include="FlyingDiscSpriteComponent.h" />
@@ -220,7 +219,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="QBert.h" />
     <ClInclude Include="PlayerInputComponent.h" />
     <ClInclude Include="PlayerMovementComponent.h" />
-    <ClInclude Include="PlayerSpriteComponent.h" />
     <ClInclude Include="SinglePlayerLevel.h" />
     <ClInclude Include="LevelReader.h" />
     <ClInclude Include="MainMenuScene.h" />

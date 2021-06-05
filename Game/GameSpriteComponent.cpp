@@ -1,10 +1,10 @@
 #include "GamePCH.h"
-#include "EnemySpriteComponent.h"
+#include "GameSpriteComponent.h"
 #include <GameObject.h>
 #include <SpriteComponent.h>
 #include "EnemyInputComponent.h"
 
-EnemySpriteComponent::EnemySpriteComponent(Horizon::GameObject* pParent, const std::string& fileName, const SDL_Rect& srcRect, int spriteAmount) : Component(pParent),
+GameSpriteComponent::GameSpriteComponent(Horizon::GameObject* pParent, const std::string& fileName, const SDL_Rect& srcRect, int spriteAmount) : Component(pParent),
 m_CurrentSpriteNumber{ 5 },
 m_SpriteAmount{spriteAmount},
 m_Move{}
@@ -13,34 +13,34 @@ m_Move{}
 	m_pGameObject->AddComponent(m_pSpriteComponent);
 }
 
-void EnemySpriteComponent::SetMove(const Horizon::IPoint2& input)
+void GameSpriteComponent::SetMove(const Horizon::IPoint2& input)
 {
 	m_Move = input;
 }
 
-void EnemySpriteComponent::SetSrcRect(const SDL_Rect& srcRect)
+void GameSpriteComponent::SetSrcRect(const SDL_Rect& srcRect)
 {
 	m_pSpriteComponent->SetSrcRect(srcRect);
 }
 
-void EnemySpriteComponent::SetSpriteAmount(const int spriteAmount)
+void GameSpriteComponent::SetSpriteAmount(const int spriteAmount)
 {
 	m_SpriteAmount = spriteAmount;
 	m_pSpriteComponent->SetSpriteAmount(spriteAmount);
 }
 
-void EnemySpriteComponent::SetSpriteOffset(const Horizon::IPoint2& offset)
+void GameSpriteComponent::SetSpriteOffset(const Horizon::IPoint2& offset)
 {
 	m_pSpriteComponent->SetSpriteOffset(offset);
 }
 
-void EnemySpriteComponent::Initialize()
+void GameSpriteComponent::Initialize()
 {
 	m_pInputComponent = m_pGameObject->GetComponent<EnemyInputComponent>();
 	m_pSpriteComponent->Scale(2.f);
 }
 
-void EnemySpriteComponent::Update()
+void GameSpriteComponent::Update()
 {
 	if (m_SpriteAmount == 2)
 	{

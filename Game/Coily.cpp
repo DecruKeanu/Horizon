@@ -6,7 +6,7 @@
 #include <TriggerComponent.h>
 #include "EnemyMovementComponent.h"
 #include "CoilyInputComponent.h"
-#include "EnemySpriteComponent.h"
+#include "GameSpriteComponent.h"
 #include "SpriteComponent.h"
 #include <SceneManager.h>
 #include <Scene.h>
@@ -41,7 +41,7 @@ void Coily::Initialize()
 
 	GameObject* const pGameObject = new GameObject("Coily", 1.f/*float(rand() % 10 + 20)*/);
 
-	EnemySpriteComponent* const pSpriteComponent = new EnemySpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth * 2, srcHeight },2);
+	GameSpriteComponent* const pSpriteComponent = new GameSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth * 2, srcHeight },2);
 	TransformComponent* const pSlickSamTransform = new TransformComponent(pGameObject, positionX, positionY);
 	EnemyMovementComponent* const pMovementComponent = new EnemyMovementComponent(pGameObject, IPoint2{ positionX,positionY + fallHeight }, false);
 	CoilyInputComponent* const pInputComponent = new CoilyInputComponent(pGameObject);

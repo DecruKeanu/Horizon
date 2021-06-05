@@ -2,7 +2,7 @@
 #include "EnemyInputComponent.h"
 #include <TimedFunctionComponent.h>
 #include "EnemyMovementComponent.h"
-#include "EnemySpriteComponent.h"
+#include "GameSpriteComponent.h"
 #include <Timer.h>
 
 EnemyInputComponent::EnemyInputComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& movementDirection) : Component(pParent),
@@ -16,7 +16,7 @@ m_CanMoveBeUpdated{}
 
 void EnemyInputComponent::Initialize()
 {
-	m_pSpriteComponent = m_pGameObject->GetComponent<EnemySpriteComponent>();
+	m_pSpriteComponent = m_pGameObject->GetComponent<GameSpriteComponent>();
 	m_pMovementComponent = m_pGameObject->GetComponent<EnemyMovementComponent>();
 
 	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject,true, 1.f);

@@ -78,7 +78,11 @@ void QBert::Initialize()
 				pScoreComponent->IncreaseScore(300);
 				pOverlappedGameObject->Deactivate();
 			}
-			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "UggWrongway")
+			else if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "UggWrongway")
+			{
+				Logger::LogInfo("player should die");
+			}
+			else if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "Coily")
 			{
 				Logger::LogInfo("player should die");
 			}

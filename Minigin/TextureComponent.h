@@ -16,10 +16,14 @@ namespace Horizon
 
 		void SetSrcRect(int x, int y, int width, int height);
 		void SetScale(float scale);
+
+		void SetTextureOffset(const IPoint2& offset);
 	private:
 		std::shared_ptr<Texture2D> m_pTexture;
 		TransformComponent* m_pTransformComponent = nullptr;
 		SDL_Rect m_SrcRect;
 		float m_Scale;
+
+		IPoint2 m_TextureOffset;
 	};
 }

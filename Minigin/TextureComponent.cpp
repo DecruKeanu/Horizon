@@ -6,7 +6,8 @@
 
 Horizon::TextureComponent::TextureComponent(GameObject* parent, const std::string textureFile) : Component(parent),
 m_SrcRect{ 0,0,-1,-1 },
-m_Scale{ 1.f }
+m_Scale{ 1.f },
+m_TextureOffset{}
 {
 	m_pTexture = ResourceManager::GetInstance().LoadTexture(textureFile);
 }
@@ -21,7 +22,7 @@ void Horizon::TextureComponent::Render() const
 	if (m_pTransformComponent)
 	{
 		const auto& pos = m_pTransformComponent->GetPosition();
-		Renderer::GetInstance().RenderTexture(*m_pTexture, int(pos.x), int(pos.y), m_Scale, m_SrcRect);
+		Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x + m_TextureOffset.x, pos.y + m_TextureOffset.y, m_Scale, m_SrcRect);
 		return;
 	}
 	Logger::LogWarning("TextureComponent::Render >> GameObject does not have transformComponent, renderPos = (0,0)");
@@ -36,4 +37,9 @@ void Horizon::TextureComponent::SetSrcRect(int x, int y, int width, int height)
 void Horizon::TextureComponent::SetScale(float scale)
 {
 	m_Scale = scale;
+}
+
+void Horizon::TextureComponent::SetTextureOffset(const IPoint2& offset)
+{
+	m_TextureOffset = offset;
 }

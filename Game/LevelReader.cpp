@@ -6,6 +6,7 @@
 #include "FlyingDisc.h"
 #include "SlickSam.h"
 #include "UggWrongway.h"
+#include "Coily.h"
 #include "rapidjson.h"
 #include "document.h"
 #include "stream.h"
@@ -21,6 +22,8 @@ LevelReader::LevelReader() :
 	m_Factory.RegisterPrefab<FlyingDisc>();
 	m_Factory.RegisterPrefab<SlickSam>();
 	m_Factory.RegisterPrefab<UggWrongway>();
+	m_Factory.RegisterPrefab<UggWrongway>();
+	m_Factory.RegisterPrefab<Coily>();
 }
 
 //class needs to include namespace and needs to be the same name as cpp 

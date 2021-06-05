@@ -26,6 +26,7 @@ private:
 
 	bool m_IsPlayerOnFlyingDisc;
 	bool m_IsFallingOfFlyingDisc;
+
 	PlayerInputComponent* m_pMovementComponent = nullptr;
 	Horizon::TransformComponent* m_pTransformComponent = nullptr;
 	Horizon::TriggerComponent* m_pTriggerComponent = nullptr;

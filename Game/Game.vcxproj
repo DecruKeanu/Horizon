@@ -172,6 +172,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Coily.cpp" />
+    <ClCompile Include="CoilyInputComponent.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeHandleComponent.cpp" />
     <ClCompile Include="DemoScene.cpp" />
@@ -200,6 +202,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="UggWrongway.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Coily.h" />
+    <ClInclude Include="CoilyInputComponent.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeHandleComponent.h" />
     <ClInclude Include="DemoScene.h" />

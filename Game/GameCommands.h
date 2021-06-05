@@ -5,7 +5,7 @@
 class MoveUpCommand final : public Horizon::Command
 {
 public:
-	MoveUpCommand(Horizon::IPoint2& move, const bool canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
+	MoveUpCommand(Horizon::IPoint2& move, const bool& canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
 	void Execute() override
 	{
 		if (m_CanInputBeRegistered)
@@ -16,13 +16,13 @@ public:
 	}
 
 	Horizon::IPoint2& m_Move;
-	const bool m_CanInputBeRegistered;
+	const bool& m_CanInputBeRegistered;
 };
 
 class MoveDownCommand final : public Horizon::Command
 {
 public:
-	MoveDownCommand(Horizon::IPoint2& move, const bool canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
+	MoveDownCommand(Horizon::IPoint2& move, const bool& canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
 	void Execute() override
 	{ 
 		if (m_CanInputBeRegistered)
@@ -33,14 +33,14 @@ public:
 	}
 
 	Horizon::IPoint2& m_Move;
-	const bool m_CanInputBeRegistered;
+	const bool& m_CanInputBeRegistered;
 };
 
 
 class MoveLeftCommand final : public Horizon::Command
 {
 public:
-	MoveLeftCommand(Horizon::IPoint2& move, const bool canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
+	MoveLeftCommand(Horizon::IPoint2& move, const bool& canInputBeRegisted) : m_Move{ move }, m_CanInputBeRegistered{ canInputBeRegisted } {}
 	void Execute() override
 	{
 		if (m_CanInputBeRegistered)
@@ -51,7 +51,7 @@ public:
 	}
 
 	Horizon::IPoint2& m_Move;
-	const bool m_CanInputBeRegistered;
+	const bool& m_CanInputBeRegistered;
 };
 
 class MoveRightCommand final : public Horizon::Command
@@ -68,7 +68,7 @@ public:
 	}
 
 	Horizon::IPoint2& m_Move;
-	const bool m_CanInputBeRegistered;
+	const bool& m_CanInputBeRegistered;
 };
 
 

@@ -200,6 +200,11 @@
       "type": "Wrongway"
     },
     {
+      "class": "Coily",
+      "positionX": 292,
+      "positionY": 72
+    },
+    {
       "class": "QBert",
       "positionX": 292,
       "positionY": 72

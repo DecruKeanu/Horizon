@@ -32,9 +32,8 @@ void SpriteComponent::SetCurrentSprite(int spriteNumber)
 {
 	if (m_CurrentSprite == spriteNumber)
 		return;
-	if (m_CurrentSprite >= m_SpriteAmount)
+	if (spriteNumber >= m_SpriteAmount)
 	{
-		Logger::LogWarning("SpriteComponent::SetCurrentSprite >> spriteNumber succeeds spriteAmount, call ignored");
 		return;
 	}
 
@@ -57,6 +56,25 @@ void Horizon::SpriteComponent::PreviousSprite()
 void Horizon::SpriteComponent::Scale(float scale)
 {
 	m_pTextureComponent->SetScale(scale);
+}
+
+void Horizon::SpriteComponent::SetSrcRect(const SDL_Rect& srcRect)
+{
+	m_SrcRect = srcRect;
+}
+
+void Horizon::SpriteComponent::SetSpriteAmount(const int spriteAmount)
+{
+	m_SpriteAmount = spriteAmount;
+
+	const float spriteWidthRounded = std::roundf(float(m_SrcRect.w) / m_SpriteAmount);
+
+	m_SpriteWidth = int(spriteWidthRounded);
+}
+
+void Horizon::SpriteComponent::SetSpriteOffset(const IPoint2 offset)
+{
+	m_pTextureComponent->SetTextureOffset(offset);
 }
 
 

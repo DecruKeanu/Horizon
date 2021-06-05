@@ -17,6 +17,9 @@ namespace Horizon
 		void PreviousSprite();
 
 		void Scale(float scale);
+		void SetSrcRect(const SDL_Rect& srcRect);
+		void SetSpriteAmount(const int spirteAmount);
+		void SetSpriteOffset(const IPoint2 offset);
 	private:
 		void Initialize() override;
 

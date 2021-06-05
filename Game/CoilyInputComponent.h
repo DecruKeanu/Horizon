@@ -4,26 +4,29 @@
 namespace Horizon
 {
 	class GameObject;
-	class TimedFunctionComponent;
+	class TransformComponent;
 }
 
 class EnemyMovementComponent;
 class EnemySpriteComponent;
 
-class EnemyInputComponent final : public Horizon::Component
+class CoilyInputComponent final : public Horizon::Component
 {
 public:
-	EnemyInputComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& movementDirection);
+	CoilyInputComponent(Horizon::GameObject* pParent);
 private:
 	void Initialize() override;
 
 	int m_StepsTaken;
 	bool m_CanMoveBeUpdated;
-	Horizon::IPoint2 m_MovementDirection;
+	bool m_IsCoilyTransformed;
 	Horizon::IPoint2 m_Move;
 
 	EnemyMovementComponent* m_pMovementComponent = nullptr;
 	EnemySpriteComponent* m_pSpriteComponent = nullptr;
+
 	Horizon::TimedFunctionComponent* m_pTimedFunction = nullptr;
+	Horizon::TransformComponent* m_pCoilyTransformComponent = nullptr;
+	Horizon::TransformComponent* m_pQbertTransformComponent = nullptr;
 };
 

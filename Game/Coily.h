@@ -4,12 +4,12 @@
 namespace Horizon
 {
 	class GameObject;
-} 
+}
 
-class SlickSam final
+class Coily final 
 {
 public:
-	SlickSam(const rapidjson::Value& jsonObject);
+	Coily(const rapidjson::Value& jsonObject);
 	Horizon::GameObject* GetGameObject() const;
 private:
 	void Initialize();

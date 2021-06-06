@@ -80,6 +80,13 @@ void PlayerInputComponent::Initialize()
 		});
 
 	m_pGameObject->AddComponent(m_pTimedFunction);
+
+	DeactivateInput();
+
+	Horizon::TimedFunctionComponent* pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, false, 1.f);
+	pTimedFunction->SetTimerFunction([this](float){ResetInput();});
+	pTimedFunction->Activate();
+	m_pGameObject->AddComponent(pTimedFunction);
 }
 
 void PlayerInputComponent::Update()

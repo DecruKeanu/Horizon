@@ -9,9 +9,14 @@
 #include "GameSpriteComponent.h"
 #include "MovementComponent.h"
 #include <Timer.h>
+#include <SoundSystemServiceLocator.h>
+
 using namespace Horizon;
 
-PlayerInputComponent::PlayerInputComponent(Horizon::GameObject* parent) : Component(parent),
+using Input = std::pair<SDLK, ControllerButton>;
+
+PlayerInputComponent::PlayerInputComponent(Horizon::GameObject* parent, bool isFirstPlayer) : Component(parent),
+m_IsFirstPlayer{isFirstPlayer},
 m_CanInputBeRegistered{ true },
 m_Move{}
 {
@@ -47,10 +52,16 @@ void PlayerInputComponent::Initialize()
 	m_pGameSpriteComponent = m_pGameObject->GetComponent<GameSpriteComponent>();
 	m_pPlayerMovementComponent = m_pGameObject->GetComponent<MovementComponent>();
 
-	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_s, KeyboardButtonState::KeyDown, std::make_unique<MoveDownCommand>(m_Move, m_CanInputBeRegistered));
-	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_q, KeyboardButtonState::KeyDown, std::make_unique<MoveLeftCommand>(m_Move, m_CanInputBeRegistered));
-	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_z, KeyboardButtonState::KeyDown, std::make_unique<MoveUpCommand>(m_Move, m_CanInputBeRegistered));
-	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_d, KeyboardButtonState::KeyDown, std::make_unique<MoveRightCommand>(m_Move, m_CanInputBeRegistered));
+	const Input downInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_s,ControllerButton::DPadDown } : Input{ SDLK::SDLK_DOWN, ControllerButton::ButtonA };
+	const Input leftInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_q,ControllerButton::DPadLeft } : Input{ SDLK::SDLK_LEFT, ControllerButton::ButtonX };
+	const Input upInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_z,ControllerButton::DPadUp } : Input{ SDLK::SDLK_UP, ControllerButton::ButtonY };
+	const Input rightInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_d,ControllerButton::DPadRight } : Input{ SDLK::SDLK_RIGHT, ControllerButton::ButtonB };
+
+
+	InputManager::GetInstance().AddKeyboardInput(downInput.first, KeyboardButtonState::KeyDown, std::make_unique<MoveDownCommand>(m_Move, m_CanInputBeRegistered));
+	InputManager::GetInstance().AddKeyboardInput(leftInput.first, KeyboardButtonState::KeyDown, std::make_unique<MoveLeftCommand>(m_Move, m_CanInputBeRegistered));
+	InputManager::GetInstance().AddKeyboardInput(upInput.first, KeyboardButtonState::KeyDown, std::make_unique<MoveUpCommand>(m_Move, m_CanInputBeRegistered));
+	InputManager::GetInstance().AddKeyboardInput(rightInput.first, KeyboardButtonState::KeyDown, std::make_unique<MoveRightCommand>(m_Move, m_CanInputBeRegistered));
 
 	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, false, 1.02f);
 	m_pTimedFunction->SetTimerFunction([this](float)
@@ -59,7 +70,13 @@ void PlayerInputComponent::Initialize()
 			m_pPlayerMovementComponent->SetMove(m_Move);
 
 			if (m_pTriggerComponent->GetOverlappingActorsSize() == 0)
+			{
+				auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
+				soundSystem.QueueEvent(8, 36);
+
 				m_pGameObject->GetComponent<HealthComponent>()->DecreaseLive();
+			}
+
 		});
 
 	m_pGameObject->AddComponent(m_pTimedFunction);

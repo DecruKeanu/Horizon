@@ -179,14 +179,14 @@
       "class": "Coily",
       "positionX": 292,
       "positionY": 72,
-      "spawnTime": 4,
-      "respawnTime": 6,
-      "isPlayerControlled": false
+      "spawnTime": 0,
+      "respawnTime": 0.2,
+      "isPlayerControlled": true
     },
     {
       "class": "QBert",
-      "positionX": 292,
-      "positionY": 72,
+      "positionX": 100,
+      "positionY": 360,
       "IsFirstQbert": true
     },
     {
@@ -202,7 +202,7 @@
     {
       "class": "TextObject",
       "positionX": 480,
-      "positionY": 20,
+      "positionY": 100,
       "text": "Level",
       "fontSize": 20,
       "R": 1,
@@ -212,7 +212,7 @@
     {
       "class": "TextObject",
       "positionX": 588,
-      "positionY": 18,
+      "positionY": 98,
       "text": "1",
       "fontSize": 20,
       "R": 255,
@@ -225,6 +225,16 @@
       "positionY": 14,
       "scale": 2.8,
       "srcPosX": 0,
+      "srcPosY": 84,
+      "srcWidth": 8,
+      "srcHeight": 11
+    },
+    {
+      "class": "TextureObject",
+      "positionX": 600,
+      "positionY": 14,
+      "scale": 2.8,
+      "srcPosX": 8,
       "srcPosY": 84,
       "srcWidth": 8,
       "srcHeight": 11
@@ -286,6 +296,18 @@
       "scale": 2.8,
       "srcPosX": 0,
       "srcPosY": 67,
+      "srcWidth": 312,
+      "srcHeight": 7,
+      "spriteAmount": 6,
+      "spriteLength": 0.1
+    },
+    {
+      "class": "SpriteObject",
+      "positionX": 440,
+      "positionY": 20,
+      "scale": 2.8,
+      "srcPosX": 0,
+      "srcPosY": 75,
       "srcWidth": 312,
       "srcHeight": 7,
       "spriteAmount": 6,

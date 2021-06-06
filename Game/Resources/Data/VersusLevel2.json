@@ -1,192 +1,198 @@
 {
-  "level": "level1Solo",
+  "level": "dgdgl",
   "gameObjects": [
     {
       "class": "Cube",
       "positionX": 292,
       "positionY": 72,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 260,
       "positionY": 120,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 324,
       "positionY": 120,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 228,
       "positionY": 168,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 292,
       "positionY": 168,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 356,
       "positionY": 168,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 196,
       "positionY": 216,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 260,
       "positionY": 216,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 324,
       "positionY": 216,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 388,
       "positionY": 216,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 164,
       "positionY": 264,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 228,
       "positionY": 264,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 292,
       "positionY": 264,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 356,
       "positionY": 264,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 420,
       "positionY": 264,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 132,
       "positionY": 312,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 196,
       "positionY": 312,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 260,
       "positionY": 312,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 324,
       "positionY": 312,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 388,
       "positionY": 312,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 452,
       "positionY": 312,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 100,
       "positionY": 360,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 164,
       "positionY": 360,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 228,
       "positionY": 360,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 292,
       "positionY": 360,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 356,
       "positionY": 360,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 420,
       "positionY": 360,
-      "level": 1
+      "level": 2
     },
     {
       "class": "Cube",
       "positionX": 484,
       "positionY": 360,
-      "level": 1
+      "level": 2
     },
     {
       "class": "FlyingDisc",
       "positionX": 464,
       "positionY": 222,
-      "level": 1
+      "level": 2
+    },
+    {
+      "class": "FlyingDisc",
+      "positionX": 112,
+      "positionY": 264,
+      "level": 2
     },
     {
       "class": "Coily",
       "positionX": 292,
       "positionY": 72,
-      "spawnTime": 4,
-      "respawnTime": 6,
-      "isPlayerControlled": false
+      "spawnTime": 0,
+      "respawnTime": 0.2,
+      "isPlayerControlled": true
     },
     {
       "class": "QBert",
-      "positionX": 292,
-      "positionY": 72,
+      "positionX": 100,
+      "positionY": 360,
       "IsFirstQbert": true
     },
     {
@@ -202,7 +208,7 @@
     {
       "class": "TextObject",
       "positionX": 480,
-      "positionY": 20,
+      "positionY": 100,
       "text": "Level",
       "fontSize": 20,
       "R": 1,
@@ -212,7 +218,7 @@
     {
       "class": "TextObject",
       "positionX": 588,
-      "positionY": 18,
+      "positionY": 98,
       "text": "1",
       "fontSize": 20,
       "R": 255,
@@ -225,6 +231,16 @@
       "positionY": 14,
       "scale": 2.8,
       "srcPosX": 0,
+      "srcPosY": 84,
+      "srcWidth": 8,
+      "srcHeight": 11
+    },
+    {
+      "class": "TextureObject",
+      "positionX": 600,
+      "positionY": 14,
+      "scale": 2.8,
+      "srcPosX": 8,
       "srcPosY": 84,
       "srcWidth": 8,
       "srcHeight": 11
@@ -286,6 +302,18 @@
       "scale": 2.8,
       "srcPosX": 0,
       "srcPosY": 67,
+      "srcWidth": 312,
+      "srcHeight": 7,
+      "spriteAmount": 6,
+      "spriteLength": 0.1
+    },
+    {
+      "class": "SpriteObject",
+      "positionX": 440,
+      "positionY": 20,
+      "scale": 2.8,
+      "srcPosX": 0,
+      "srcPosY": 75,
       "srcWidth": 312,
       "srcHeight": 7,
       "spriteAmount": 6,

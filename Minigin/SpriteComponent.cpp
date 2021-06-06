@@ -49,7 +49,7 @@ void Horizon::SpriteComponent::NextSprite()
 
 void Horizon::SpriteComponent::PreviousSprite()
 {
-	(m_CurrentSprite == m_SpriteAmount - 1) ? m_CurrentSprite = 0 : m_CurrentSprite--;
+	(m_CurrentSprite == 0) ? m_CurrentSprite = m_SpriteAmount - 1 : m_CurrentSprite--;
 	m_pTextureComponent->SetSrcRect(m_SrcRect.x + (m_SpriteWidth * m_CurrentSprite), m_SrcRect.y, m_SpriteWidth, m_SrcRect.h);
 }
 

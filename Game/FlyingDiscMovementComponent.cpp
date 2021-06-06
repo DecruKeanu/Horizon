@@ -1,6 +1,7 @@
 #include "GamePCH.h"
 #include "FlyingDiscMovementComponent.h"
 #include <TransformComponent.h>
+#include <SoundSystemServiceLocator.h>
 #include <Timer.h>
 
 using namespace Horizon;

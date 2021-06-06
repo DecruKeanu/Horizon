@@ -15,7 +15,7 @@ class MovementComponent;
 class PlayerInputComponent final : public Horizon::Component
 {
 public:
-	PlayerInputComponent(Horizon::GameObject* parent);
+	PlayerInputComponent(Horizon::GameObject* parent, bool isFirstPlayer);
 	void ResetInput();
 	bool GetCanInputBeRegistered();
 	void DeactivateInput();
@@ -25,6 +25,7 @@ private:
 	void Initialize() override;
 	void Update() override;
 
+	bool m_IsFirstPlayer;
 	bool m_CanInputBeRegistered;
 	Horizon::IPoint2 m_Move;
 	

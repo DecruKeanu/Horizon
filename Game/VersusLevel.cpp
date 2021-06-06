@@ -1,5 +1,5 @@
 #include "GamePCH.h"
-#include "SinglePlayerLevel.h"
+#include "VersusLevel.h"
 #include "MainMenuScene.h"
 #include "CubeHandleComponent.h"
 #include <ResourceManager.h>
@@ -24,7 +24,7 @@
 
 using namespace Horizon;
 
-SinglePlayerLevel::SinglePlayerLevel(int level, int playerScore, int playerLives) : Scene("SinglePlayerScene"),
+VersusLevel::VersusLevel(int level, int playerScore, int playerLives) : Scene("VersusScene"),
 m_Level{ level },
 m_PlayerScore{ playerScore },
 m_PlayerLives{ playerLives },
@@ -34,10 +34,10 @@ m_SwitchToNewLevel{}
 
 }
 
-void SinglePlayerLevel::Initialize()
+void VersusLevel::Initialize()
 {
 	LevelReader levelReader{};
-	const std::wstring fileName = L"SoloLevel" + std::to_wstring(m_Level) + L".json";
+	const std::wstring fileName = L"VersusLevel" + std::to_wstring(m_Level) + L".json";
 	levelReader.ParseLevel(fileName);
 
 	for (GameObject* const pPrefab : levelReader.GetGameObjects())
@@ -71,7 +71,7 @@ void SinglePlayerLevel::Initialize()
 	}
 }
 
-void SinglePlayerLevel::PostInitialize()
+void VersusLevel::PostInitialize()
 {
 	m_pPlayerScoreComponent = GetGameObject("Qbert")->GetComponent<ScoreComponent>();
 	m_pPlayerScoreComponent->AddObserver(new ScoreDisplayObserver(GetGameObject("ScoreDisplayObject")->GetComponent<ScoreDisplayComponent>()));
@@ -82,10 +82,11 @@ void SinglePlayerLevel::PostInitialize()
 	m_pPlayerHealthComponent->SetCurrentLives(m_PlayerLives);
 
 	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
+	//soundSystem.AddAudio("../Data/sounds/LevelIntro.wav");
 	soundSystem.QueueEvent(0, 100);
 }
 
-void SinglePlayerLevel::Update()
+void VersusLevel::Update()
 {
 	if (m_SwitchToNewLevel)
 		NextLevel();
@@ -114,27 +115,28 @@ void SinglePlayerLevel::Update()
 
 	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
 	soundSystem.QueueEvent(1, 100);
+
 }
 
-void SinglePlayerLevel::BackToMainMenu()
+void VersusLevel::BackToMainMenu()
 {
 	InputManager::GetInstance().ClearInput();
 	TriggerManager::GetInstance().ClearTriggerComponents();
 	Horizon::SceneManager::GetInstance().AddActiveScene(new MainMenuScene());
 }
 
-void SinglePlayerLevel::ResetLevel()
+void VersusLevel::ResetLevel()
 {
 	InputManager::GetInstance().ClearInput();
 	TriggerManager::GetInstance().ClearTriggerComponents();
 	m_PlayerScore = GetGameObject("Qbert")->GetComponent<ScoreComponent>()->GetScore();
 	m_PlayerLives = m_pPlayerHealthComponent->GetCurrentLives();
-	Horizon::SceneManager::GetInstance().AddActiveScene(new SinglePlayerLevel(m_Level, m_PlayerScore, m_PlayerLives));
+	Horizon::SceneManager::GetInstance().AddActiveScene(new VersusLevel(m_Level, m_PlayerScore, m_PlayerLives));
 }
 
-void SinglePlayerLevel::NextLevel()
+void VersusLevel::NextLevel()
 {
 	TriggerManager::GetInstance().ClearTriggerComponents();
 
-	(m_Level == 3) ? Horizon::SceneManager::GetInstance().AddActiveScene(new MainMenuScene()) : Horizon::SceneManager::GetInstance().AddActiveScene(new SinglePlayerLevel(++m_Level, m_PlayerScore, m_PlayerLives));
+	(m_Level == 3) ? Horizon::SceneManager::GetInstance().AddActiveScene(new MainMenuScene()) : Horizon::SceneManager::GetInstance().AddActiveScene(new VersusLevel(++m_Level, m_PlayerScore, m_PlayerLives));
 }

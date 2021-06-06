@@ -5,18 +5,9 @@
 #include "MathHelper.h"
 void Horizon::TriggerManager::AddTriggerComponent(TriggerComponent* pTriggerComponent)
 {
-	m_pTriggerComponents.push_back(pTriggerComponent);
-}
 
-//void Horizon::TriggerManager::RemoveTriggerComponent(TriggerComponent* pTriggerComponent)
-//{
-//	const auto it = find(m_pActiveTriggerComponents.begin(), m_pActiveTriggerComponents.end(), pTriggerComponent);
-//
-//	if (it != m_pActiveTriggerComponents.end())
-//	{
-//		m_pActiveTriggerComponents.erase(it);
-//	}
-//}
+		m_pTriggerComponents.push_back(pTriggerComponent);
+}
 
 void Horizon::TriggerManager::ClearTriggerComponents()
 {
@@ -36,7 +27,7 @@ void Horizon::TriggerManager::Update()
 			GameObject* const pSecondGameObject = pSecondTriggerComponent->GetParent();
 
 			if (pFirstGameObject->Equals(pSecondGameObject))
-				return;
+				continue;
 
 			const IRect& firstRect = pFirstTriggerComponent->GetCollisionRect();
 			const IRect& secondRect = pSecondTriggerComponent->GetCollisionRect();

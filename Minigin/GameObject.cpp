@@ -56,6 +56,9 @@ void Horizon::GameObject::Initialize()
 {
 	for (Component* const pComponent : m_pObjectComponents)
 		pComponent->Initialize();
+
+	for (Component* const pComponent : m_pObjectComponents)
+		pComponent->PostInitialize();
 }
 
 void Horizon::GameObject::FixedUpdate()

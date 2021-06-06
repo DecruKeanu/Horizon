@@ -1,5 +1,5 @@
 #include "GamePCH.h"
-#include "CoilyInputComponent.h"
+#include "CoilyInputAIComponent.h"
 #include "MovementComponent.h"
 #include "GameSpriteComponent.h"
 #include <TriggerComponent.h>
@@ -7,8 +7,9 @@
 #include <TimedFunctionComponent.h>
 #include <SceneManager.h>
 #include <Scene.h>
+#include <SoundSystemServiceLocator.h>
 
-CoilyInputComponent::CoilyInputComponent(Horizon::GameObject* pParent) : Component(pParent),
+CoilyInputAIComponent::CoilyInputAIComponent(Horizon::GameObject* pParent) : Component(pParent),
 m_Move{},
 m_StepsTaken{},
 m_CanMoveBeUpdated{},
@@ -17,7 +18,17 @@ m_IsCoilyTransformed{}
 
 }
 
-void CoilyInputComponent::Initialize()
+CoilyInputAIComponent::~CoilyInputAIComponent()
+{
+	Horizon::Logger::LogInfo("Coily deleted");
+}
+
+void CoilyInputAIComponent::Initialize()
+{
+	
+}
+
+void CoilyInputAIComponent::PostInitialize()
 {
 	m_pTriggerComponent = m_pGameObject->GetComponent<Horizon::TriggerComponent>();
 	m_pSpriteComponent = m_pGameObject->GetComponent<GameSpriteComponent>();
@@ -39,7 +50,13 @@ void CoilyInputComponent::Initialize()
 			m_CanMoveBeUpdated = !m_CanMoveBeUpdated;
 
 			if (m_pTriggerComponent->GetOverlappingActorsSize() == 0)
+			{
+				auto& soundSystem = Horizon::SoundSystemServiceLocator::GetSoundSystem();
+				soundSystem.QueueEvent(9, 50);
+
 				m_pGameObject->Deactivate();
+			}
+
 
 			if (!m_CanMoveBeUpdated)
 			{
@@ -66,6 +83,9 @@ void CoilyInputComponent::Initialize()
 
 				m_Move.x = (QbertPos.x > CoilyPos.x) ? 1 : -1;
 				m_Move.y = (QbertPos.y > CoilyPos.y) ? 1 : -1;
+
+				auto& soundSystem = Horizon::SoundSystemServiceLocator::GetSoundSystem();
+				soundSystem.QueueEvent(3, 80);
 			}
 
 			m_pMovementComponent->SetMove(m_Move);

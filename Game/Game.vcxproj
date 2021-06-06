@@ -173,10 +173,11 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Coily.cpp" />
-    <ClCompile Include="CoilyInputComponent.cpp" />
+    <ClCompile Include="CoilyInputAIComponent.cpp" />
+    <ClCompile Include="CoilyInputPlayerComponent.cpp" />
+    <ClCompile Include="CooperativeLevel.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeHandleComponent.cpp" />
-    <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="EnemyInputComponent.cpp" />
     <ClCompile Include="EnemyMovementComponent.cpp" />
     <ClCompile Include="GameSpriteComponent.cpp" />
@@ -206,13 +207,15 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TextureObject.cpp" />
     <ClCompile Include="UggWrongway.cpp" />
+    <ClCompile Include="VersusLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Coily.h" />
-    <ClInclude Include="CoilyInputComponent.h" />
+    <ClInclude Include="CoilyInputAIComponent.h" />
+    <ClInclude Include="CoilyInputPlayerComponent.h" />
+    <ClInclude Include="CooperativeLevel.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeHandleComponent.h" />
-    <ClInclude Include="DemoScene.h" />
     <ClInclude Include="EnemyInputComponent.h" />
     <ClInclude Include="EnemyMovementComponent.h" />
     <ClInclude Include="GameSpriteComponent.h" />
@@ -238,6 +241,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="TextureObject.h" />
     <ClInclude Include="UggWrongway.h" />
+    <ClInclude Include="VersusLevel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

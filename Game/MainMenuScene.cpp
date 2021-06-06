@@ -6,10 +6,18 @@
 #include "ResourceManager.h"
 #include "Cube.h"
 #include "LevelReader.h"
+#include <InputManager.h>
+#include "GameCommands.h"
+#include "SinglePlayerLevel.h"
+#include "CooperativeLevel.h"
+#include "VersusLevel.h"
+#include <SoundSystemServiceLocator.h>
 
 using namespace Horizon;
 
-MainMenuScene::MainMenuScene() : Scene("MainMenuScene")
+MainMenuScene::MainMenuScene() : Scene("MainMenuScene"),
+m_CurrentModeSelected{ ModeSelected::singlePlayer },
+m_InputPressed{}
 {
 
 }
@@ -20,7 +28,7 @@ void MainMenuScene::Initialize()
 	{
 		GameObject* const Logo = new GameObject();
 		TextureComponent* const logoTexture = new TextureComponent(Logo, "QBertTextures.png");
-		logoTexture->SetSrcRect(128, 33, 92, 14);
+		logoTexture->SetSrcRect(202, 45, 92, 14);
 		logoTexture->SetScale(4.f);
 		TransformComponent* const logoTransform = new TransformComponent(Logo, 230 - 128 / 2, 80);
 
@@ -58,5 +66,43 @@ void MainMenuScene::Initialize()
 		versusObject->AddComponent(versusText);
 		versusObject->AddComponent(versusTransform);
 		Add(versusObject);
+	}
+
+	{
+		GameObject* const pArrowObject = new GameObject();
+		TextureComponent* const pArrowTexture = new TextureComponent(pArrowObject, "QBertTextures.png");
+		pArrowTexture->SetSrcRect(18, 86, 7, 7);
+		pArrowTexture->SetScale(4.f);
+		m_pArrowTransformComponent = new TransformComponent(pArrowObject, 100, 200);
+
+		pArrowObject->AddComponent(pArrowTexture);
+		pArrowObject->AddComponent(m_pArrowTransformComponent);
+		Add(pArrowObject);
+	}
+
+	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_z, KeyboardButtonState::KeyDown, std::make_unique<ArrowUpCommand>(m_CurrentModeSelected, m_pArrowTransformComponent));
+	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_s, KeyboardButtonState::KeyDown, std::make_unique<ArrowDownCommand>(m_CurrentModeSelected, m_pArrowTransformComponent));
+	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_RETURN, KeyboardButtonState::KeyDown, std::make_unique<InputPressedCommand>(m_InputPressed));
+}
+
+void MainMenuScene::Update()
+{
+	if (m_InputPressed)
+	{
+		InputManager::GetInstance().ClearInput();
+
+		m_InputPressed = false;
+		switch (m_CurrentModeSelected)
+		{
+		case ModeSelected::singlePlayer:
+			Horizon::SceneManager::GetInstance().AddActiveScene(new SinglePlayerLevel(1, 0, 3));
+			break;
+		case ModeSelected::Cooperative:
+			Horizon::SceneManager::GetInstance().AddActiveScene(new CooperativeLevel(1, 0, 3, 0, 3));
+			break;
+		case ModeSelected::versus:
+			Horizon::SceneManager::GetInstance().AddActiveScene(new VersusLevel(1, 0, 3));
+			break;
+		}
 	}
 }

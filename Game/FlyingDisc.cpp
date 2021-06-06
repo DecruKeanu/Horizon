@@ -40,9 +40,9 @@ void FlyingDisc::Initialize()
 	FlyingDiscMovementComponent* const pMovementComponent = new FlyingDiscMovementComponent(pGameObject);
 	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { 8, 6, width/4, 6 });
 
-	pTriggerComponent->SetOnTriggerCallBack([pMovementComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, std::string overlappedTriggerIdentifier)
+	pTriggerComponent->SetOnTriggerCallBack([pMovementComponent](GameObject*, GameObject*, TriggerComponent::TriggerAction triggerAction, std::string overlappedTriggerIdentifier)
 		{
-			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "Qbert" && overlappedTriggerIdentifier == "FeetTrigger")
+			if (triggerAction == TriggerComponent::TriggerAction::Enter && overlappedTriggerIdentifier == "FeetTrigger")
 			{
 				pMovementComponent->Activate();
 			}

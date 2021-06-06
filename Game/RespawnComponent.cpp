@@ -4,41 +4,37 @@
 #include <Scene.h>
 #include <SceneManager.h>
 #include "Coily.h"
+#include "SlickSam.h"
+#include "UggWrongway.h"
 
-RespawnComponent::RespawnComponent(Horizon::GameObject* pParent, const Horizon::IPoint2 spawnPos, float respawnTime) : Component(pParent),
+RespawnComponent::RespawnComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& spawnPos, const std::string& type, float respawnTime, bool PlayerControlled) : Component(pParent),
 m_respawnTime{ respawnTime },
-m_Activated{}
+m_RespawnStarted{},
+m_ObjectActivated{}
 {
-	m_pRespawnTimedFunction = new Horizon::TimedFunctionComponent(pParent, false, true, 0.1f);
-	m_pRespawnTimedFunction->SetTimerFunction([this, spawnPos](float)
+	m_pRespawnTimedFunction = new Horizon::TimedFunctionComponent(pParent, false, true, respawnTime);
+	m_pRespawnTimedFunction->SetTimerFunction([this, spawnPos, respawnTime, type, PlayerControlled](float)
 		{
-
-			std::cout << "its working2";
 			if (m_pGameObject->GetIdentifier() == "Coily")
 			{
-				std::cout << "its working3";
-				Coily* const pCoilyPrefab = new Coily(spawnPos);
-				Horizon::SceneManager::GetInstance().GetActiveScene()->Add(pCoilyPrefab->GetGameObject());
+				const Coily coilyPrefab = Coily(spawnPos, respawnTime, PlayerControlled);
+				Horizon::SceneManager::GetInstance().GetActiveScene()->Add(coilyPrefab.GetGameObject());
 			}
-			m_Activated = false;
+			else if (m_pGameObject->GetIdentifier() == "SlickSam")
+			{
+				const SlickSam slickSam = SlickSam(spawnPos, type, respawnTime);
+				Horizon::SceneManager::GetInstance().GetActiveScene()->Add(slickSam.GetGameObject());
+			}
+			else if (m_pGameObject->GetIdentifier() == "UggWrongway")
+			{
+				const UggWrongway uggWrongway = UggWrongway(spawnPos, type, respawnTime);
+				Horizon::SceneManager::GetInstance().GetActiveScene()->Add(uggWrongway.GetGameObject());
+			}
+			m_RespawnStarted = false;
 			m_ObjectActivated = false;
 			m_pRespawnTimedFunction->Deactivate();
 		});
 	m_pGameObject->AddComponent(m_pRespawnTimedFunction);
-}
-
-void RespawnComponent::Initialize()
-{
-	//m_pRespawnTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, false, true, 10.f);
-	//m_pRespawnTimedFunction->SetTimerFunction([this](float)
-	//	{
-	//		if (m_pGameObject->GetIdentifier() == "Coily")
-	//		{
-	//			std::cout << "wut";
-	//		}
-	//		m_Activated = false;
-	//		m_pRespawnTimedFunction->Deactivate();
-	//	});
 }
 
 void RespawnComponent::PersistentUpdate()
@@ -46,12 +42,9 @@ void RespawnComponent::PersistentUpdate()
 	if (m_ObjectActivated == false && m_pGameObject->GetIsActive() == true)
 		m_ObjectActivated = true;
 
-	if (m_pGameObject->GetIsActive() == false && m_ObjectActivated && m_Activated == false)
+	if (m_pGameObject->GetIsActive() == false && m_ObjectActivated && m_RespawnStarted == false)
 	{
-		m_Activated = true;
-		std::cout << "its working1";
+		m_RespawnStarted = true;
 		m_pRespawnTimedFunction->Activate();
 	}
-
-
 }

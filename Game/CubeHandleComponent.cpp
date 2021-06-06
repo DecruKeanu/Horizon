@@ -23,30 +23,50 @@ void CubeHandleComponent::ActivateCube()
 	m_jumps++;
 
 	if (m_Level == 1)
+	{
+		m_pSpriteComponent->NextSprite();
 		m_IsActivated = true;
+	}
 	else if (m_Level == 2)
+	{
 		m_IsActivated = (m_jumps == 2);
+		m_pSpriteComponent->SetCurrentSprite(m_jumps);
+	}
 	else if (m_Level == 3)
+	{
+		m_pSpriteComponent->NextSprite();
 		m_IsActivated = (m_jumps % 2);
-
-	m_pSpriteComponent->NextSprite();
+	}
 }
 
 void CubeHandleComponent::DeactivateCube()
 {
-	if (!m_IsActivated)
-		return;
-
 	m_jumps--;
 
-	if (m_Level == 1)
-		m_IsActivated = false;
-	else if (m_Level == 2)
-		m_IsActivated = !(m_jumps == 2);
-	else if (m_Level == 3)
-		m_IsActivated = !(m_jumps % 2);
+	if (m_jumps < 0)
+	{
+		m_jumps = 0;
+		return;
+	}
 
-	m_pSpriteComponent->PreviousSprite();
+
+	if (m_Level == 1 && m_IsActivated)
+	{
+		m_IsActivated = false;
+
+		m_pSpriteComponent->PreviousSprite();
+	}
+	else if (m_Level == 2 && m_jumps >= 0)
+	{
+		m_IsActivated = false;
+		Horizon::Logger::LogInfo("cube reverted");
+		m_pSpriteComponent->SetCurrentSprite(m_jumps);
+	}
+	else if (m_Level == 3 && m_IsActivated)
+	{
+		m_IsActivated = (m_jumps % 2);
+		m_pSpriteComponent->PreviousSprite();
+	}
 }
 
 bool CubeHandleComponent::GetisActivated() const

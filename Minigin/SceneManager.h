@@ -9,6 +9,7 @@ namespace Horizon
 	{
 	public:
 		void AddScene(Scene* pScene);
+		void AddActiveScene(Scene* pScene);
 		void RemoveScene(Scene* pScene);
 		void SetActiveScene(Scene* pScene);
 		Scene* GetActiveScene() const;

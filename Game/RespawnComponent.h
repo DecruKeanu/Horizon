@@ -10,14 +10,12 @@ namespace Horizon
 class RespawnComponent final : public Horizon::Component
 {
 public:
-	RespawnComponent(Horizon::GameObject* pParent, const Horizon::IPoint2 spawnPos, float respawnTime);
-
+	RespawnComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& spawnPos, const std::string& type, float respawnTime, bool PlayerControlled = false);
 private:
-	void Initialize() override;
 	void PersistentUpdate() override;
 
 	float m_respawnTime;
-	bool m_Activated;
+	bool m_RespawnStarted;
 	bool m_ObjectActivated;
 	Horizon::TimedFunctionComponent* m_pRespawnTimedFunction = nullptr;
 };

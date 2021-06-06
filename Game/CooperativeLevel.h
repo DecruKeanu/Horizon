@@ -11,10 +11,10 @@ namespace Horizon
 
 class CubeHandleComponent;
 
-class SinglePlayerLevel final : public Horizon::Scene
+class CooperativeLevel final : public Horizon::Scene
 {
 public:
-	SinglePlayerLevel(int level,int playerScore, int playerLives);
+	CooperativeLevel(int level, int player1Score, int player1Lives, int player2Score, int player2Lives);
 private:
 	void Initialize() override;
 	void PostInitialize() override;
@@ -28,11 +28,17 @@ private:
 	std::vector<CubeHandleComponent*> m_pCubeHandles;
 	Horizon::TimedFunctionComponent* m_pTimedFunction = nullptr;
 
-	Horizon::HealthComponent* m_pPlayerHealthComponent = nullptr;
-	Horizon::ScoreComponent* m_pPlayerScoreComponent = nullptr;
+	Horizon::HealthComponent* m_pPlayer1HealthComponent = nullptr;
+	Horizon::ScoreComponent* m_pPlayer1ScoreComponent = nullptr;
 
-	int m_PlayerScore;
-	int m_PlayerLives;
+	Horizon::HealthComponent* m_pPlayer2HealthComponent = nullptr;
+	Horizon::ScoreComponent* m_pPlayer2ScoreComponent = nullptr;
+
+	int m_Player1Score;
+	int m_Player1Lives;
+
+	int m_Player2Score;
+	int m_Player2Lives;
 
 	bool m_LevelCompleted;
 	bool m_SwitchToNewLevel;

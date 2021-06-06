@@ -15,6 +15,7 @@ namespace Horizon
 		Component& operator=(Component && other) = delete;
 
 		virtual void Initialize() {};
+		virtual void PostInitialize() {};
 		virtual void FixedUpdate() {};
 		virtual void PersistentUpdate() {};
 		virtual void Update() {};

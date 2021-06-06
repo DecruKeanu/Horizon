@@ -10,7 +10,7 @@
 #include "TriggerComponent.h"
 #include <ScoreComponent.h>
 #include <Scene.h>
-
+#include <SoundSystemServiceLocator.h>
 using namespace Horizon;
 
 Cube::Cube(const rapidjson::Value& jsonObject) :
@@ -43,16 +43,20 @@ void Cube::Initialize()
 	SpriteComponent* const pSpriteComponent = new SpriteComponent(pGameObject,"QBertTextures.png", srcRect, spriteAmount);
 	pSpriteComponent->Scale(scale);
 	TransformComponent* const blockTransform = new TransformComponent(pGameObject, positionX, positionY);
-	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { 20,6, 20, 10 });
+	TriggerComponent* const pTriggerComponent = new TriggerComponent(pGameObject, { 22,6, 18, 10 });
 
 	pTriggerComponent->SetOnTriggerCallBack([pHandleCubeComponent](GameObject*, GameObject* pOverlappedGameObject, TriggerComponent::TriggerAction triggerAction, const std::string& overlappedTriggerIdentifier)
 		{
-			if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "Qbert" &&  overlappedTriggerIdentifier == "FeetTrigger")
+			if (triggerAction == TriggerComponent::TriggerAction::Enter &&  overlappedTriggerIdentifier == "FeetTrigger")
 			{
 				if (pHandleCubeComponent->GetisActivated() == false && pOverlappedGameObject->GetComponent<ScoreComponent>())
 					pOverlappedGameObject->GetComponent<ScoreComponent>()->IncreaseScore(25);
 
 				pHandleCubeComponent->ActivateCube();
+
+				auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
+				//soundSystem.AddAudio("../Data/sounds/QbertJump.wav");
+				soundSystem.QueueEvent(2, 80);
 			}
 			else if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "SlickSam")
 			{

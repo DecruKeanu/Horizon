@@ -6,7 +6,8 @@
 #include <TriggerComponent.h>
 #include <TimedFunctionComponent.h>
 #include "MovementComponent.h"
-#include "CoilyInputComponent.h"
+#include "CoilyInputAIComponent.h"
+#include "CoilyInputPlayerComponent.h"
 #include "GameSpriteComponent.h"
 #include "SpriteComponent.h"
 #include "RespawnComponent.h"
@@ -17,14 +18,19 @@ using namespace Horizon;
 
 Coily::Coily(const rapidjson::Value& jsonObject) :
 	m_Value{jsonObject},
-	m_SpawnPos{}
+	m_SpawnPos{},
+	m_RespawnTime{},
+	m_IsPlayerControlled{},
+	m_Respawn{}
 {
 	Initialize();
 }
 
-Coily::Coily(const Horizon::IPoint2& spawnPos) : 
+Coily::Coily(const Horizon::IPoint2& spawnPos, float respawnTime, bool playerControlled) : 
 	m_Value{},
-	m_SpawnPos{spawnPos}
+	m_SpawnPos{spawnPos},
+	m_RespawnTime{respawnTime},
+	m_IsPlayerControlled{playerControlled}
 {
 	Initialize();
 }
@@ -43,32 +49,42 @@ void Coily::Initialize()
 	const int srcPosY = 18;
 	const int srcWidth = 16;
 	const int srcHeight = 13;
-	const float scale = 2.f;
-	const float respawnTime = 10.f;
+	const float scale = 2.f; 
+	const float spawnTime = (m_SpawnPos == IPoint2{ 0, 0 }) ? m_Value["spawnTime"].GetInt() : 0.f; 
+	const bool isPlayerControlled = (m_Value.IsObject()) ? m_Value["isPlayerControlled"].GetBool() : m_IsPlayerControlled;
+	m_RespawnTime = (m_RespawnTime == 0.f) ? m_Value["respawnTime"].GetFloat() : m_RespawnTime;
 
 	if (m_SpawnPos == IPoint2{})
 	{
 		positionX += srcWidth;
 		positionY -= srcHeight;
-
 	}
 
-
-	GameObject* const pGameObject = new GameObject("Coily", 4.f/*float(rand() % 10 + 6)*/);
+	GameObject* const pGameObject = new GameObject("Coily", spawnTime);
 
 	GameSpriteComponent* const pSpriteComponent = new GameSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth * 2, srcHeight },2);
 	TransformComponent* const pSlickSamTransform = new TransformComponent(pGameObject, positionX, positionY);
 	MovementComponent* const pMovementComponent = new MovementComponent(pGameObject, IPoint2{ positionX,positionY + fallHeight }, false);
-	CoilyInputComponent* const pInputComponent = new CoilyInputComponent(pGameObject);
 	TriggerComponent* const pTriggerBodyComponent = new TriggerComponent(pGameObject, { 0 ,14, int(scale * srcWidth), int(scale * srcHeight) - 14 });
-	RespawnComponent* const pRespawnComponent = new RespawnComponent(pGameObject, { positionX,positionY }, respawnTime);
+	RespawnComponent* const pRespawnComponent = new RespawnComponent(pGameObject, { positionX,positionY }, {}, m_RespawnTime,isPlayerControlled);
 
 	pGameObject->AddComponent(pSpriteComponent);
 	pGameObject->AddComponent(pSlickSamTransform);
 	pGameObject->AddComponent(pMovementComponent);
-	pGameObject->AddComponent(pInputComponent);
+
 	pGameObject->AddComponent(pTriggerBodyComponent);
 	pGameObject->AddComponent(pRespawnComponent);
+
+	if (isPlayerControlled)
+	{
+		CoilyInputPlayerComponent* const pInputComponent = new CoilyInputPlayerComponent(pGameObject);
+		pGameObject->AddComponent(pInputComponent);
+	}
+	else
+	{
+		CoilyInputAIComponent* const pInputComponent = new CoilyInputAIComponent(pGameObject);
+		pGameObject->AddComponent(pInputComponent);
+	}
 
 	m_pGameObject = pGameObject;
 }

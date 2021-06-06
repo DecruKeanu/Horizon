@@ -37,16 +37,16 @@
     <Filter Include="Components\Cubes">
       <UniqueIdentifier>{51211986-f477-4b46-8ed7-805a6496d7dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\Enemy">
+    <Filter Include="Components\BaseEnemies">
       <UniqueIdentifier>{0c54ad3f-3327-4152-82d8-0d8521f9a4ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\CoilyInput">
+      <UniqueIdentifier>{619c2ade-a17f-4d5c-819c-1c116c90bb92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DemoScene.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuScene.cpp">
       <Filter>Scenes</Filter>
@@ -85,19 +85,16 @@
       <Filter>Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="EnemyMovementComponent.cpp">
-      <Filter>Components\Enemy</Filter>
+      <Filter>Components\BaseEnemies</Filter>
     </ClCompile>
     <ClCompile Include="EnemyInputComponent.cpp">
-      <Filter>Components\Enemy</Filter>
+      <Filter>Components\BaseEnemies</Filter>
     </ClCompile>
     <ClCompile Include="UggWrongway.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="HelperFunctions.cpp">
       <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CoilyInputComponent.cpp">
-      <Filter>Components\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Coily.cpp">
       <Filter>Prefabs</Filter>
@@ -127,13 +124,22 @@
       <Filter>Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="RespawnComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CooperativeLevel.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="CoilyInputAIComponent.cpp">
+      <Filter>Components\CoilyInput</Filter>
+    </ClCompile>
+    <ClCompile Include="VersusLevel.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="CoilyInputPlayerComponent.cpp">
+      <Filter>Components\CoilyInput</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DemoScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenuScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
@@ -177,19 +183,16 @@
       <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="EnemyMovementComponent.h">
-      <Filter>Components\Enemy</Filter>
+      <Filter>Components\BaseEnemies</Filter>
     </ClInclude>
     <ClInclude Include="EnemyInputComponent.h">
-      <Filter>Components\Enemy</Filter>
+      <Filter>Components\BaseEnemies</Filter>
     </ClInclude>
     <ClInclude Include="UggWrongway.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="HelperFunctions.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoilyInputComponent.h">
-      <Filter>Components\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Coily.h">
       <Filter>Prefabs</Filter>
@@ -219,7 +222,19 @@
       <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="RespawnComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CooperativeLevel.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="CoilyInputAIComponent.h">
+      <Filter>Components\CoilyInput</Filter>
+    </ClInclude>
+    <ClInclude Include="VersusLevel.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="CoilyInputPlayerComponent.h">
+      <Filter>Components\CoilyInput</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

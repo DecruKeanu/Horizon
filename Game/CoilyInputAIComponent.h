@@ -11,12 +11,14 @@ namespace Horizon
 class MovementComponent;
 class GameSpriteComponent;
 
-class CoilyInputComponent final : public Horizon::Component
+class CoilyInputAIComponent final : public Horizon::Component
 {
 public:
-	CoilyInputComponent(Horizon::GameObject* pParent);
+	CoilyInputAIComponent(Horizon::GameObject* pParent);
+	~CoilyInputAIComponent();
 private:
 	void Initialize() override;
+	void PostInitialize() override;
 
 	int m_StepsTaken;
 	bool m_CanMoveBeUpdated;

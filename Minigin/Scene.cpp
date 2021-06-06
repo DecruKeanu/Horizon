@@ -18,7 +18,7 @@ Scene::Scene(const std::string& name) :
 Scene::~Scene()
 {
 	for (size_t idx{}; idx < m_pObjects.size(); idx++)
-		SafeDelete<GameObject>(m_pObjects[idx]);
+		SafeDelete(m_pObjects[idx]);
 }
 
 void Scene::Add(GameObject* object)
@@ -107,6 +107,9 @@ std::vector<GameObject*> Horizon::Scene::GetGameObjects(const std::string& ident
 
 	for (GameObject* const pGameObject : m_pObjects)
 	{
+		if (pGameObject == nullptr)
+			continue;
+
 		if (pGameObject->GetIdentifier() == identifier)
 			pIdentifierObjects.push_back(pGameObject);
 	}

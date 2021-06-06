@@ -65,6 +65,22 @@ void Horizon::SceneManager::AddScene(Scene* pScene)
 	}
 }
 
+void Horizon::SceneManager::AddActiveScene(Scene* pScene)
+{
+	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);
+
+	if (it == m_pScenes.end())
+	{
+		m_pScenes.push_back(pScene);
+		SetActiveScene(pScene);
+		if (m_Initialized)
+		{
+			pScene->RootInitialize();
+			pScene->RootPostInitialize();
+		}
+	}
+}
+
 void Horizon::SceneManager::RemoveScene(Scene* pScene)
 {
 	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);

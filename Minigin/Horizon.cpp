@@ -10,6 +10,8 @@
 #include "Command.h"
 #include "TriggerManager.h"
 #include <thread>
+#include "SoundSystemServiceLocator.h"
+#include "SDLSoundSystem.h"
 
 void Horizon::Horizon::Initialize()
 {
@@ -39,6 +41,17 @@ void Horizon::Horizon::Initialize()
 		Logger::LogError("Horizon::Initialize >> SDL_MIXER could not be initialized");
 
 	SoundSystemServiceLocator::RegisterSoundSystem(new SDLSoundSystem());
+	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
+	soundSystem.AddAudio("../Data/sounds/LevelIntro.wav"); //0
+	soundSystem.AddAudio("../Data/sounds/LevelCompleted.wav"); //1
+	soundSystem.AddAudio("../Data/sounds/QBertJump.wav"); //2
+	soundSystem.AddAudio("../Data/sounds/CoilyJump.wav"); //3
+	soundSystem.AddAudio("../Data/sounds/SamSlickJump.wav"); //4
+	soundSystem.AddAudio("../Data/sounds/UggWrongWayJump.wav"); //5
+	soundSystem.AddAudio("../Data/sounds/Disk.wav"); //6
+	soundSystem.AddAudio("../Data/sounds/QBertHit.wav"); //7
+	soundSystem.AddAudio("../Data/sounds/QBertFall.wav"); //8
+	soundSystem.AddAudio("../Data/sounds/CoilyFall.wav"); //9
 }
 
 void Horizon::Horizon::Cleanup()
@@ -86,7 +99,7 @@ void Horizon::Horizon::Run() //no fpsCap because vsync does it automatically
 				sceneManager.FixedUpdate();
 				lag -= Timer::GetInstance().GetFixedFrameTime();
 			}
-			
+
 			sceneManager.Update();
 			sceneManager.LateUpdate();
 			renderer.Render(lag / Timer::GetInstance().GetFixedFrameTime());

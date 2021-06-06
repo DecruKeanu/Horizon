@@ -3,6 +3,7 @@
 #include "PlayerInputComponent.h"
 #include "MovementComponent.h"
 #include <TransformComponent.h>
+#include <SoundSystemServiceLocator.h>
 #include <Timer.h>
 
 using namespace Horizon;
@@ -18,6 +19,9 @@ m_IsFallingOfFlyingDisc{}
 
 void PlayerDiscComponent::PlayerOnDisc(Horizon::TransformComponent* pFlyingDiscTransformComponent)
 {
+	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
+	soundSystem.QueueEvent(6, 36);
+
 	m_OriginalPoint = m_pPlayerTransformComponent->GetPosition();
 	m_pPlayerMovementComponent->SetOriginalPos(m_OriginalPoint);
 	m_pPlayerInputComponent->DeactivateInput();

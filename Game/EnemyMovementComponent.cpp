@@ -1,7 +1,6 @@
 #include "GamePCH.h"
 #include "EnemyMovementComponent.h"
 #include "EnemyInputComponent.h"
-#include "CoilyInputComponent.h"
 #include "SpriteComponent.h"
 #include <TriggerComponent.h>
 #include "InputManager.h"

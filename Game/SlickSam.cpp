@@ -38,7 +38,7 @@ void SlickSam::Initialize()
 	positionY -= srcHeight;
 
 	 
-	GameObject* const pGameObject = new GameObject("SlickSam", float(rand() % 20 + 20));
+	GameObject* const pGameObject = new GameObject("SlickSam", 120/*float(rand() % 20 + 20)*/);
 
 	GameSpriteComponent* const pSpriteComponent = new GameSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth * 8, srcHeight },8);
 	TransformComponent* const pSlickSamTransform = new TransformComponent(pGameObject, positionX, positionY);

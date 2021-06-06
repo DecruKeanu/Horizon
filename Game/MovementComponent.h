@@ -15,6 +15,8 @@ public:
 
 	void SetMove(const Horizon::IPoint2& input);
 	void SetOriginalPos(const Horizon::IPoint2& input);
+
+	const Horizon::IPoint2& GetOriginalPos() const;
 private:
 	void Initialize() override;
 	void Update() override;
@@ -28,6 +30,7 @@ private:
 
 	Horizon::IPoint2 m_FallPoint;
 	Horizon::IPoint2 m_Move;
+	Horizon::IPoint2 m_PreviousPoint;
 	Horizon::IPoint2 m_OriginalPoint;
 
 	Horizon::IPoint2 m_BlockOffset;

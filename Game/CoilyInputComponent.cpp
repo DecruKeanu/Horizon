@@ -22,11 +22,11 @@ void CoilyInputComponent::Initialize()
 	m_pTriggerComponent = m_pGameObject->GetComponent<Horizon::TriggerComponent>();
 	m_pSpriteComponent = m_pGameObject->GetComponent<GameSpriteComponent>();
 	m_pCoilyTransformComponent = m_pGameObject->GetComponent<Horizon::TransformComponent>();
-	m_pQbertTransformComponent = Horizon::SceneManager::GetInstance().GetActiveScene()->GetGameObject("Qbert")->GetComponent<Horizon::TransformComponent>();
+	m_pQbertMovementComponent = Horizon::SceneManager::GetInstance().GetActiveScene()->GetGameObject("Qbert")->GetComponent<MovementComponent>();
 	m_pMovementComponent = m_pGameObject->GetComponent<MovementComponent>();
 
-	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, true, 1.f);
-	m_pTimedFunction->SetTimerFunction([this](float)
+	Horizon::TimedFunctionComponent* const pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, true, 1.f);
+	pTimedFunction->SetTimerFunction([this](float)
 		{
 			if (m_StepsTaken >= 6 && m_IsCoilyTransformed == false)
 			{
@@ -60,7 +60,9 @@ void CoilyInputComponent::Initialize()
 			else
 			{
 				const Horizon::IPoint2& CoilyPos = m_pCoilyTransformComponent->GetPosition();
-				const Horizon::IPoint2& QbertPos = m_pQbertTransformComponent->GetPosition();
+				const Horizon::IPoint2& QbertPos = m_pQbertMovementComponent->GetOriginalPos();
+
+				Horizon::Logger::LogInfo("CurrentPos: (" + std::to_string(QbertPos.x) + " , " + std::to_string(QbertPos.y) + ")");
 
 				m_Move.x = (QbertPos.x > CoilyPos.x) ? 1 : -1;
 				m_Move.y = (QbertPos.y > CoilyPos.y) ? 1 : -1;
@@ -70,6 +72,6 @@ void CoilyInputComponent::Initialize()
 			m_pSpriteComponent->SetMove(m_Move);
 		});
 
-	m_pTimedFunction->Activate();
-	m_pGameObject->AddComponent(m_pTimedFunction);
+	pTimedFunction->Activate();
+	m_pGameObject->AddComponent(pTimedFunction);
 }

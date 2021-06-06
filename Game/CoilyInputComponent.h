@@ -27,8 +27,7 @@ private:
 	GameSpriteComponent* m_pSpriteComponent = nullptr;
 
 	Horizon::TriggerComponent* m_pTriggerComponent = nullptr;
-	Horizon::TimedFunctionComponent* m_pTimedFunction = nullptr;
 	Horizon::TransformComponent* m_pCoilyTransformComponent = nullptr;
-	Horizon::TransformComponent* m_pQbertTransformComponent = nullptr;
+	MovementComponent* m_pQbertMovementComponent = nullptr;
 };
 

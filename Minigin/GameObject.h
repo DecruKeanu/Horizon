@@ -39,7 +39,6 @@ namespace Horizon
 		void Activate();
 		void Deactivate();
 	private:
-		TimedFunctionComponent* m_pTimedFunction = nullptr;
 		std::vector<Component*> m_pObjectComponents;
 		std::string m_Identifier;
 		const size_t m_Id;

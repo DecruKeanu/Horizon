@@ -15,6 +15,7 @@ namespace Horizon
 		Scene& operator=(Scene&& other) = delete;
 
 		void RootInitialize();
+		void RootPostInitialize();
 		void RootFixedUpdate();
 		void RootUpdate();
 		void RootLateUpdate();
@@ -28,6 +29,7 @@ namespace Horizon
 
 	protected:
 		virtual void Initialize() {};
+		virtual void PostInitialize() {};
 		virtual void FixedUpdate() {};
 		virtual void Update() {};
 		virtual void LateUpdate() {};

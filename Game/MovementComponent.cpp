@@ -13,6 +13,7 @@ using namespace Horizon;
 MovementComponent::MovementComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& fallPoint, bool IsMovementSideways) : Component(pParent),
 	m_FallPoint{fallPoint},
 	m_IsMovementSideways{IsMovementSideways},
+	m_PreviousPoint{},
 	m_OriginalPoint{},
 	m_Move{},
 	m_StepsTaken{},
@@ -31,6 +32,11 @@ void MovementComponent::SetMove(const Horizon::IPoint2& input)
 void MovementComponent::SetOriginalPos(const Horizon::IPoint2& input)
 {
 	m_OriginalPoint = input;
+}
+
+const Horizon::IPoint2& MovementComponent::GetOriginalPos() const
+{
+	return m_OriginalPoint;
 }
 
 void MovementComponent::Initialize()

@@ -15,6 +15,7 @@ namespace Horizon
 		void NextScene();
 		//void PreviousScene();
 		void Initialize();
+		void PostInitialize();
 		void FixedUpdate();
 		void Update();
 		void LateUpdate();

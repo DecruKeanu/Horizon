@@ -19,6 +19,7 @@ m_IsFallingOfFlyingDisc{}
 void PlayerDiscComponent::PlayerOnDisc(Horizon::TransformComponent* pFlyingDiscTransformComponent)
 {
 	m_OriginalPoint = m_pPlayerTransformComponent->GetPosition();
+	m_pPlayerMovementComponent->SetOriginalPos(m_OriginalPoint);
 	m_pPlayerInputComponent->DeactivateInput();
 	m_pFlyingDiscTransformComponent = pFlyingDiscTransformComponent;
 	m_IsPlayerOnFlyingDisc = true;

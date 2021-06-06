@@ -62,6 +62,7 @@ void Horizon::Horizon::Run() //no fpsCap because vsync does it automatically
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
 		sceneManager.Initialize();
+		sceneManager.PostInitialize();
 
 		bool doContinue = true;
 		Timer::GetInstance().UpdateLastTime();

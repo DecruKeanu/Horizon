@@ -16,28 +16,28 @@ void Horizon::SceneManager::Initialize()
 	m_Initialized = true;
 }
 
+void Horizon::SceneManager::PostInitialize()
+{
+	for (auto& scene : m_pScenes)
+		scene->RootPostInitialize();
+}
+
 void Horizon::SceneManager::FixedUpdate()
 {
 	if (m_pActiveScene)
 		m_pActiveScene->RootFixedUpdate();
-	//for (auto& scene : m_pScenes)
-	//	scene->RootFixedUpdate();
 }
 
 void Horizon::SceneManager::Update()
 {
 	if (m_pActiveScene)
 		m_pActiveScene->RootUpdate();
-	//for (auto& scene : m_pScenes)
-	//	scene->RootUpdate();
 }
 
 void Horizon::SceneManager::LateUpdate()
 {
 	if (m_pActiveScene)
 		m_pActiveScene->RootLateUpdate();
-	//for (auto& scene : m_pScenes)
-	//	scene->RootLateUpdate();
 }
 
 void Horizon::SceneManager::Render()
@@ -55,7 +55,10 @@ void Horizon::SceneManager::AddScene(Scene* pScene)
 		m_pScenes.push_back(pScene);
 
 		if (m_Initialized)
+		{
 			pScene->RootInitialize();
+			pScene->RootPostInitialize();
+		}
 
 		if (m_pActiveScene == nullptr)
 			m_pActiveScene = pScene;
@@ -100,7 +103,4 @@ void Horizon::SceneManager::NextScene()
 		}
 	}
 }
-//
-//void dae::SceneManager::PreviousScene()
-//{
-//}
+

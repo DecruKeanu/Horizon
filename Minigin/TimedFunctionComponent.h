@@ -12,11 +12,16 @@ namespace Horizon
 	{
 	public:
 		TimedFunctionComponent(Horizon::GameObject* pParent, bool isLooping, float maxTime);
+		TimedFunctionComponent(Horizon::GameObject* pParent, bool isLooping, bool isPersistent, float maxTime);
 		void SetTimerFunction(const TimerFunction& timerFunction);
 
 		void Activate();
 		void Deactivate();
-		void Update();
+
+		void UpdateTimedFunction();
+
+		void Update() override;
+		void PersistentUpdate() override;
 	private:
 		TimerFunction m_TimerFunction;
 
@@ -24,6 +29,7 @@ namespace Horizon
 		float m_TotalTime;
 		float m_MaxTime;
 		bool m_IsLooping;
+		bool m_IsPersistent;
 		bool m_IsActive;
 	};
 

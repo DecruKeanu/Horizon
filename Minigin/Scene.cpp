@@ -50,6 +50,11 @@ void Scene::RootInitialize()
 	m_IsInitialized = true;
 }
 
+void Horizon::Scene::RootPostInitialize()
+{
+	PostInitialize();
+}
+
 void Scene::RootFixedUpdate()
 {
 	FixedUpdate();

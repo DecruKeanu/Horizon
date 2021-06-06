@@ -2,12 +2,18 @@
 #include "TimedFunctionComponent.h"
 #include "Timer.h"
 
-Horizon::TimedFunctionComponent::TimedFunctionComponent(GameObject* pParent, bool isLooping, float maxTime) : Component(pParent),
-	m_IsLooping{isLooping},
-	m_MaxTime{maxTime},
-	m_ElapsedTime{},
-	m_TotalTime{},
-	m_IsActive{false}
+Horizon::TimedFunctionComponent::TimedFunctionComponent(GameObject* pParent, bool isLooping, float maxTime) : TimedFunctionComponent(pParent, isLooping, false, maxTime)
+{
+
+}
+
+Horizon::TimedFunctionComponent::TimedFunctionComponent(Horizon::GameObject* pParent, bool isLooping, bool isPersistent, float maxTime) : Component(pParent),
+m_IsLooping{ isLooping },
+m_IsPersistent{isPersistent},
+m_MaxTime{ maxTime },
+m_ElapsedTime{},
+m_TotalTime{},
+m_IsActive{ false }
 {
 	m_TimerFunction = [](float) {};
 }
@@ -29,7 +35,7 @@ void Horizon::TimedFunctionComponent::Deactivate()
 	m_ElapsedTime = 0.f;
 }
 
-void Horizon::TimedFunctionComponent::Update()
+void Horizon::TimedFunctionComponent::UpdateTimedFunction()
 {
 	if (m_IsActive == false)
 		return;
@@ -43,4 +49,16 @@ void Horizon::TimedFunctionComponent::Update()
 
 		(m_IsLooping) ? Activate() : Deactivate();
 	}
+}
+
+void Horizon::TimedFunctionComponent::Update()
+{
+	if (m_IsPersistent == false)
+		UpdateTimedFunction();
+}
+
+void Horizon::TimedFunctionComponent::PersistentUpdate()
+{
+	if (m_IsPersistent == true)
+		UpdateTimedFunction();
 }

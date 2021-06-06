@@ -6,17 +6,14 @@ namespace Horizon
 	class GameObject;
 }
 
-class Coily final 
+class TextureObject final
 {
 public:
-	Coily(const rapidjson::Value& jsonObject);
-	Coily(const Horizon::IPoint2& spawnPos);
+	TextureObject(const rapidjson::Value& jsonObject);
 	Horizon::GameObject* GetGameObject() const;
 private:
 	void Initialize();
 
-	const Horizon::IPoint2& m_SpawnPos;
 	const rapidjson::Value& m_Value;
 	Horizon::GameObject* m_pGameObject = nullptr;
 };
-

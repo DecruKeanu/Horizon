@@ -208,6 +208,126 @@
       "class": "QBert",
       "positionX": 292,
       "positionY": 72
+    },
+    {
+      "class": "TextObject",
+      "positionX": 10,
+      "positionY": 100,
+      "text": "Change to",
+      "fontSize": 20,
+      "R": 255,
+      "G": 140,
+      "B": 0
+    },
+    {
+      "class": "TextObject",
+      "positionX": 480,
+      "positionY": 20,
+      "text": "Level",
+      "fontSize": 20,
+      "R": 1,
+      "G": 50,
+      "B": 32
+    },
+    {
+      "class": "TextObject",
+      "positionX": 588,
+      "positionY": 18,
+      "text": "1",
+      "fontSize": 20,
+      "R": 255,
+      "G": 140,
+      "B": 0
+    },
+    {
+      "class": "TextureObject",
+      "positionX": 178,
+      "positionY": 14,
+      "scale": 2.8,
+      "srcPosX": 0,
+      "srcPosY": 84,
+      "srcWidth": 8,
+      "srcHeight": 11
+    },
+    {
+      "class": "TextureObject",
+      "positionX": 20,
+      "positionY": 144,
+      "scale": 2.8,
+      "srcPosX": 18,
+      "srcPosY": 86,
+      "srcWidth": 7,
+      "srcHeight": 7
+    },
+    {
+      "class": "TextureObject",
+      "positionX": 48,
+      "positionY": 144,
+      "scale": 2.8,
+      "srcPosX": 18,
+      "srcPosY": 86,
+      "srcWidth": 7,
+      "srcHeight": 7
+    },
+    {
+      "class": "TextureObject",
+      "positionX": 136,
+      "positionY": 144,
+      "scale": 2.8,
+      "srcPosX": 27,
+      "srcPosY": 86,
+      "srcWidth": 7,
+      "srcHeight": 7
+    },
+    {
+      "class": "TextureObject",
+      "positionX": 164,
+      "positionY": 144,
+      "scale": 2.8,
+      "srcPosX": 27,
+      "srcPosY": 86,
+      "srcWidth": 7,
+      "srcHeight": 7
+    },
+    {
+      "class": "TextureObject",
+      "positionX": 75,
+      "positionY": 128,
+      "scale": 1.6,
+      "srcPosX": 32,
+      "srcPosY": 164,
+      "srcWidth": 32,
+      "srcHeight": 32
+    },
+    {
+      "class": "SpriteObject",
+      "positionX": 20,
+      "positionY": 20,
+      "scale": 2.8,
+      "srcPosX": 0,
+      "srcPosY": 67,
+      "srcWidth": 312,
+      "srcHeight": 7,
+      "spriteAmount": 6,
+      "spriteLength": 0.1
+    },
+    {
+      "class": "ScoreDisplayObject",
+      "positionX": 20,
+      "positionY": 50,
+      "fontSize": 20,
+      "R": 255,
+      "G": 140,
+      "B": 0
+    },
+    {
+      "class": "HealthDisplayObject",
+      "positionX": 20,
+      "positionY": 200,
+      "fontSize": 20,
+      "R": 255,
+      "G": 140,
+      "B": 0
     }
   ]
 }

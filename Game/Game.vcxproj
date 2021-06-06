@@ -183,6 +183,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="FlyingDisc.cpp" />
     <ClCompile Include="FlyingDiscMovementComponent.cpp" />
     <ClCompile Include="FlyingDiscSpriteComponent.cpp" />
+    <ClCompile Include="HealthDisplayObject.cpp" />
     <ClCompile Include="HelperFunctions.cpp" />
     <ClCompile Include="GamePCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -194,11 +195,16 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="PlayerDiscComponent.cpp" />
     <ClCompile Include="QBert.cpp" />
     <ClCompile Include="PlayerInputComponent.cpp" />
+    <ClCompile Include="RespawnComponent.cpp" />
+    <ClCompile Include="ScoreDisplayObject.cpp" />
     <ClCompile Include="SinglePlayerLevel.cpp" />
     <ClCompile Include="LevelReader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="SlickSam.cpp" />
+    <ClCompile Include="SpriteObject.cpp" />
+    <ClCompile Include="TextObject.cpp" />
+    <ClCompile Include="TextureObject.cpp" />
     <ClCompile Include="UggWrongway.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +220,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="FlyingDiscMovementComponent.h" />
     <ClInclude Include="FlyingDiscSpriteComponent.h" />
     <ClInclude Include="GameCommands.h" />
+    <ClInclude Include="HealthDisplayObject.h" />
     <ClInclude Include="HelperFunctions.h" />
     <ClInclude Include="GamePCH.h" />
     <ClInclude Include="LevelType.h" />
@@ -221,10 +228,15 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="PlayerDiscComponent.h" />
     <ClInclude Include="QBert.h" />
     <ClInclude Include="PlayerInputComponent.h" />
+    <ClInclude Include="RespawnComponent.h" />
+    <ClInclude Include="ScoreDisplayObject.h" />
     <ClInclude Include="SinglePlayerLevel.h" />
     <ClInclude Include="LevelReader.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="SlickSam.h" />
+    <ClInclude Include="SpriteObject.h" />
+    <ClInclude Include="TextObject.h" />
+    <ClInclude Include="TextureObject.h" />
     <ClInclude Include="UggWrongway.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -16,9 +16,12 @@ namespace Horizon
 
 		virtual void Initialize() {};
 		virtual void FixedUpdate() {};
+		virtual void PersistentUpdate() {};
 		virtual void Update() {};
 		virtual void LateUpdate() {};
 		virtual void Render() const {};
+
+		virtual void Reset() {};
 
 		GameObject* GetParent() const;
 		const std::string& GetIdentifier() const;

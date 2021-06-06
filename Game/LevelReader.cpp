@@ -7,6 +7,11 @@
 #include "SlickSam.h"
 #include "UggWrongway.h"
 #include "Coily.h"
+#include "SpriteObject.h"
+#include "TextObject.h"
+#include "TextureObject.h"
+#include "ScoreDisplayObject.h"
+#include "HealthDisplayObject.h"
 #include "rapidjson.h"
 #include "document.h"
 #include "stream.h"
@@ -24,6 +29,11 @@ LevelReader::LevelReader() :
 	m_Factory.RegisterPrefab<UggWrongway>();
 	m_Factory.RegisterPrefab<UggWrongway>();
 	m_Factory.RegisterPrefab<Coily>();
+	m_Factory.RegisterPrefab<SpriteObject>();
+	m_Factory.RegisterPrefab<TextObject>();
+	m_Factory.RegisterPrefab<TextureObject>();
+	m_Factory.RegisterPrefab<ScoreDisplayObject>();
+	m_Factory.RegisterPrefab<HealthDisplayObject>();
 }
 
 //class needs to include namespace and needs to be the same name as cpp 

@@ -35,7 +35,7 @@ void UggWrongway::Initialize()
 	const int fallHeight = (type == "Ugg") ? 200 : -200;
 	const int movementDirectionX = (type == "Ugg") ? -1 : 1;
 
-	GameObject* const pGameObject = new GameObject("UggWrongway", float(rand() % 30 + 20));
+	GameObject* const pGameObject = new GameObject("UggWrongway", 120/*float(rand() % 30 + 20)*/);
 
 	GameSpriteComponent* const pSpriteComponent = new GameSpriteComponent(pGameObject, "QBertTextures.png", SDL_Rect{ srcPosX, srcPosY, srcWidth, srcHeight },8);
 	TransformComponent* const pSlickSamTransform = new TransformComponent(pGameObject, positionX + fallHeight, positionY);

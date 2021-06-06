@@ -35,15 +35,15 @@ Horizon::GameObject::GameObject(const std::string& identifier, float activationT
 	m_Id{ m_LastId++ },
 	m_IsActive{ false }
 {
-	m_pTimedFunction = new TimedFunctionComponent(this, false, activationTime);
+	TimedFunctionComponent* const pTimedFunction = new TimedFunctionComponent(this, false,true, activationTime);
 
-	m_pTimedFunction->SetTimerFunction([this](float)
+	pTimedFunction->SetTimerFunction([this](float)
 		{
 			Activate();
 		});
-	m_pTimedFunction->Activate();
+	pTimedFunction->Activate();
 
-	AddComponent(m_pTimedFunction);
+	AddComponent(pTimedFunction);
 }
 
 Horizon::GameObject::~GameObject()
@@ -69,16 +69,14 @@ void Horizon::GameObject::FixedUpdate()
 
 void Horizon::GameObject::Update()
 {
-	if (m_pTimedFunction)
-		m_pTimedFunction->Update();
+	for (Component* const pComponent : m_pObjectComponents)
+		pComponent->PersistentUpdate();
 
 	if (!m_IsActive)
 		return;
 
 	for (Component* const pComponent : m_pObjectComponents)
 		pComponent->Update();
-
-	//UnpausableUpdate()
 }
 
 void Horizon::GameObject::LateUpdate()

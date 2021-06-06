@@ -100,7 +100,7 @@ void Horizon::TriggerComponent::Update()
 
 void Horizon::TriggerComponent::Render() const
 {
-	const bool visualise = false;
+	const bool visualise = true;
 
 	if (!visualise)
 		return;

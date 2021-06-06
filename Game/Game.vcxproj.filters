@@ -111,6 +111,24 @@
     <ClCompile Include="PlayerDiscComponent.cpp">
       <Filter>Components\Player</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteObject.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureObject.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="TextObject.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreDisplayObject.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthDisplayObject.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="RespawnComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoScene.h">
@@ -184,6 +202,24 @@
     </ClInclude>
     <ClInclude Include="PlayerDiscComponent.h">
       <Filter>Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteObject.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureObject.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="TextObject.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreDisplayObject.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthDisplayObject.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="RespawnComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

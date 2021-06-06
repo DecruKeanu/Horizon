@@ -46,8 +46,7 @@ namespace Horizon
 		int m_OffsetY;
 		CallBackFunction m_CallBackFunction;
 		std::vector<OverlapData> m_pOverlappingActors;
-		Horizon::TransformComponent* m_pTransformComponent = nullptr;;
-		
+		Horizon::TransformComponent* m_pTransformComponent = nullptr;
 	};
 }
 

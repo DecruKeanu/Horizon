@@ -85,7 +85,7 @@ void CoilyInputAIComponent::PostInitialize()
 				m_Move.y = (QbertPos.y > CoilyPos.y) ? 1 : -1;
 
 				auto& soundSystem = Horizon::SoundSystemServiceLocator::GetSoundSystem();
-				soundSystem.QueueEvent(3, 80);
+				soundSystem.QueueEvent(3, 60);
 			}
 
 			m_pMovementComponent->SetMove(m_Move);

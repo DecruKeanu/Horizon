@@ -19,8 +19,11 @@ m_IsFallingOfFlyingDisc{}
 
 void PlayerDiscComponent::PlayerOnDisc(Horizon::TransformComponent* pFlyingDiscTransformComponent)
 {
-	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
-	soundSystem.QueueEvent(6, 36);
+	if (!m_IsPlayerOnFlyingDisc)
+	{
+		auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
+		soundSystem.QueueEvent(6, 36);
+	}
 
 	m_OriginalPoint = m_pPlayerTransformComponent->GetPosition();
 	m_pPlayerMovementComponent->SetOriginalPos(m_OriginalPoint);

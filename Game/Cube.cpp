@@ -56,7 +56,7 @@ void Cube::Initialize()
 
 				auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
 				//soundSystem.AddAudio("../Data/sounds/QbertJump.wav");
-				soundSystem.QueueEvent(2, 80);
+				soundSystem.QueueEvent(2, 60);
 			}
 			else if (triggerAction == TriggerComponent::TriggerAction::Enter && pOverlappedGameObject->GetIdentifier() == "SlickSam")
 			{

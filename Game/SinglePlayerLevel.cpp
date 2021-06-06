@@ -82,7 +82,7 @@ void SinglePlayerLevel::PostInitialize()
 	m_pPlayerHealthComponent->SetCurrentLives(m_PlayerLives);
 
 	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
-	soundSystem.QueueEvent(0, 100);
+	soundSystem.QueueEvent(0, 60);
 }
 
 void SinglePlayerLevel::Update()
@@ -113,7 +113,7 @@ void SinglePlayerLevel::Update()
 	InputManager::GetInstance().ClearInput();
 
 	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
-	soundSystem.QueueEvent(1, 100);
+	soundSystem.QueueEvent(1, 80);
 }
 
 void SinglePlayerLevel::BackToMainMenu()

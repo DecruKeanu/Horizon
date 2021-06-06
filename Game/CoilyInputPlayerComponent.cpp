@@ -130,7 +130,7 @@ void CoilyInputPlayerComponent::Update()
 		m_pTimedFunction->Activate();
 
 		auto& soundSystem = Horizon::SoundSystemServiceLocator::GetSoundSystem();
-		soundSystem.QueueEvent(3, 80);
+		soundSystem.QueueEvent(3, 60);
 	}
 }
 

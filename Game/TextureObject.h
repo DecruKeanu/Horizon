@@ -10,10 +10,16 @@ class TextureObject final
 {
 public:
 	TextureObject(const rapidjson::Value& jsonObject);
+
+	//Getters
 	Horizon::GameObject* GetGameObject() const;
 private:
-	void Initialize();
+	//Helper functions
+	void InitializePrefab();
 
-	const rapidjson::Value& m_Value;
+	//GameObject
 	Horizon::GameObject* m_pGameObject = nullptr;
+
+	//Variables
+	const rapidjson::Value& m_Value;
 };

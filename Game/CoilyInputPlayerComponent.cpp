@@ -10,7 +10,8 @@
 #include <Scene.h>
 
 #include <InputManager.h>
-#include "GameCommands.h"
+#include <TriggerManager.h>
+#include "InputCommands.h"
 #include <TimedFunctionComponent.h>
 #include <SoundSystemServiceLocator.h>
 
@@ -24,11 +25,6 @@ m_IsCoilyTransformed{}
 
 }
 
-CoilyInputPlayerComponent::~CoilyInputPlayerComponent()
-{
-	Horizon::Logger::LogInfo("Coily deleted");
-}
-
 void CoilyInputPlayerComponent::Initialize()
 {
 	using namespace Horizon;
@@ -37,6 +33,11 @@ void CoilyInputPlayerComponent::Initialize()
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_LEFT, KeyboardButtonState::KeyDown, std::make_unique<MoveLeftCommand>(m_Move, m_CanInputBeRecieved));
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_UP, KeyboardButtonState::KeyDown, std::make_unique<MoveUpCommand>(m_Move, m_CanInputBeRecieved));
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_RIGHT, KeyboardButtonState::KeyDown, std::make_unique<MoveRightCommand>(m_Move, m_CanInputBeRecieved));
+
+	InputManager::GetInstance().AddControllerInput(ControllerButton::ButtonA, ControllerButtonState::ButtonDown, std::make_unique<MoveDownCommand>(m_Move, m_CanInputBeRecieved));
+	InputManager::GetInstance().AddControllerInput(ControllerButton::ButtonX, ControllerButtonState::ButtonDown, std::make_unique<MoveLeftCommand>(m_Move, m_CanInputBeRecieved));
+	InputManager::GetInstance().AddControllerInput(ControllerButton::ButtonY, ControllerButtonState::ButtonDown, std::make_unique<MoveUpCommand>(m_Move, m_CanInputBeRecieved));
+	InputManager::GetInstance().AddControllerInput(ControllerButton::ButtonB, ControllerButtonState::ButtonDown, std::make_unique<MoveRightCommand>(m_Move, m_CanInputBeRecieved));
 }
 
 void CoilyInputPlayerComponent::PostInitialize()
@@ -47,8 +48,38 @@ void CoilyInputPlayerComponent::PostInitialize()
 	m_pQbertMovementComponent = Horizon::SceneManager::GetInstance().GetActiveScene()->GetGameObject("Qbert")->GetComponent<MovementComponent>();
 	m_pMovementComponent = m_pGameObject->GetComponent<MovementComponent>();
 
-	Horizon::TimedFunctionComponent* const pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, true, 1.f);
-	pTimedFunction->SetTimerFunction([this](float)
+	InitializeControllerTimedFunction();
+	InitializeResetControllerTimedFunction();
+}
+
+void CoilyInputPlayerComponent::Update()
+{
+	if (!m_IsCoilyTransformed)
+		return;
+
+	m_pSpriteComponent->SetMove(m_Move);
+
+	if (m_CanInputBeRecieved)
+	{
+		m_pMovementComponent->SetMove(m_Move);
+
+		if (m_Move != Horizon::IPoint2{ 0, 0 })
+		{
+			m_pSpriteComponent->SetMove(m_Move);
+			m_pMovementComponent->SetMove(m_Move);
+			m_CanInputBeRecieved = false;
+			m_pTimedFunction->Activate();
+
+			auto& soundSystem = Horizon::SoundSystemServiceLocator::GetSoundSystem();
+			soundSystem.QueueEvent(3, 48);
+		}
+	}
+}
+
+void CoilyInputPlayerComponent::InitializeControllerTimedFunction()
+{
+	Horizon::TimedFunctionComponent* const pControllerTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, true, 1.f);
+	pControllerTimedFunction->SetTimerFunction([this](float)
 		{
 			if (m_IsCoilyTransformed)
 				return;
@@ -57,7 +88,6 @@ void CoilyInputPlayerComponent::PostInitialize()
 			{
 				m_IsCoilyTransformed = true;
 				m_pSpriteComponent->SetSrcRect({ 0,32,128,32 });
-				m_pSpriteComponent->SetSpriteAmount(8);
 				m_pSpriteComponent->SetSpriteOffset({ 0,-24 });
 
 				m_CanInputBeRecieved = true;
@@ -65,7 +95,7 @@ void CoilyInputPlayerComponent::PostInitialize()
 
 			m_CanMoveBeUpdated = !m_CanMoveBeUpdated;
 
-			if (m_pTriggerComponent->GetOverlappingActorsSize() == 0)
+			if (m_pTriggerComponent->GetOverlappingActorsSize() == 0 && Horizon::TriggerManager::GetInstance().GetTriggersSize() != 0)
 			{
 				auto& soundSystem = Horizon::SoundSystemServiceLocator::GetSoundSystem();
 				soundSystem.QueueEvent(9, 50);
@@ -95,9 +125,12 @@ void CoilyInputPlayerComponent::PostInitialize()
 			m_pSpriteComponent->SetMove(m_Move);
 		});
 
-	pTimedFunction->Activate();
-	m_pGameObject->AddComponent(pTimedFunction);
+	pControllerTimedFunction->Activate();
+	m_pGameObject->AddComponent(pControllerTimedFunction);
+}
 
+void CoilyInputPlayerComponent::InitializeResetControllerTimedFunction()
+{
 	m_pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject, false, 1.02f);
 	m_pTimedFunction->SetTimerFunction([this](float)
 		{
@@ -108,30 +141,6 @@ void CoilyInputPlayerComponent::PostInitialize()
 				m_pGameObject->Deactivate();
 		});
 	m_pGameObject->AddComponent(m_pTimedFunction);
-}
-
-void CoilyInputPlayerComponent::Update()
-{
-	if (!m_IsCoilyTransformed)
-		return;
-
-	m_pSpriteComponent->SetMove(m_Move);
-
-	if (!m_CanInputBeRecieved)
-		return;
-
-	m_pMovementComponent->SetMove(m_Move);
-
-	if (m_Move != Horizon::IPoint2{ 0, 0 })
-	{
-		m_pSpriteComponent->SetMove(m_Move);
-		m_pMovementComponent->SetMove(m_Move);
-		m_CanInputBeRecieved = false;
-		m_pTimedFunction->Activate();
-
-		auto& soundSystem = Horizon::SoundSystemServiceLocator::GetSoundSystem();
-		soundSystem.QueueEvent(3, 60);
-	}
 }
 
 void CoilyInputPlayerComponent::ResetInput()

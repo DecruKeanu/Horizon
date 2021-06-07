@@ -1,20 +1,22 @@
 #pragma once
 #include <Component.h>
 
+class MovementComponent;
+class GameSpriteComponent;
+
+
 namespace Horizon
 {
 	class GameObject;
 	class TriggerComponent;
 }
 
-class MovementComponent;
-class GameSpriteComponent;
-
 class EnemyInputComponent final : public Horizon::Component
 {
 public:
 	EnemyInputComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& movementDirection);
 private:
+	//Component functions
 	void Initialize() override;
 
 	//Helper functions
@@ -26,13 +28,12 @@ private:
 	GameSpriteComponent* m_pSpriteComponent = nullptr;
 	Horizon::TriggerComponent* m_pTriggerComponent = nullptr;
 
-	//Movement
+	//Variables
 	Horizon::IPoint2 m_MovementDirection;
 	Horizon::IPoint2 m_Move;
-	bool m_CanMoveBeUpdated;
-	
-	//Tiles
+
 	int m_StepsTaken;
+	bool m_CanMoveBeUpdated;
 	bool m_TilesEncountered;
 };
 

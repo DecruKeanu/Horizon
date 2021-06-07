@@ -43,3 +43,8 @@ void Horizon::TriggerManager::Update()
 		}
 	}
 }
+
+size_t Horizon::TriggerManager::GetTriggersSize()
+{
+	return m_pTriggerComponents.size();
+}

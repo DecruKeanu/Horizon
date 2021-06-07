@@ -11,17 +11,21 @@ class FlyingDiscMovementComponent final : public Horizon::Component
 {
 public:
 	FlyingDiscMovementComponent(Horizon::GameObject* pParent);
+
+	//Public helper functions
 	void Activate();
-	void Deactivate();
 private:
+	//Component functions
 	void Initialize() override;
 	void Update() override;
 
+	//Components
 	Horizon::TransformComponent* m_pTransformComponent = nullptr;
+
+	//Variables
 	Horizon::IPoint2 m_OriginalPos;
 
 	float m_ElapsedTime;
-	int m_Turns;
 	bool m_IsActive;
 };
 

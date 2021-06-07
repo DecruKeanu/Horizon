@@ -1,14 +1,16 @@
 #include "GamePCH.h"
 #include "RespawnComponent.h"
+
 #include <TimedFunctionComponent.h>
-#include <Scene.h>
-#include <SceneManager.h>
+
 #include "Coily.h"
 #include "SlickSam.h"
 #include "UggWrongway.h"
 
+#include <Scene.h>
+#include <SceneManager.h>
+
 RespawnComponent::RespawnComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& spawnPos, const std::string& type, float respawnTime, bool PlayerControlled) : Component(pParent),
-m_respawnTime{ respawnTime },
 m_RespawnStarted{},
 m_ObjectActivated{}
 {
@@ -39,12 +41,17 @@ m_ObjectActivated{}
 
 void RespawnComponent::PersistentUpdate()
 {
-	if (m_ObjectActivated == false && m_pGameObject->GetIsActive() == true)
-		m_ObjectActivated = true;
-
-	if (m_pGameObject->GetIsActive() == false && m_ObjectActivated && m_RespawnStarted == false)
+	if (m_pGameObject->GetIsActive())
 	{
-		m_RespawnStarted = true;
-		m_pRespawnTimedFunction->Activate();
+		if (m_ObjectActivated == false)
+			m_ObjectActivated = true;
+	}
+	else
+	{
+		if (m_ObjectActivated && m_RespawnStarted == false)
+		{
+			m_RespawnStarted = true;
+			m_pRespawnTimedFunction->Activate();
+		}
 	}
 }

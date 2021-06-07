@@ -28,9 +28,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Timer.h">
-      <Filter>Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="Structs.h">
       <Filter>Helpers</Filter>
     </ClInclude>
@@ -187,6 +184,9 @@
     <ClInclude Include="TimedFunctionComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\imgui.cpp">
@@ -279,9 +279,6 @@
     <ClCompile Include="Font.cpp">
       <Filter>Horizon</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Helpers</Filter>
-    </ClCompile>
     <ClCompile Include="SoundSystem.cpp">
       <Filter>SoundSystem</Filter>
     </ClCompile>
@@ -317,6 +314,9 @@
     </ClCompile>
     <ClCompile Include="TimedFunctionComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

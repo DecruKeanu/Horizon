@@ -1,19 +1,20 @@
 #include "GamePCH.h"
 #include "MainMenuScene.h"
-#include "TextComponent.h"
-#include "TextureComponent.h"
-#include "TransformComponent.h"
-#include "ResourceManager.h"
+
+#include <TextComponent.h>
+#include <TextureComponent.h>
+#include <TransformComponent.h>
+#include <ResourceManager.h>
+
 #include "Cube.h"
 #include "LevelReader.h"
 #include <InputManager.h>
-#include "GameCommands.h"
+#include "InputCommands.h"
+#include <SoundSystemServiceLocator.h>
+
 #include "SinglePlayerLevel.h"
 #include "CooperativeLevel.h"
 #include "VersusLevel.h"
-#include <SoundSystemServiceLocator.h>
-
-using namespace Horizon;
 
 MainMenuScene::MainMenuScene() : Scene("MainMenuScene"),
 m_CurrentModeSelected{ ModeSelected::singlePlayer },
@@ -24,6 +25,8 @@ m_InputPressed{}
 
 void MainMenuScene::Initialize()
 {
+	using namespace Horizon;
+
 	//Logo
 	{
 		GameObject* const Logo = new GameObject();
@@ -36,8 +39,6 @@ void MainMenuScene::Initialize()
 		Logo->AddComponent(logoTransform);
 		Add(Logo);
 	}
-
-
 
 	//Text
 	const auto QBertFont = ResourceManager::GetInstance().LoadFont("QBert.ttf", 30);
@@ -83,13 +84,17 @@ void MainMenuScene::Initialize()
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_z, KeyboardButtonState::KeyDown, std::make_unique<ArrowUpCommand>(m_CurrentModeSelected, m_pArrowTransformComponent));
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_s, KeyboardButtonState::KeyDown, std::make_unique<ArrowDownCommand>(m_CurrentModeSelected, m_pArrowTransformComponent));
 	InputManager::GetInstance().AddKeyboardInput(SDLK::SDLK_RETURN, KeyboardButtonState::KeyDown, std::make_unique<InputPressedCommand>(m_InputPressed));
+
+	InputManager::GetInstance().AddControllerInput(ControllerButton::DPadUp, ControllerButtonState::ButtonDown, std::make_unique<ArrowUpCommand>(m_CurrentModeSelected, m_pArrowTransformComponent));
+	InputManager::GetInstance().AddControllerInput(ControllerButton::DPadDown, ControllerButtonState::ButtonDown, std::make_unique<ArrowDownCommand>(m_CurrentModeSelected, m_pArrowTransformComponent));
+	InputManager::GetInstance().AddControllerInput(ControllerButton::ButtonA, ControllerButtonState::ButtonDown, std::make_unique<InputPressedCommand>(m_InputPressed));
 }
 
 void MainMenuScene::Update()
 {
 	if (m_InputPressed)
 	{
-		InputManager::GetInstance().ClearInput();
+		Horizon::InputManager::GetInstance().ClearInput();
 
 		m_InputPressed = false;
 		switch (m_CurrentModeSelected)

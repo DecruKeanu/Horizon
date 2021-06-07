@@ -54,8 +54,8 @@ namespace Horizon
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:
-		void AddControllerInput(ControllerButton button, ControllerButtonState buttonState, std::unique_ptr<Command> action);
-		void AddKeyboardInput(SDLK key, KeyboardButtonState keyState, std::unique_ptr<Command> action);
+		void AddControllerInput(const ControllerButton& button, const ControllerButtonState& buttonState, std::unique_ptr<Command> action);
+		void AddKeyboardInput(const SDLK& key, const KeyboardButtonState& keyState, std::unique_ptr<Command> action);
 		bool IsControllerInputPressed(const ControllerButton& button);
 		bool IsKeyboardInputPressed(const SDLK& key);
 		void ClearInput();

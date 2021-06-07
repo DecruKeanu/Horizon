@@ -11,14 +11,21 @@ class UggWrongway final
 public:
 	UggWrongway(const rapidjson::Value& jsonObject);
 	UggWrongway(const Horizon::IPoint2& spawnPos, const std::string& type, float respawnTime);
+
+	//Getters
 	Horizon::GameObject* GetGameObject() const;
 private:
-	void Initialize();
+	//Helper functions
+	void InitializePrefab();
 
+	//GameObject
+	Horizon::GameObject* m_pGameObject = nullptr;
+
+	//Variables
+	const rapidjson::Value& m_Value;
 	const Horizon::IPoint2& m_SpawnPos;
 	const std::string m_Type;
+
 	float m_RespawnTime;
-	const rapidjson::Value& m_Value;
-	Horizon::GameObject* m_pGameObject = nullptr;
 };
 

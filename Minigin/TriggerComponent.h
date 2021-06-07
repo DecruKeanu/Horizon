@@ -4,7 +4,7 @@
 #include <vector>
 #include <functional>
 
-//Credit to Elise Briers
+//Credit to Elise Briers for helping me understand how to use std::function properly, and helping me implement it
 
 namespace Horizon
 {
@@ -17,8 +17,6 @@ namespace Horizon
 		struct OverlapData
 		{
 			TriggerComponent* pTrigger;
-			//GameObject* pOverlapObject;
-			//std::string triggerIdentifier;
 			bool IsOverlapping;
 		};
 	public:

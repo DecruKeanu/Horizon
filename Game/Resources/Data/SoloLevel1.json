@@ -179,8 +179,8 @@
       "class": "Coily",
       "positionX": 292,
       "positionY": 72,
-      "spawnTime": 4,
-      "respawnTime": 6,
+      "spawnTime": 6,
+      "respawnTime": 10,
       "isPlayerControlled": false
     },
     {

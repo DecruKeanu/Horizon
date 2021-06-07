@@ -1,6 +1,9 @@
 #pragma once
 #include <Component.h>
 
+class MovementComponent;
+class GameSpriteComponent;
+
 namespace Horizon
 {
 	class GameObject;
@@ -8,30 +11,37 @@ namespace Horizon
 	class TriggerComponent;
 }
 
-class GameSpriteComponent;
-class MovementComponent;
-
-
 class PlayerInputComponent final : public Horizon::Component
 {
 public:
 	PlayerInputComponent(Horizon::GameObject* parent, bool isFirstPlayer);
-	void ResetInput();
-	bool GetCanInputBeRegistered();
+
+	//Public helper functions
+	void ActivateInput();
 	void DeactivateInput();
 
-	const Horizon::IPoint2& GetMove();
+	//Getters
+	bool GetCanInputBeRegistered() const;
+	const Horizon::IPoint2& GetMove() const;
 private:
+	//Component functions
 	void Initialize() override;
 	void Update() override;
 
+	//Helper functions
+	void InitializeInput();
+	void InitializeInputTimedFunction();
+	void InitializeStartInputTimedFunction();
+
+	//Components
+	GameSpriteComponent* m_pGameSpriteComponent = nullptr;
+	MovementComponent* m_pPlayerMovementComponent = nullptr;
+	Horizon::TriggerComponent* m_pTriggerComponent = nullptr;
+	Horizon::TimedFunctionComponent* m_pInputTimedFunction = nullptr;
+
+	//Variables
 	bool m_IsFirstPlayer;
 	bool m_CanInputBeRegistered;
 	Horizon::IPoint2 m_Move;
-	
-	Horizon::TriggerComponent* m_pTriggerComponent = nullptr;
-	MovementComponent* m_pPlayerMovementComponent = nullptr;
-	GameSpriteComponent* m_pGameSpriteComponent = nullptr;
-	Horizon::TimedFunctionComponent* m_pTimedFunction = nullptr;
 };
 

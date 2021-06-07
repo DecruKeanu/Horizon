@@ -1,10 +1,14 @@
 #include "GamePCH.h"
 #include "EnemyInputComponent.h"
 
+#include <ScoreComponent.h>
 #include "MovementComponent.h"
 #include "GameSpriteComponent.h"
 #include <TriggerComponent.h>
 #include <TimedFunctionComponent.h>
+
+#include <Scene.h>
+#include <SceneManager.h>
 
 
 EnemyInputComponent::EnemyInputComponent(Horizon::GameObject* pParent, const Horizon::IPoint2& movementDirection) : Component(pParent),
@@ -19,9 +23,10 @@ m_TilesEncountered{}
 
 void EnemyInputComponent::Initialize()
 {
-	m_pTriggerComponent = m_pGameObject->GetComponent<Horizon::TriggerComponent>();
 	m_pSpriteComponent = m_pGameObject->GetComponent<GameSpriteComponent>();
 	m_pMovementComponent = m_pGameObject->GetComponent<MovementComponent>();
+
+	m_pTriggerComponent = m_pGameObject->GetComponent<Horizon::TriggerComponent>();
 
 	InitializeMovementTimedFunction();
 	InitializeTilesEncounteredTimedFunction();
@@ -36,6 +41,7 @@ void EnemyInputComponent::InitializeMovementTimedFunction()
 
 			if ((m_StepsTaken >= 6) && !m_TilesEncountered)
 				m_pGameObject->Deactivate();
+
 
 			if (m_CanMoveBeUpdated)
 			{
@@ -53,7 +59,6 @@ void EnemyInputComponent::InitializeMovementTimedFunction()
 				m_Move = { 0,0 };
 				m_pMovementComponent->SetMove(m_Move);
 				m_pSpriteComponent->SetMove(m_Move);
-				return;
 			}
 		});
 	pMovementTimedFunction->Activate();

@@ -1,33 +1,22 @@
 #include "GamePCH.h"
+
 #include "FlyingDiscMovementComponent.h"
 #include <TransformComponent.h>
-#include <SoundSystemServiceLocator.h>
-#include <Timer.h>
 
-using namespace Horizon;
+#include <Timer.h>
+#include <SoundSystemServiceLocator.h>
 
 FlyingDiscMovementComponent::FlyingDiscMovementComponent(Horizon::GameObject* pParent) : Component(pParent),
 m_OriginalPos{},
 m_ElapsedTime{},
-m_Turns{},
 m_IsActive{}
 {
 
 }
 
-void FlyingDiscMovementComponent::Activate()
-{
-	m_IsActive = true;
-}
-
-void FlyingDiscMovementComponent::Deactivate()
-{
-	m_IsActive = false;
-}
-
 void FlyingDiscMovementComponent::Initialize()
 {
-	m_pTransformComponent = m_pGameObject->GetComponent<TransformComponent>();
+	m_pTransformComponent = m_pGameObject->GetComponent<Horizon::TransformComponent>();
 	m_OriginalPos = { m_pTransformComponent->GetPosition().x,m_pTransformComponent->GetPosition().y };
 }
 
@@ -37,13 +26,17 @@ void FlyingDiscMovementComponent::Update()
 		return;
 
 	const float lerpTime = 2.f;
-	m_ElapsedTime = std::min(lerpTime, m_ElapsedTime + Timer::GetInstance().GetDeltaTime());
+	m_ElapsedTime = std::min(lerpTime, m_ElapsedTime + Horizon::Timer::GetInstance().GetDeltaTime());
 
-	const IPoint2 desiredPos = { 310,32 };
-	const IPoint2 currentPos = MathHelper::IPoint2Lerp(m_OriginalPos, desiredPos, m_ElapsedTime / lerpTime);
+	const Horizon::IPoint2 desiredPos = { 310,32 };
+	const Horizon::IPoint2 currentPos = Horizon::MathHelper::IPoint2Lerp(m_OriginalPos, desiredPos, m_ElapsedTime / lerpTime);
 
 	m_pTransformComponent->SetPosition(currentPos);
 
-	if (currentPos == desiredPos)
-		m_pGameObject->Deactivate();
+	(currentPos == desiredPos) ? m_pGameObject->Deactivate() : void();
+}
+
+void FlyingDiscMovementComponent::Activate()
+{
+	m_IsActive = true;
 }

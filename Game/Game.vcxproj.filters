@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{e1222f29-2d32-41a5-bb0f-f4d39c6057a6}</UniqueIdentifier>
     </Filter>
@@ -24,9 +12,6 @@
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{5f302783-3267-4b92-9c7f-388ac260ca49}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Observers">
-      <UniqueIdentifier>{44ff1bd5-7034-459a-af74-51afdcdbdbbc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components\Player">
       <UniqueIdentifier>{b77b9233-6123-4ad7-8451-3a59e9d9fcd0}</UniqueIdentifier>
@@ -43,11 +28,11 @@
     <Filter Include="Components\CoilyInput">
       <UniqueIdentifier>{619c2ade-a17f-4d5c-819c-1c116c90bb92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\General">
+      <UniqueIdentifier>{dee8f2e2-f62d-4492-a56a-718bf5fbc4e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenuScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -84,26 +69,14 @@
     <ClCompile Include="SlickSam.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyMovementComponent.cpp">
-      <Filter>Components\BaseEnemies</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyInputComponent.cpp">
       <Filter>Components\BaseEnemies</Filter>
     </ClCompile>
     <ClCompile Include="UggWrongway.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="HelperFunctions.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="Coily.cpp">
       <Filter>Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="GameSpriteComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="PlayerDiscComponent.cpp">
       <Filter>Components\Player</Filter>
@@ -123,9 +96,6 @@
     <ClCompile Include="HealthDisplayObject.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="RespawnComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="CooperativeLevel.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -137,6 +107,19 @@
     </ClCompile>
     <ClCompile Include="CoilyInputPlayerComponent.cpp">
       <Filter>Components\CoilyInput</Filter>
+    </ClCompile>
+    <ClCompile Include="HelperFunctions.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="GameSpriteComponent.cpp">
+      <Filter>Components\General</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Components\General</Filter>
+    </ClCompile>
+    <ClCompile Include="RespawnComponent.cpp">
+      <Filter>Components\General</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,13 +138,7 @@
     <ClInclude Include="QBert.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="GameCommands.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SinglePlayerLevel.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelType.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="FlyingDisc.h">
@@ -182,26 +159,14 @@
     <ClInclude Include="SlickSam.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyMovementComponent.h">
-      <Filter>Components\BaseEnemies</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyInputComponent.h">
       <Filter>Components\BaseEnemies</Filter>
     </ClInclude>
     <ClInclude Include="UggWrongway.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="HelperFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Coily.h">
       <Filter>Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="GameSpriteComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="PlayerDiscComponent.h">
       <Filter>Components\Player</Filter>
@@ -221,9 +186,6 @@
     <ClInclude Include="HealthDisplayObject.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="RespawnComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="CooperativeLevel.h">
       <Filter>Scenes</Filter>
     </ClInclude>
@@ -235,6 +197,21 @@
     </ClInclude>
     <ClInclude Include="CoilyInputPlayerComponent.h">
       <Filter>Components\CoilyInput</Filter>
+    </ClInclude>
+    <ClInclude Include="HelperFunctions.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputCommands.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="RespawnComponent.h">
+      <Filter>Components\General</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSpriteComponent.h">
+      <Filter>Components\General</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Components\General</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

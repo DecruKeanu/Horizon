@@ -12,17 +12,21 @@ class GameSpriteComponent final : public Horizon::Component
 public:
 	GameSpriteComponent(Horizon::GameObject* pParent, const std::string& fileName, const SDL_Rect& srcRect, int spriteAmount);
 
+	//Setters
 	void SetMove(const Horizon::IPoint2& input);
 	void SetSrcRect(const SDL_Rect& srcRect);
-	void SetSpriteAmount(const int spriteAmount);
 	void SetSpriteOffset(const Horizon::IPoint2& offset);
 private:
+	//Component functions
 	void Initialize() override;
 	void Update() override;
 
+	//Components
+	Horizon::SpriteComponent* m_pSpriteComponent = nullptr;
+
+	//Variables
+	Horizon::IPoint2 m_Move;
+
 	int m_SpriteAmount;
 	int m_CurrentSpriteNumber;
-	Horizon::IPoint2 m_Move;
-	Horizon::SpriteComponent* m_pSpriteComponent = nullptr;
 };
-

@@ -28,7 +28,6 @@ namespace Horizon
 		int m_CurrentSprite;
 		int m_SpriteAmount;
 		int m_SpriteWidth;
-
 	};
 }
 

@@ -193,7 +193,7 @@
       "positionY": 120,
       "type": "Slick",
       "spawnTime": 10,
-      "respawnTime": 40
+      "respawnTime": 52
     },
     {
       "class": "SlickSam",
@@ -201,7 +201,7 @@
       "positionY": 120,
       "type": "Sam",
       "spawnTime": 16,
-      "respawnTime": 30
+      "respawnTime": 38
     },
     {
       "class": "UggWrongway",
@@ -224,7 +224,7 @@
       "positionX": 292,
       "positionY": 72,
       "spawnTime": 20,
-      "respawnTime": 20,
+      "respawnTime": 28,
       "isPlayerControlled": false
     },
     {
@@ -257,7 +257,7 @@
       "class": "TextObject",
       "positionX": 588,
       "positionY": 18,
-      "text": "1",
+      "text": "3",
       "fontSize": 20,
       "R": 255,
       "G": 140,

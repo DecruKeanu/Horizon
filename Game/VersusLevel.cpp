@@ -1,28 +1,31 @@
 #include "GamePCH.h"
 #include "VersusLevel.h"
-#include "MainMenuScene.h"
-#include "CubeHandleComponent.h"
-#include <ResourceManager.h>
-#include <TextComponent.h>
-#include <TransformComponent.h>
-#include "LevelReader.h"
-#include <GameObject.h>
-#include "InputManager.h"
-#include <TriggerManager.h>
-#include "Command.h"
-#include <TextureComponent.h>
-#include <SpriteComponent.h>
-#include <TimedFunctionComponent.h>
-#include <HealthComponent.h>
-#include <ScoreComponent.h>
-#include <ScoreDisplayComponent.h>
-#include <ScoreDisplayObserver.h>
-#include <HealthDisplayComponent.h>
-#include <HealthDisplayObserver.h>
-#include <timer.h>
-#include <SoundSystemServiceLocator.h>
 
-using namespace Horizon;
+
+#include "CubeHandleComponent.h"
+
+#include <GameObject.h>
+#include <TextComponent.h>
+#include <ScoreComponent.h>
+#include <HealthComponent.h>
+#include <SpriteComponent.h>
+#include <TextureComponent.h>
+#include <TransformComponent.h>
+#include <ScoreDisplayObserver.h>
+#include <HealthDisplayObserver.h>
+#include <ScoreDisplayComponent.h>
+#include <TimedFunctionComponent.h>
+#include <HealthDisplayComponent.h>
+
+#include "LevelReader.h"
+#include "MainMenuScene.h"
+#include <ResourceManager.h>
+
+#include <timer.h>
+#include <Command.h>
+#include <InputManager.h>
+#include <TriggerManager.h>
+#include <SoundSystemServiceLocator.h>
 
 VersusLevel::VersusLevel(int level, int playerScore, int playerLives) : Scene("VersusScene"),
 m_Level{ level },
@@ -40,20 +43,20 @@ void VersusLevel::Initialize()
 	const std::wstring fileName = L"VersusLevel" + std::to_wstring(m_Level) + L".json";
 	levelReader.ParseLevel(fileName);
 
-	for (GameObject* const pPrefab : levelReader.GetGameObjects())
+	for (Horizon::GameObject* const pPrefab : levelReader.GetGameObjects())
 	{
 		Add(pPrefab);
 	}
 
-	const std::vector<GameObject*> pCubes = GetGameObjects("Cube");
+	const std::vector<Horizon::GameObject*> pCubes = GetGameObjects("Cube");
 
-	for (GameObject* const pCube : pCubes)
+	for (Horizon::GameObject* const pCube : pCubes)
 		m_pCubeHandles.push_back(pCube->GetComponent<CubeHandleComponent>());
 
 	{
-		GameObject* const pCubesSwitch = new GameObject();
+		Horizon::GameObject* const pCubesSwitch = new Horizon::GameObject();
 
-		m_pTimedFunction = new TimedFunctionComponent(pCubesSwitch, true, 0.1f);
+		m_pTimedFunction = new Horizon::TimedFunctionComponent(pCubesSwitch, true, 0.1f);
 
 		m_pTimedFunction->SetTimerFunction([this](float totalTime)
 			{
@@ -73,17 +76,17 @@ void VersusLevel::Initialize()
 
 void VersusLevel::PostInitialize()
 {
-	m_pPlayerScoreComponent = GetGameObject("Qbert")->GetComponent<ScoreComponent>();
-	m_pPlayerScoreComponent->AddObserver(new ScoreDisplayObserver(GetGameObject("ScoreDisplayObject")->GetComponent<ScoreDisplayComponent>()));
+	m_pPlayerScoreComponent = GetGameObject("Qbert")->GetComponent<Horizon::ScoreComponent>();
+	m_pPlayerScoreComponent->AddObserver(new Horizon::ScoreDisplayObserver(GetGameObject("ScoreDisplayObject")->GetComponent<Horizon::ScoreDisplayComponent>()));
 	m_pPlayerScoreComponent->IncreaseScore(m_PlayerScore);
 
-	m_pPlayerHealthComponent = GetGameObject("Qbert")->GetComponent<HealthComponent>();
-	m_pPlayerHealthComponent->AddObserver(new HealthDisplayObserver(GetGameObject("HealthDisplayObject")->GetComponent<HealthDisplayComponent>()));
+	m_pPlayerHealthComponent = GetGameObject("Qbert")->GetComponent<Horizon::HealthComponent>();
+	m_pPlayerHealthComponent->AddObserver(new Horizon::HealthDisplayObserver(GetGameObject("HealthDisplayObject")->GetComponent<Horizon::HealthDisplayComponent>()));
 	m_pPlayerHealthComponent->SetCurrentLives(m_PlayerLives);
 
-	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
+	auto& soundSystem = Horizon::SoundSystemServiceLocator::GetSoundSystem();
 	//soundSystem.AddAudio("../Data/sounds/LevelIntro.wav");
-	soundSystem.QueueEvent(0, 100);
+	soundSystem.QueueEvent(0, 20);
 }
 
 void VersusLevel::Update()
@@ -111,32 +114,34 @@ void VersusLevel::Update()
 	m_LevelCompleted = true;
 	m_pTimedFunction->Activate();
 
-	InputManager::GetInstance().ClearInput();
+	Horizon::InputManager::GetInstance().ClearInput();
 
-	auto& soundSystem = SoundSystemServiceLocator::GetSoundSystem();
-	soundSystem.QueueEvent(1, 100);
+	auto& soundSystem = Horizon::SoundSystemServiceLocator::GetSoundSystem();
+	soundSystem.QueueEvent(1, 20);
 
+	Horizon::TriggerManager::GetInstance().ClearTriggerComponents();
 }
 
 void VersusLevel::BackToMainMenu()
 {
-	InputManager::GetInstance().ClearInput();
-	TriggerManager::GetInstance().ClearTriggerComponents();
+	Horizon::InputManager::GetInstance().ClearInput();
+	Horizon::TriggerManager::GetInstance().ClearTriggerComponents();
 	Horizon::SceneManager::GetInstance().AddActiveScene(new MainMenuScene());
 }
 
 void VersusLevel::ResetLevel()
 {
-	InputManager::GetInstance().ClearInput();
-	TriggerManager::GetInstance().ClearTriggerComponents();
-	m_PlayerScore = GetGameObject("Qbert")->GetComponent<ScoreComponent>()->GetScore();
+	Horizon::InputManager::GetInstance().ClearInput();
+	Horizon::TriggerManager::GetInstance().ClearTriggerComponents();
+	m_PlayerScore = m_pPlayerScoreComponent->GetScore();
 	m_PlayerLives = m_pPlayerHealthComponent->GetCurrentLives();
 	Horizon::SceneManager::GetInstance().AddActiveScene(new VersusLevel(m_Level, m_PlayerScore, m_PlayerLives));
 }
 
 void VersusLevel::NextLevel()
 {
-	TriggerManager::GetInstance().ClearTriggerComponents();
+	m_PlayerScore = m_pPlayerScoreComponent->GetScore();
+	m_PlayerLives = m_pPlayerHealthComponent->GetCurrentLives() + 1;
 
 	(m_Level == 3) ? Horizon::SceneManager::GetInstance().AddActiveScene(new MainMenuScene()) : Horizon::SceneManager::GetInstance().AddActiveScene(new VersusLevel(++m_Level, m_PlayerScore, m_PlayerLives));
 }

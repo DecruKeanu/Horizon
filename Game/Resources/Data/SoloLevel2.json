@@ -186,7 +186,7 @@
       "positionX": 260,
       "positionY": 120,
       "type": "Slick",
-      "spawnTime": 10,
+      "spawnTime": 36,
       "respawnTime": 40
     },
     {
@@ -194,7 +194,7 @@
       "positionX": 326,
       "positionY": 120,
       "type": "Sam",
-      "spawnTime": 16,
+      "spawnTime": 30,
       "respawnTime": 30
     },
     {
@@ -202,7 +202,7 @@
       "positionX": 520,
       "positionY": 390,
       "type": "Ugg",
-      "spawnTime": 8,
+      "spawnTime": 12,
       "respawnTime": 30
     },
     {
@@ -210,7 +210,7 @@
       "positionX": 94,
       "positionY": 390,
       "type": "Wrongway",
-      "spawnTime": 12,
+      "spawnTime": 16,
       "respawnTime": 30
     },
     {
@@ -218,7 +218,7 @@
       "positionX": 292,
       "positionY": 72,
       "spawnTime": 20,
-      "respawnTime": 20,
+      "respawnTime": 30,
       "isPlayerControlled": false
     },
     {
@@ -251,7 +251,7 @@
       "class": "TextObject",
       "positionX": 588,
       "positionY": 18,
-      "text": "1",
+      "text": "2",
       "fontSize": 20,
       "R": 255,
       "G": 140,

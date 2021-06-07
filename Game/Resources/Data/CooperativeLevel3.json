@@ -193,7 +193,7 @@
       "positionY": 120,
       "type": "Slick",
       "spawnTime": 10,
-      "respawnTime": 40
+      "respawnTime": 52
     },
     {
       "class": "SlickSam",
@@ -201,7 +201,7 @@
       "positionY": 120,
       "type": "Sam",
       "spawnTime": 16,
-      "respawnTime": 30
+      "respawnTime": 38
     },
     {
       "class": "UggWrongway",

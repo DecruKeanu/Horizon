@@ -1,7 +1,7 @@
 #include "GamePCH.h"
 #include "FlyingDiscSpriteComponent.h"
+
 #include <SpriteComponent.h>
-#include <Timer.h>
 #include <TimedFunctionComponent.h>
 
 FlyingDiscSpriteComponent::FlyingDiscSpriteComponent(Horizon::GameObject* pParent, const std::string& textureName, const SDL_Rect& srcRect) : Component(pParent)
@@ -11,18 +11,18 @@ FlyingDiscSpriteComponent::FlyingDiscSpriteComponent(Horizon::GameObject* pParen
 	m_pSpriteComponent->Scale(2.f);
 	m_pGameObject->AddComponent(m_pSpriteComponent);
 
-	InitializeTimedFunction();
+	InitializeSpriteTimedFunction();
 }
 
-void FlyingDiscSpriteComponent::InitializeTimedFunction()
+void FlyingDiscSpriteComponent::InitializeSpriteTimedFunction()
 {
-	Horizon::TimedFunctionComponent* const pTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject,true, 0.1f);
-	pTimedFunction->SetTimerFunction([this](float)
+	Horizon::TimedFunctionComponent* const pSpriteTimedFunction = new Horizon::TimedFunctionComponent(m_pGameObject,true, 0.1f);
+	pSpriteTimedFunction->SetTimerFunction([this](float)
 		{
 			m_pSpriteComponent->NextSprite();
 		});
 
-	pTimedFunction->Activate();
-	m_pGameObject->AddComponent(pTimedFunction);
+	pSpriteTimedFunction->Activate();
+	m_pGameObject->AddComponent(pSpriteTimedFunction);
 }
 

@@ -36,7 +36,6 @@ LevelReader::LevelReader() :
 	m_Factory.RegisterPrefab<HealthDisplayObject>();
 }
 
-//class needs to include namespace and needs to be the same name as cpp 
 void LevelReader::ParseLevel(const std::wstring& fileName)
 {
 	const std::wstring dataPath = L"../Game/Resources/Data/";

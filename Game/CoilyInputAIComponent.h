@@ -1,35 +1,41 @@
 #pragma once
 #include <Component.h>
 
+class MovementComponent;
+class GameSpriteComponent;
+
 namespace Horizon
 {
 	class GameObject;
+	class ScoreComponent;
 	class TransformComponent;
 	class TriggerComponent;
 }
-
-class MovementComponent;
-class GameSpriteComponent;
 
 class CoilyInputAIComponent final : public Horizon::Component
 {
 public:
 	CoilyInputAIComponent(Horizon::GameObject* pParent);
-	~CoilyInputAIComponent();
 private:
+	//Component functions
 	void Initialize() override;
-	void PostInitialize() override;
+
+	//Helper functions
+	void InitializeControllerTimedFunction();
+
+	//Components
+	MovementComponent* m_pMovementComponent = nullptr;
+	GameSpriteComponent* m_pSpriteComponent = nullptr;
+	MovementComponent* m_pQbertMovementComponent = nullptr;
+	Horizon::TriggerComponent* m_pTriggerComponent = nullptr;
+	Horizon::ScoreComponent* m_pQbertScoreComponent = nullptr;
+	Horizon::TransformComponent* m_pCoilyTransformComponent = nullptr;
+
+	//Variables
+	Horizon::IPoint2 m_Move;
 
 	int m_StepsTaken;
 	bool m_CanMoveBeUpdated;
 	bool m_IsCoilyTransformed;
-	Horizon::IPoint2 m_Move;
-
-	MovementComponent* m_pMovementComponent = nullptr;
-	GameSpriteComponent* m_pSpriteComponent = nullptr;
-
-	Horizon::TriggerComponent* m_pTriggerComponent = nullptr;
-	Horizon::TransformComponent* m_pCoilyTransformComponent = nullptr;
-	MovementComponent* m_pQbertMovementComponent = nullptr;
 };
 

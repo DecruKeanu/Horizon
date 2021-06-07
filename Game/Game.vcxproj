@@ -179,7 +179,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeHandleComponent.cpp" />
     <ClCompile Include="EnemyInputComponent.cpp" />
-    <ClCompile Include="EnemyMovementComponent.cpp" />
     <ClCompile Include="GameSpriteComponent.cpp" />
     <ClCompile Include="FlyingDisc.cpp" />
     <ClCompile Include="FlyingDiscMovementComponent.cpp" />
@@ -217,16 +216,14 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeHandleComponent.h" />
     <ClInclude Include="EnemyInputComponent.h" />
-    <ClInclude Include="EnemyMovementComponent.h" />
     <ClInclude Include="GameSpriteComponent.h" />
     <ClInclude Include="FlyingDisc.h" />
     <ClInclude Include="FlyingDiscMovementComponent.h" />
     <ClInclude Include="FlyingDiscSpriteComponent.h" />
-    <ClInclude Include="GameCommands.h" />
+    <ClInclude Include="InputCommands.h" />
     <ClInclude Include="HealthDisplayObject.h" />
     <ClInclude Include="HelperFunctions.h" />
     <ClInclude Include="GamePCH.h" />
-    <ClInclude Include="LevelType.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="PlayerDiscComponent.h" />
     <ClInclude Include="QBert.h" />

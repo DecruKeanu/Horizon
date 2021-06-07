@@ -10,11 +10,17 @@ class HealthDisplayObject final
 {
 public:
 	HealthDisplayObject(const rapidjson::Value& jsonObject);
+
+	//Getter
 	Horizon::GameObject* GetGameObject() const;
 private:
-	void Initialize();
+	//Helper functions
+	void InitializePrefab();
 
-	const rapidjson::Value& m_Value;
+	//GameObject
 	Horizon::GameObject* m_pGameObject = nullptr;
+
+	//Variables
+	const rapidjson::Value& m_Value;
 };
 

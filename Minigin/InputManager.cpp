@@ -71,12 +71,12 @@ void Horizon::InputManager::HandleKeyboardInput(const std::pair<const Keyboardke
 		ExecuteKeyboardInput(it);
 }
 
-void Horizon::InputManager::AddControllerInput(ControllerButton button, ControllerButtonState buttonState, std::unique_ptr<Command> action)
+void Horizon::InputManager::AddControllerInput(const ControllerButton& button, const ControllerButtonState& buttonState, std::unique_ptr<Command> action)
 {
 	m_ControllerCommands.insert({ Controllerkey(buttonState, button),std::move(action) });
 }
 
-void Horizon::InputManager::AddKeyboardInput(SDLK key, KeyboardButtonState keyState, std::unique_ptr<Command> action)
+void Horizon::InputManager::AddKeyboardInput(const SDLK& key, const KeyboardButtonState& keyState, std::unique_ptr<Command> action)
 {
 	m_KeyboardCommands.insert({ Keyboardkey(keyState,key),std::move(action) });
 }

@@ -6,9 +6,8 @@
 #include "rapidjson.h"
 #include "document.h"
 
+//Credit to Elise Briers for helping me template the PrefabFactory
 
-
-//Credit to Elise Briers
 namespace Horizon
 {
 	class PrefabFactory final

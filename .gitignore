@@ -3,9 +3,11 @@
 /x86
 /Win32
 /Debug
+/Release
 Minigin/x64
 Minigin/x86
 Minigin/Win32
 Game/x64
 Game/x86
 Game/Debug
+Game/Release

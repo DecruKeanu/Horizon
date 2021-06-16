@@ -52,16 +52,16 @@ void PlayerInputComponent::InitializeInput()
 	using namespace Horizon;
 
 	//AZERTY for personal use
-	//const Input downInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_s,ControllerButton::DPadDown } : Input{ SDLK::SDLK_DOWN, ControllerButton::ButtonA };
-	//const Input leftInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_q,ControllerButton::DPadLeft } : Input{ SDLK::SDLK_LEFT, ControllerButton::ButtonX };
-	//const Input upInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_z,ControllerButton::DPadUp } : Input{ SDLK::SDLK_UP, ControllerButton::ButtonY };
-	//const Input rightInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_d,ControllerButton::DPadRight } : Input{ SDLK::SDLK_RIGHT, ControllerButton::ButtonB };
+	const Input downInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_s,ControllerButton::DPadDown } : Input{ SDLK::SDLK_DOWN, ControllerButton::ButtonA };
+	const Input leftInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_q,ControllerButton::DPadLeft } : Input{ SDLK::SDLK_LEFT, ControllerButton::ButtonX };
+	const Input upInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_z,ControllerButton::DPadUp } : Input{ SDLK::SDLK_UP, ControllerButton::ButtonY };
+	const Input rightInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_d,ControllerButton::DPadRight } : Input{ SDLK::SDLK_RIGHT, ControllerButton::ButtonB };
 
 	//QWERTY for general use
-	const Input downInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_s,ControllerButton::DPadDown } : Input{ SDLK::SDLK_DOWN, ControllerButton::ButtonA };
-	const Input leftInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_a,ControllerButton::DPadLeft } : Input{ SDLK::SDLK_LEFT, ControllerButton::ButtonX };
-	const Input upInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_w,ControllerButton::DPadUp } : Input{ SDLK::SDLK_UP, ControllerButton::ButtonY };
-	const Input rightInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_d,ControllerButton::DPadRight } : Input{ SDLK::SDLK_RIGHT, ControllerButton::ButtonB };
+	//const Input downInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_s,ControllerButton::DPadDown } : Input{ SDLK::SDLK_DOWN, ControllerButton::ButtonA };
+	//const Input leftInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_a,ControllerButton::DPadLeft } : Input{ SDLK::SDLK_LEFT, ControllerButton::ButtonX };
+	//const Input upInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_w,ControllerButton::DPadUp } : Input{ SDLK::SDLK_UP, ControllerButton::ButtonY };
+	//const Input rightInput = m_IsFirstPlayer ? Input{ SDLK::SDLK_d,ControllerButton::DPadRight } : Input{ SDLK::SDLK_RIGHT, ControllerButton::ButtonB };
 
 	InputManager::GetInstance().AddKeyboardInput(downInput.first, KeyboardButtonState::KeyDown, std::make_unique<MoveDownCommand>(m_Move, m_CanInputBeRegistered));
 	InputManager::GetInstance().AddKeyboardInput(leftInput.first, KeyboardButtonState::KeyDown, std::make_unique<MoveLeftCommand>(m_Move, m_CanInputBeRegistered));

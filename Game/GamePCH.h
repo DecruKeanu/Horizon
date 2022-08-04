@@ -32,8 +32,6 @@
 #include <vector>
 
 #include <windows.h>
-
-#include <vld.h>
 #include <Structs.h>
 
 //Own files
